@@ -1,0 +1,349 @@
+<script src="assets/js/controllers/mk/useticketCtrl.js"></script>
+<style>
+    *{
+        padding: 0;
+        margin:  0;
+    }
+    .bottombanner {
+        display: none;
+    }
+
+    .bg {
+        background-color: #fdd492;
+        padding-bottom: 10px;
+    }
+
+    .bg_title {
+        width: 100%;
+        height: 300px;
+        background: url(assets/images/banner.png);
+        background-size: 100% 100%;
+    }
+
+    .nav {
+        width: 100%;
+        height: 20px;
+        text-align: center;
+        font-size: 15px;
+        color: #7a4c01;
+        padding-top: 10px;
+        margin-bottom: 20px;
+    }
+
+    .bg_contain {
+        width: 90%;
+        height: auto;
+        margin: 0 auto;
+        background: url(assets/images/bjk.png);
+        background-size: 100% 100%;
+        padding-top: 20px;
+        padding-bottom: 30px;
+        padding-left: 5px;
+
+    }
+
+    .bg_top {
+        width: 90%;
+        height: 15px;
+        margin: 0 auto;
+        background: url(assets/images/bjk_top.png);
+        background-size: 100% 100%;
+        margin-top: 10px;
+    }
+
+    .bg_btt {
+        width: 90%;
+        height: 3px;
+        margin: 0 auto;
+        background: url(assets/images/bjk_btt.png);
+        background-size: 100% 100%;
+        margin-bottom: 20px;
+    }
+
+    .bg_contain ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .bg_contain ul li {
+        width: 85%;
+        height: auto;
+        margin: 0 auto;
+        margin-bottom: 5px;
+
+    }
+
+    .bg_contain ul li img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .detal {
+        clear: both;
+        width: 70%;
+        height: 20px;
+        margin: 20px auto;
+        border-radius: 8px;
+        text-align: center;
+    }
+
+    .bg_contain col-xs-3, .bg_contain col-xs-8{
+        margin-bottom: 10px;
+
+    }
+
+
+    .title span {
+        color: #ec4630;
+        font-size: 15px;
+        text-align: center;
+    }
+
+    .title {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .detal button {
+
+        vertical-align: middle;
+    }
+
+
+    .con_text {
+        width: 95%;
+        height: auto;
+        font-size: 10px;
+        margin: 0 auto;
+        color: #7a4c01;
+    }
+
+    .forgot {
+        display: block;
+        float: right;
+        position: absolute;
+        z-index: 3;
+        top: 9px;
+        right: 20px;
+        color: #7a4c01;
+        opacity: .5;
+        font-size: 14px;
+        filter: alpha(opacity=50);
+
+    }
+
+    .error {
+        color: red;
+    }
+    .form_title {
+        height: 30px;
+        line-height:30px;
+        text-align: right;
+        font-size: 14px;
+        color: #f44031;
+
+    }
+    .form_title span{
+        text-align: right;
+    }
+    .form_val input{
+        height: 25px;
+        border: none;
+        margin-top: 5px;
+        border: 1px solid #ed4731 !important;
+        background-color: #fef7da !important;
+    }
+    .col-xs-3{
+        padding-right: 0px;
+    }
+    .col-xs-8{
+        padding-left: 0px;
+    }
+    input[type="text"]{
+        border: none;
+    }
+    .readonly{
+        line-height: 30px;
+    }
+</style>
+<div class="bg" ng-controller="useticketCtrl">
+    <div class="bg_title" ></div>
+    <div class="bg_top"  ng-hide="img==''"></div>
+    <div class="bg_contain" ng-hide="img==''">
+        <div class="title"><span> ◆ &nbsp;卡券 &nbsp;◆</span></div>
+        <ul style="text-align:center;">
+            <table ng-table="tableParams" style="width: 100%">
+                <tr>
+                    <td >
+                        <li ng-repeat="item in $data" style="text-align: center;margin-bottom:10px">
+                            <img src="{{serviceRoot+item.img}}">
+                        </li>
+                    </td>
+                </tr>
+            </table>
+
+        </ul>
+    </div>
+    <div class="bg_btt"  ng-hide="img==''"></div>
+    <div class="bg_top"></div>
+    <div class="bg_contain">
+        <div class="title"><span> ◆ &nbsp;收货信息 &nbsp;◆</span></div>
+
+        <form name="signUpForm" id="f1" novalidate class="form-register" novalidate ng-submit="form.submit(signUpForm)">
+
+            <input type="text" ng-model="phone" name="owner" style="display: none">
+            <input type="text" ng-model="username" name="SHR" style="display: none">
+            <input type="text" ng-model="address" name="SH_ADDR" style="display: none">
+            <input type="text" ng-model="product_no" name="value" style="display: none">
+            <input type="text" ng-model="product_qty" name="key" style="display: none">
+            <input type="text" ng-model="b_date" name="startDate" style="display: none">
+            <input type="text" ng-model="e_date" name="endDate" style="display: none">
+            <input type="text" name="day" style="display: none">
+
+            <div class="row">
+                <div class="col-xs-3 form_title">
+                    <span>收货人：</span>
+                </div>
+                <div class="col-xs-8 form_val">
+                    <input name="username"
+                           ng-model="username"
+                           id="username"
+                           type="text"
+                           class="form-control"
+                           required>
+                    <span class="readonly" ng-if="isused=='1'">{{username}}</span>
+                    <span class="error"
+                          ng-show="signUpForm.username.$dirty && signUpForm.username.$invalid">
+                    <small class="error"
+                           ng-show="signUpForm.username.$error.required">
+                        请填写收货人姓名
+                    </small>
+                  </span>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 form_title">
+                    <span>电&nbsp;&nbsp;&nbsp;&nbsp;话：</span>
+                </div>
+                <div class="col-xs-8 form_val">
+                    <input name="phone"
+                           id="phone"
+                           ng-model="phone"
+                           type="text"
+                           class="form-control"
+                           maxlength="13"
+                           required>
+                    <span class="readonly"  ng-if="isused==1">{{phone}}</span>
+                    <span class="error" ng-show="signUpForm.phone.$dirty && signUpForm.phone.$invalid">
+                    <small class="error"
+                           ng-show="signUpForm.phone.$error.required">
+                        请填写电话号码
+                    </small>
+                    <small class="error"
+                           ng-show="signUpForm.phone.$error.pattern">
+                        填写格式有误
+                    </small>
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 form_title">
+                    <span>地&nbsp;&nbsp;&nbsp;&nbsp;址：</span>
+                </div>
+                <div class="col-xs-8 form_val">
+                    <input type="text"
+                           id="address"
+                           name="address"
+                           ng-model="address"
+                           class="form-control"
+                           required>
+                    <span class="readonly" ng-if="isused==1" >{{address}}</span>
+                    <span class="error"
+                          ng-show="signUpForm.address.$dirty && signUpForm.address.$invalid">
+                    <small class="error"
+                           ng-show="signUpForm.address.$error.required">
+                        请填写收货地址
+                    </small>
+                    </span>
+                </div>
+            </div>
+
+            <div class="detal" >
+                </br>
+                <input
+                        class="form-control btn btn-warning"
+                        type="submit"
+                        value="使用卡券"
+                        ng-if="isused==0"
+                >
+            </div>
+            <div class="col-xs-12" style="margin-top: -30px;font-size: 16px;color:#f44031">
+                <div ng-if="isused==1" style="">
+                   <span ng-if="logistics_info" style="text-align: left;">
+                       <span style="font-size:15px">{{logistics_info}}</span>
+                       </span>
+                    <span ng-if="logistics_info==''" style="text-align: center"> 卡券已使用，等待发货 </span>
+                </div>
+            </div>
+            <div id="myModalUploadImg"  style="display: none;">
+                <div class="myModal" style="padding-top: 10px;padding-left:20px;">
+
+
+                    <div style="margin: 10px auto; width: 80%">
+                        <div class="row"><span align="left" style="padding-left:3px; font-size:13px; color: #5b5b60;">发送至:&nbsp;&nbsp;{{ phone | limitTo : 3 }}****{{ phone | limitTo : -4 }}</span></div>
+                        <div class="row" style="margin-top: 10px">
+                            <div class="col-xs-3 form_title" style="padding: 0;height: 34px;line-height: 34px;text-align:left;
+        font-size: 13px;">
+                                <span style="color: #5b5b60; " >验证码：</span>
+                            </div>
+                            <div class="col-xs-5" style="padding: 0">
+                                <input type="text"
+                                       class="form-control"
+                                       id="validno"
+                                       name="validno"
+                                       ng-model="validno"
+                                       style="border-right:none "
+                                >
+                            </div>
+                            <div class="col-xs-4 form_title" style="padding: 0;height: 34px;line-height: 34px;text-align: right;
+        font-size: 14px;background:#eea236; text-align:center;">
+                                <a ng-click="sendCode()" style="color: whitesmoke" >{{description}}</a>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 15px">
+                            <div class="col-xs-3"></div>
+                            <div class="col-xs-6 form_title"  style="padding: 0;height: 34px;line-height: 34px;text-align: right;
+        font-size: 14px;background:#eea236; text-align:center;" ng-if="!flag">
+                                <a ng-click="submitend()"   style="color: whitesmoke">
+                                    确认
+                                </a>
+                            </div>
+                            <div class="col-xs-3"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="bg_btt"></div>
+    <div class="bg_top"></div>
+    <div class="bg_contain">
+        <div class="title"><span> ◆ &nbsp;说明 &nbsp;◆</span></div>
+        <div class="con_text">
+            <ul style="list-style: none">
+
+                <li>
+                   1、住宿产品优惠券使用需提前两天预订。
+                </li>
+                <li>
+                    2、最终解释权归名卡所有。
+                </li>
+
+            </ul>
+        </div>
+    </div>
+    <div class="bg_btt"></div>
+
+</div>

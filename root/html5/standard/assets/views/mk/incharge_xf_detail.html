@@ -1,0 +1,69 @@
+<script src="assets/js/controllers/mk/InChargeXFDetailCtrl.js"></script>
+
+<!-- start: REGISTRATION -->
+<div class="row">
+	<div class="main-login col-xs-12" style="margin-top:0px;">
+		
+		<!-- start: REGISTER BOX -->
+				<div class="box-register" ng-controller="InChargeXFDetailCtrl">
+
+
+					<div>
+					<form id="f1" class="form-register">
+						
+						  
+                              
+                   <!-- start: SIMPLE TABLE WITH PAGINATION -->                             
+						<div>
+
+						<!--
+										<p>
+											<strong>Page:</strong> {{tableParams.page()}}
+										</p>
+										<p>
+											<strong>Count per page:</strong> {{tableParams.count()}}
+										</p>-->
+										<table ng-table="tableParams" class="table table-striped">
+										<thead>
+											<tr>
+												<th><nobr>商家</nobr></th>
+												<th>单号</th>
+												<th class="hidden-xs">时间</th>
+												<th>金额</th>
+												<th class="hidden-xs">类型</th>
+												<th>操作</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr ng-repeat="item in $data">
+												<td>{{item.shop_name}}</td>
+												<td>{{item.pay_no}}</td>
+												<td class="hidden-xs">{{item.create_time}}</td>
+												<td>{{item.total_price}}</td>
+												<td class="hidden-xs">{{item.pay_type}}</td>
+												<td></td>
+									
+											</tr>
+										</tbody>
+										</table>
+									</div>
+						<!-- end: SIMPLE TABLE WITH PAGINATION -->
+								
+
+
+                             
+                              
+						
+					</form>  
+					</div>
+                              
+						
+
+				</div>
+				<!-- end: REGISTER BOX -->
+				
+
+					
+	</div>
+</div>
+<!-- end: REGISTRATION -->

@@ -1,0 +1,25 @@
+<link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+<style>
+	#bottombanner{
+		display: none;
+	}
+</style>
+<div class="whole" style=" position:relative;">
+	<div class="pc_img">
+		<img id="gif" />
+	</div>
+	<div class="dc_tit1">
+		<img src="assets/images/dc_tit.png" />
+	</div>
+	<a ui-sref="app.eco.questions"><div class="btn"></div></a>
+</div>
+<script language="javascript" type="text/javascript">
+    $(document).ready(function() {
+        $(".dc_tit1").animate({
+            left:87+'vw'
+        },1500);
+    });
+</script>
+<script language="javascript" type="text/javascript">
+    document.getElementById("gif").src="assets/images/animate_bg.gif?"+Math.random();
+</script>

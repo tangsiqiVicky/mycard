@@ -1,0 +1,40 @@
+<script src="assets/js/controllers/mk/PayCodeCtrl.js"></script>
+
+<!-- start: REGISTRATION -->
+<div class="row">
+	<div class="main-login col-xs-12">
+		
+		<!-- start: REGISTER BOX -->
+				<div class="box-register">
+
+
+					<div>
+					<form id="f1" class="form-register">
+
+						
+                            
+                        <div ng-controller="PayCodeCtrl">      
+                  
+							<div class="form-actions" style="text-align:center" align=center>
+								<img id="qrcode" src="{{serviceRoot}}qrcode?msg={{pay_qrcode}}&width=140&height=140" style="width:200px;height:200px;" ng-click="getqrcode()">
+								<br>请商家扫描此二维码，5分钟内有效
+							</div>
+								
+						</div>
+
+                             
+                              
+						
+					</form>  
+					</div>
+                              
+						
+
+				</div>
+				<!-- end: REGISTER BOX -->
+				
+
+					
+	</div>
+</div>
+<!-- end: REGISTRATION -->

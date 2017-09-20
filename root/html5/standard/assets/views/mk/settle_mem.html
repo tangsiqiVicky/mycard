@@ -1,0 +1,135 @@
+<script src="assets/js/controllers/mk/SettleMEMCtrl.js"></script>
+
+
+
+<!-- start: REGISTRATION -->
+<div class="row">
+	<div class="main-login col-xs-12" style="margin-bottom:60px;">
+
+		<!-- start: REGISTER BOX -->
+
+
+
+
+<div class="box-login" ng-controller="SettleMEMCtrl">
+
+
+
+
+
+
+
+
+
+				<div id="payContent" style="display:none;border:1px solid #dddddd;background:#fff;" class="roundrec">
+									<div class="modal-header">
+									<h3 class="modal-title">支付订单&nbsp;&nbsp;{{PO_ID}}</h3>
+									</div>
+									<div class="modal-body">
+											<div class="radio clip-radio radio-primary radio-inline">
+												<input type="radio" id="radio1" name="inline" value="wx" ng-model="paymode">
+												<label for="radio1">
+													<img src="assets/images/wxpay.png" style="width:80px;height:30px;">
+												</label>
+											</div>
+											<div class="radio clip-radio radio-primary radio-inline">
+												<input type="radio" id="radio2" name="inline" value="ali" ng-model="paymode">
+												<label for="radio2">
+													<img src="assets/images/alipay.png" style="width:80px;height:30px;">
+												</label>
+											</div>
+									</div>
+									<div class="modal-footer">
+									<button class="btn btn-primary" ng-click="ok($event)">现在支付</button>
+									<button class="btn btn-primary" ng-click="cancel($event)">以后支付</button>
+									</div>
+				</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="col-md-12">
+
+
+	<form id="f1" class="form-register small">
+
+
+											<div class="form-group">
+												<span class="input-icon">
+													<input type="text" class="form-control" id="price0" name="price0" placeholder="消费金额" ng-change="getqrcode()" ng-model="price0">
+													<i class="ti ti-money"></i> </span>
+											</div>
+
+
+								1、支付方式一（现场支付）
+									<div class="form-actions" style="text-align:center" align=center>
+											<img id="qrcode" src="{{serviceRoot}}qrcode?msg={{pay_qrcode}}&width=140&height=140" style="width:150px;height:150px;" ng-click="getqrcode()" alt="请输入消费金额">
+											<br><!--
+											【{{pay_qrcode}}】-->
+											<br>请商家扫描此二维码，5分钟内有效，使用后失效
+
+									</div>
+			<br><br>
+								2、支付方式二（网上支付）
+									<div class="form-actions">
+
+
+											<button type="button" id="settle_savebtn" class="btn btn-primary" >
+												在线支付 <i class="fa fa-arrow-circle-right"></i>
+											</button>
+										</div>
+
+
+
+
+
+
+
+
+
+
+			</form>
+
+
+
+						<div class="form-actions">
+								<a ui-sref="app.wx.me.settle">
+									<i class="fa fa-chevron-circle-left"></i> 返回
+								</a>
+
+							</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+				<!-- end: REGISTER BOX -->
+
+				<!-- start: COPYRIGHT -->
+					<div class="copyright small">
+						&copy; <span class="current-year"></span><span class="text-bold text-uppercase small"> SNIPS</span>. <span class="small">All rights reserved</span>
+					</div>
+					<!-- end: COPYRIGHT -->
+
+	</div>
+</div>
+<!-- end: REGISTRATION -->

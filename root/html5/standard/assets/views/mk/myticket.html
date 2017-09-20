@@ -1,0 +1,271 @@
+<script src="assets/js/controllers/mk/myticketCtrl.js"></script>
+<style>
+	.ticketdiv{
+		padding:10px;
+		font-weight:800;
+		background:#F7F7FB;
+		margin-bottom: 10px !important;
+	}
+	.moneyh2{
+		line-height: 84px;color:darkgoldenrod;font-weight: 800;
+	}
+	.typeh5{
+		margin-top:10px;line-height: 44px;color:white;text-align:center;font-weight:500;background:darkgoldenrod;
+	}
+	.typeh5_after{
+		margin-top:10px;line-height: 44px;color:white;text-align:center;font-weight:500;background:lightgrey;
+	}
+	.moneyh2_after{
+		line-height: 84px;color:lightgrey;font-weight: 800;
+	}
+	.dataspan{
+		line-height: 40px;
+	}
+
+	.col-img img{
+		width: 100px;
+		height:100px;
+		border-radius: 50%;
+	}
+	.col-img{
+		padding-left: 0px !important;
+	}
+</style>
+
+<!-- start: REGISTRATION -->
+<div class="row">
+	<div class="main-login col-xs-12" style="margin-bottom:60px;">
+
+		<!-- start: REGISTER BOX -->
+		<div class="box-register small" ng-controller="myticketCtrl">
+			<div id="ticketcontent" style="display:none;background:#fff;" class="roundrec">
+
+				<div class="modal-header">
+
+				</div>
+
+				<div class="modal-body" id="ticketcontent-body1">
+					<a>{{ticketitem.ticket_id}}</a>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 margin-bottom-15" align=center >
+						<button ng-if="ticketitem.isused==0" class="btn " style="background:darkgoldenrod; color: white" ng-click="close()">使用卡劵</button>
+						<button ng-if="ticketitem.isused==1" class="btn btn-info " style="background:darkgoldenrod; " ng-click="close()">卡劵失效</button>
+					</div>
+				</div>
+				<div class="modal-footer">
+
+
+				</div>
+
+			</div>
+				<div>
+				<form id="f1" class="form-register">
+
+
+
+
+					<!-- start: SIMPLE TABLE WITH PAGINATION -->
+
+
+					<div ng-hide="isEmpty==='false'" ng-show="isEmpty==='true'" style="padding-top:15px;">
+
+						<div class="col-xs-12">
+
+							<div class="col-xs-4 text-left">
+								<!--<div ui-sref="app.eco.firstpage" style="cursor:pointer;">
+                                    <i class="ti ti-home fa-2x text-primary"></i><span class="small">首页</span>
+                                </div>-->
+
+								<button type="button" id="login2" class="btn btn-green" ui-sref="app.eco.firstpage">
+									<i class="ti ti-home"></i> 首页
+								</button>
+
+
+							</div>
+							<div class="col-xs-4 text-center text-large">
+								无
+							</div>
+							<div class="col-xs-4 text-right danger">
+
+								<!--<div ui-sref="app.wx.me.shoplist" style="cursor:pointer;">
+                                <i class="ti ti-plus fa-2x text-primary"></i><span class="small">继续添加</span>
+                                </div>-->
+
+								<button type="button" id="login" class="btn btn-orange" ui-sref="app.wx.me.shoplist">
+									去逛逛 <i class="fa fa-arrow-circle-right"></i>
+								</button>
+
+
+							</div>
+						</div>
+
+
+						<div class="clearfix space5"></div>
+
+
+					</div>
+
+
+
+
+					<div class="col-xs-12" ng-repeat="item in data">
+
+						<div ng-if="(item.ticket_type=='产品券'||item.ticket_type=='现金券')&&item.isvalid=='1'"
+							 class="row ticketdiv" >
+
+							<div class="col-xs-4 col-img" ui-sref="app.eco.useticket({ticket_id:'{{item.ticket_id}}',ticket_type:'{{item.ticket_type}}',shop_id:'{{item.shop_id}}',shop_name:'{{item.shop_name}}'})">
+								<br/>
+									<img src="{{serviceRoot+item.img}}" >
+							</div>
+
+							<div class="col-xs-7" ui-sref="app.eco.useticket({ticket_id:'{{item.ticket_id}}',ticket_type:'{{item.ticket_type}}',shop_id:'{{item.shop_id}}',shop_name:'{{item.shop_name}}'})" >
+								<h5 class="typeh5">{{item.ticket_type}}</h5>
+								<span class="dataspan">{{item.b_date}}至{{item.e_date}}</span></br>
+								<span class="dataspan">{{item.goods_name}}</span></br>
+							</div>
+							<div class="col-xs-1 padding-left-0"  ng-click="delit(item.ticket_id)" >
+								<i class="fa fa-times"></i>
+							</div>
+						</div>
+						<div ng-if="(item.ticket_type=='产品券'||item.ticket_type=='现金券')&&item.isvalid=='0'" class="row ticketdiv"  >
+							<div class="col-xs-4 col-img" >
+								<br/>
+								<img src="{{serviceRoot+item.img}}">
+							</div>
+
+							<div class="col-xs-7" >
+								<h5 class="typeh5_after">{{item.ticket_type}}</h5>
+								<span class="dataspan">{{item.b_date}}至{{item.e_date}}</span></br>
+								<span class="dataspan">{{item.goods_name}}</span></br>
+							</div>
+							<div class="col-xs-1 padding-left-0"  ng-click="delit(item.ticket_id)" >
+								<i class="fa fa-times"></i>
+							</div>
+							<!--<div class="col-xs-1">-->
+
+							<!--</div>-->
+						</div>
+						<!--<div  ng-if="item.ticket_type=='农副产品现金劵'&&item.isvalid=='1'" ui-sref="app.eco.useticket({ticket_id:'{{item.ticket_id}}',ticket_type:'{{item.ticket_type}}'})"-->
+							  <!--class="row ticketdiv"  >-->
+							<!--<div class="col-xs-4" >-->
+								<!--<h2 ng-show="item.amount!=0" class="moneyh2">¥{{item.amount}}</h2>-->
+								<!--&lt;!&ndash;<h2 ng-show="item.amount==0" class="productimg">&ndash;&gt;-->
+									<!--&lt;!&ndash;<img src="{{serviceRoot+item.img}}">&ndash;&gt;-->
+								<!--&lt;!&ndash;</h2>&ndash;&gt;-->
+							<!--</div>-->
+							<!--<div class="col-xs-7"  >-->
+								<!--<h5 class="typeh5">{{item.ticket_type}}</h5>-->
+								<!--<span class="dataspan">{{item.b_date}}至{{item.e_date}}</span></br>-->
+							<!--</div>-->
+							<!--<div class="col-xs-1 padding-left-0" ng-click="delit(item.ticket_id)">-->
+								<!--<i class="fa fa-times"></i>-->
+							<!--</div>-->
+
+						<!--</div>-->
+						<!--<div  ng-if="item.ticket_type=='农副产品现金劵'&&item.isvalid=='0' "-->
+							  <!--class="row ticketdiv"  >-->
+							<!--<div class="col-xs-4" >-->
+								<!--<h2 ng-show="item.amount!=0" class="moneyh2_after">¥{{item.amount}}</h2>-->
+								<!--&lt;!&ndash;<h2 ng-show="item.amount==0" class="productimg">&ndash;&gt;-->
+								<!--&lt;!&ndash;<img src="{{serviceRoot+item.img}}">&ndash;&gt;-->
+								<!--&lt;!&ndash;</h2>&ndash;&gt;-->
+							<!--</div>-->
+							<!--<div class="col-xs-7" >-->
+								<!--<h5 class="typeh5_after">{{item.ticket_type}}</h5>-->
+								<!--<span class="dataspan">{{item.b_date}}至{{item.e_date}}</span></br>-->
+							<!--</div>-->
+							<!--<div class="col-xs-1 padding-left-0" ng-click="delit(item.ticket_id)">-->
+								<!--<i class="fa fa-times"></i>-->
+							<!--</div>-->
+
+
+
+						<!--</div>-->
+
+						<div  ng-if="item.ticket_type=='住宿券'&&item.isvalid=='1'"
+
+							  class="row ticketdiv"  >
+							<div class="col-xs-4 col-img"  ui-sref="app.wx.me.shopinfo({shop_id:'{{item.shop_id}}'})">
+								<br/>
+									<img src="{{serviceRoot+item.img}}">
+							</div>
+							<div class="col-xs-7"   ui-sref="app.wx.me.shopinfo({shop_id:'{{item.shop_id}}'})">
+								<h5 class="typeh5">{{item.ticket_type}}</h5>
+								<span class="dataspan">{{item.b_date}}至{{item.e_date}}</span></br>
+								<span class="dataspan">{{item.goods_name}}</span></br>
+							</div>
+							<div class="col-xs-1 padding-left-0" ng-click="delit(item.ticket_id)">
+								<i class="fa fa-times" ></i>
+							</div>
+						</div>
+						<div  ng-if="item.ticket_type=='住宿券'&&item.isvalid=='0'"
+							  class="row ticketdiv" >
+							<div class="col-xs-4 col-img" >
+								<br/>
+								<img src="{{serviceRoot+item.img}}">
+							</div>
+							<div class="col-xs-7"  >
+								<h5 class="typeh5_after">{{item.ticket_type}}</h5>
+								<span class="dataspan">{{item.b_date}}至{{item.e_date}}</span></br>
+								<span class="dataspan">{{item.goods_name}}</span></br>
+							</div>
+							<div class="col-xs-1 padding-left-0" ng-click="delit(item.ticket_id)">
+								<i class="fa fa-times" ></i>
+							</div>
+
+						</div>
+
+						<!--<div class="col-xs-4" ng-repeat="item in data" style="margin-top:20px;">-->
+							<!--{{item.ticket_id}} <br>-->
+							<!--<a ui-sref="app.eco.useticket({ticket_id:'{{item.ticket_id}}',ticket_type:'{{item.ticket_type}}'})">{{item.ticket_type}}</a> <br>-->
+							<!--<img ui-sref="app.eco.useticket({ticket_id:'{{item.ticket_id}}',ticket_type:'{{item.ticket_type}}'})" src="{{serviceRoot}}{{item.img}}" style="width:90%;height:100px;"> <br>-->
+							<!--<span>有效期:</span></br>-->
+							<!--<span>{{item.b_date}}至{{item.e_date}}</span>-->
+							<!--<br>-->
+							<!--<h2 ng-show="item.amount!=0">¥{{item.amount}}</h2>-->
+						<!--</div>-->
+
+					</div>
+					<!--
+                                    <p>
+                                        <strong>Page:</strong> {{tableParams.page()}}
+                                    </p>
+                                    <p>
+                                        <strong>Count per page:</strong> {{tableParams.count()}}
+                                    </p>
+                                    <table ng-table="tableParams" class="table table-striped">
+                                        <tr ng-repeat="item in $data">
+                                        <td data-title="'序号'">{{item.id}}</td>
+                                            <td data-title="'商家'"><a ui-sref="app.wx.me.shopinfo({shop_id:'{{item.shop_id}}'})">{{item.shop_name}}</a></td>
+                                            <td data-title="'有效期'">{{item.b_date}}~{{item.e_date}}</td>
+                                            <td data-title="'金额'">{{item.amount}}</td>
+                                            <td data-title="'编号'">{{item.ticket_id}}</td>
+
+                                        </tr>
+                                    </table>-->
+
+					<!-- end: SIMPLE TABLE WITH PAGINATION -->
+
+
+
+
+
+
+
+
+
+				</form>
+			</div>
+
+
+
+		</div>
+		<!-- end: REGISTER BOX -->
+
+
+
+
+	</div>
+</div>
+<!-- end: REGISTRATION -->

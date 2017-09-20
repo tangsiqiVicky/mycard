@@ -1,0 +1,397 @@
+<script src="assets/js/controllers/mk/MyPublishnosendTicketNewCtrl.js"></script>
+<style>
+    .checkbox-inline{
+        margin-right: 0 !important;
+        margin-bottom: 0 !important;
+    }
+</style>
+<!-- start: REGISTRATION class="main-login col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4"-->
+<div class="row">
+    <div class="main-login col-xs-12" style="margin-top:0px;">
+
+        <!-- start: REGISTER BOX -->
+        <div class="box-register small" ng-controller="MyPublishnosendTicketNewCtrl">
+
+            <div id="asideContent3" style="display:none;border:1px solid #dddddd;background:#fff;" class="roundrec">
+                <!--<script type="text/ng-template" id="asideContent.html">-->
+                <div class="modal-header" style="height:60px;">
+
+                    <div class="col-xs-12">
+
+                        <div class="col-xs-8">
+                            <h3 class="modal-title">选择卡劵</h3>
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="modal-body" >
+
+                    <table ng-table="tickettableParams" class="table table-striped">
+                        <input type="text" name="selected"🆔id="select" value="{{selected}}" style="display: none"/>
+                        <!--<pre>{{selected}}</pre>-->
+
+                        <thead>
+                            <th>
+                                <div class="checkbox clip-check check-primary checkbox-inline small" >
+
+                                <input type="checkbox" 🆔🆔
+                                       id="selectall"
+                                       ng-click="selectAll($event)" ng-checked="isSelectedAll()"/>
+                                    <label for="selectall">
+
+                                    </label>
+                                </div>
+                            </th>
+                            <th style="width:40px;">
+                                <nobr>序号</nobr>
+                            </th>
+                            <th class="hidden-xs">&nbsp;</th>
+                            <th>卡劵编号</th>
+                            <th>类型</th>
+                            <th>金额</th>
+                            <th  class="hidden-xs">期限</th>
+
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="item in $data">
+
+
+
+
+                            <td>
+                            <div class="checkbox clip-check check-primary checkbox-inline small" >
+
+                                <input type="checkbox" id="{{item.ticket_id}}" name="selected" ng-checked="isSelected(item.ticket_id)" ng-click="updateSelection($event,item.ticket_id)"/>
+
+                                <label for="{{item.ticket_id}}">
+                                    <div class="small"></div>
+                                </label>
+                            </div>
+                            </td>
+                            <td ng-click="getticketById(item)">{{item.sortno}}</td>
+                            <td ng-click="getticketById(item)" class="hidden-xs"><img src="{{serviceRoot}}{{item.img}}" style="width:40px;height:40px;"></td>
+                            <td ng-click="getticketById(item)"><a >{{item.ticket_id}}</a></td>
+                            <td ng-click="getticketById(item)"><a >{{item.ticket_type}}</a></td>
+                            <td ng-click="getticketById(item)">{{item.amount}}</td>
+                            <td  class="hidden-xs">{{item.b_date}}--{{item.e_date}}</td>
+
+
+
+                        </tr>
+                        </tbody>
+                    </table>
+
+
+                </div>
+                <div class="modal-footer">
+
+
+                    <div class="row">
+                        <div class="col-xs-12" align=center>
+                            <button class="btn btn-primary btn-o" ng-click="sure()">确定</button>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <!--</script>-->
+            </div>
+            <div id="asideContent1" style="display:none;border:1px solid #dddddd;background:#fff;" class="roundrec">
+                <!--<script type="text/ng-template" id="asideContent.html">-->
+                <div class="modal-header" style="height:60px;">
+
+                    <div class="col-xs-12">
+
+                        <div class="col-xs-8">
+                            <h3 class="modal-title">选择会员</h3>
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+                <div class="modal-body">
+
+
+                    <table ng-table="tableParamsuser" class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th style="width:40px;">
+                                <nobr>序号</nobr>
+                            </th>
+                            <th>姓名</th>
+                            <th>电话</th>
+                            <th class="hidden-xs">积分</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="item in $data">
+                            <td>{{item.id}}</td>
+                            <td><a ng-click="getuserid(item)">{{item.nickname}}</a></td>
+                            <td><a ng-click="getuserid(item)">{{item.phone}}</a></td>
+                            <td class="hidden-xs">{{item.points}}</td>
+
+
+                        </tr>
+                        </tbody>
+                    </table>
+
+
+                </div>
+                <div class="modal-footer">
+
+
+                    <div class="row">
+                        <div class="col-xs-12" align=center>
+                            <button class="btn btn-primary btn-o" ng-click="close()">取消</button>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <!--</script>-->
+            </div>
+
+            <div id="asideContent" style="display:none;border:1px solid #dddddd;background:#fff;" class="roundrec">
+                <!--<script type="text/ng-template" id="asideContent.html">-->
+                <div class="modal-header" style="height:60px;">
+
+                    <div class="col-xs-12">
+
+                        <div class="col-xs-8">
+                            <h3 class="modal-title">选择商家</h3>
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+                <div class="modal-body" style="overflow:auto;" id="getshop_modal-body">
+
+
+                    <table ng-table="tableParams" class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th style="width:40px;">
+                                <nobr>序号</nobr>
+                            </th>
+                            <th>编号</th>
+                            <th>名称</th>
+                            <th class="hidden-xs">分类</th>
+                            <th class="hidden-xs">地址</th>
+                            <th class="hidden-xs">评价</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="item in $data">
+                            <td>{{item.id}}</td>
+                            <td><a ng-click="getshop(item)">{{item.shop_id}}</a></td>
+                            <td><a ng-click="getshop(item)">{{item.name}}</a></td>
+                            <td class="hidden-xs">{{item.subtype}}</td>
+                            <td class="hidden-xs">{{item.address}}</td>
+                            <td class="hidden-xs">{{item.star}}</td>
+
+                        </tr>
+                        </tbody>
+                    </table>
+
+
+                </div>
+
+
+                <div class="modal-footer">
+
+
+                    <div class="row">
+                        <div class="col-xs-12" align=center>
+                            <button class="btn btn-primary btn-o" ng-click="close()">取消</button>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <!--</script>-->
+            </div>
+
+
+            <div id="asideContent2" style="display:none;border:1px solid #dddddd;background:#fff;" class="roundrec">
+                <!--<script type="text/ng-template" id="asideContent.html">-->
+                <div class="modal-header" style="height:60px;">
+
+                    <div class="col-xs-12">
+
+                        <div class="col-xs-8">
+                            <h3 class="modal-title">选择分类</h3>
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+                <div class="modal-body" style="overflow:auto;" id="gettype_modal-body">
+
+
+                    <table ng-table="tableParams2" class="table">
+                        <thead>
+                        <tr>
+                            <th style="width:40px;">
+                                <nobr>序号</nobr>
+                            </th>
+                            <th>商家</th>
+                            <th>卡券分类</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="item in $data" class="small">
+                            <td style="width:40px;">{{item.id}}</td>
+                            <td>{{item.shop_name}}</td>
+                            <td><a ng-click="gettickettypeact(item)">{{item.ticket_type}}</a>
+                            </td>
+
+                        </tr>
+                        </tbody>
+                    </table>
+
+
+                </div>
+
+
+                <div class="modal-footer">
+
+
+                    <div class="row">
+                        <div class="col-xs-12" align=center>
+                            <button class="btn btn-primary btn-o" ng-click="close()">取消</button>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+                <!--</script>-->
+            </div>
+
+
+            <form id="f1" class="form-register">
+                <div class="title">
+                    {{currTitle}}
+                </div>
+
+                <p>
+                    商家编号:
+                </p>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="shop_id" name="shop_id" placeholder="商家编号"
+                           ng-model="shop_id" readOnly>
+                    <a class="forgot" href1="" ng-click="open('asideContent')">选择</a>
+                </div>
+                <p>
+                    分类名称:
+                </p>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="ticket_type" name="ticket_type" placeholder="分类名称"
+                           ng-model="ticket_type" readOnly>
+                    <a class="forgot" href1="" ng-click="gettickettype()">选择</a>
+                </div>
+                <p>
+                    编号:
+                </p>
+                <div class="form-group">
+                    <input type="text" class="form-control"  title="{{ticket_id}}" placeholder="编号"
+                         ng-model="ticket_id|textLengthSet:true:26:'...'"  >
+                    <a class="forgot" href1="" ng-click="getticket()">选择</a>
+                </div>
+                <input type="text" class="form-control" id="ticket_id" name="ticket_id" placeholder="编号"
+                       ng-model="ticket_id" style="display: none">
+
+
+
+                <p>
+                    属有人:
+                </p>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="owner" name="owner" placeholder="属有人"
+                           ng-model="owner">
+                    <a class="forgot" href1="" ng-click="open('asideContent1')">选择</a>
+                </div>
+
+                <p>
+                    已使用:
+                </p>
+                <div class="form-group">
+
+                    <select class1="cs-select cs-skin-slide"  class="form-control" ng-model="isused">
+                        <option value="1" selected>是</option>
+                        <option value="0">否</option>
+                    </select>
+
+                    <input type="text" class="form-control" id="isused" name="isused" placeholder="已使用"
+                           ng-model="isused" style="display:none;">
+                </div>
+                <p>
+                    使用日期:
+                </p>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="use_date" name="use_date" placeholder="使用日期"
+                           ng-model="use_date">
+                </div>
+
+
+
+
+
+
+                <p>
+                    备注:
+                </p>
+                <div class="form-group">
+
+                    <div ckeditor="options" ng-model="remark" ready="onReady()"></div>
+                    <textarea type="text" class="form-control" id="remark" name="remark" placeholder="备注"
+                              ng-model="remark" style="height:100px;display:none;"></textarea>
+
+                </div>
+
+
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+
+
+                <div class="form-actions">
+                    <a ui-sref="app.wx.me.mypublish_nosendticket">
+                        <i class="fa fa-chevron-circle-left"></i> 返回
+                    </a>
+                    <button   type="button" id="submit" class="btn btn-primary pull-right">
+                        提交 <i class="fa fa-arrow-circle-right"></i>
+                    </button>
+
+                </div>
+
+            </form>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+
+        </div>
+        <!-- end: REGISTER BOX -->
+
+
+    </div>
+</div>
+<!-- end: REGISTRATION -->

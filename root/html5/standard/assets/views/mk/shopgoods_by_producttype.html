@@ -1,0 +1,90 @@
+<script src="assets/js/controllers/mk/shopgoods_by_producttypeCtrl.js" charset="utf-8"></script>
+<style>
+
+
+</style>
+<!-- start: REGISTRATION -->
+<div class="row">
+	<div class="main-login col-xs-12" style="margin-bottom:60px;" ng-controller="shopgoods_by_producttypeCtrl">
+
+		<!-- start: REGISTER BOX -->
+		<div class="box-register" style="padding-bottom:0px;padding-top:0px;">
+			<div id="producttypedesc" ng-if="Showproducttypedesc =='yes'"></div>
+			<div class="clearfix space5"></div>
+			<div ng-if="Showslidesimg =='yes'">
+				<carousel interval="myInterval">
+					<slide ng-repeat="slide in slides" active="slide.active"> <img ng-src="{{serviceRoot+slide.image}}" style="margin:auto;height:160px;width:100%;">
+						<div class="carousel-caption">
+							<p> {{slide.text}}
+
+							</p>
+						</div>
+					</slide>
+				</carousel>
+			</div>
+			<div class="clearfix space5"></div>
+
+			<p style="text-align: center;">{{text}}</p>
+			<div id="dom"></div>
+			<div id="img"></div>
+			<div id="desc"></div>
+
+			<table style="width:100%;">
+				<tbody>
+					<tr ng-repeat="item in slidesimggroup" class="small">
+						<td>
+							<div class="col-xs-12" style="padding:0px;">
+							<a ui-sref="app.wx.me.goodsinfo({goods_id:'{{item.goods_id}}',statuss:'addpeople',startDate:'{{startDate}}',endDate:'{{endDate}}'})"><img ng-src="{{serviceRoot+item.photo}}" style="width:100%;height: 280px;border:1px solid #efefef;"></a>
+							</div>
+
+
+								<div class="col-xs-12" style="padding:0px;background:#f7f7f7;">
+									<div class="col-xs-7" style="padding-left: 25px;">
+
+										<p style="font-size: 16px;" >{{item.name}}</p>
+										<p style="color: green;"><span  ng-if="shop_id=='S-kf'" style="color:green;">有早 双人2份 </span>
+											<span  style="color:green;">{{item.shop_name}} </span>
+											{{item.products_type}}</p>
+									</div>
+									<div class="col-xs-2" style="height:100%;padding-left: 25px;">&nbsp;
+										<!--<i class="glyphicon glyphicon-chevron-right" style="line-height: 50px;"></i>-->
+									</div>
+									<div class="col-xs-3" ng-if1="shop_id=='S-kf'" style="height:100%;padding-right:25px;padding-left: 0px;">
+										<div  style="text-align: center;border-radius:5px;border: 1px solid #FF9A14;vertical-align: middle;margin-top: 5px;" ng-click="addcaract(item.goods_id,item.products_type,item.room_qty)">
+											<div><a class="text-large padding-bottom-0 " style="color:#FF9A14;font-weight:600;">预订</a></div>
+											<div class="small text-white" style="border-top:1px solid white ;background: #FF9A14;">{{item.price}}<span class="small text-white">元</span></div>
+										</div>
+									</div>
+								</div>
+
+								<div class="clearfix space5"></div>
+
+							<!--
+							<p style="font-size: 16px;" >{{item.name}}</p>
+									<p style="color: green;"><span  ng-if="shop_id=='S-kf'" style="color:green;">有早 双人2份 </span>
+										{{item.products_type}}</p>
+									-->
+						</td>
+						<td class="order">
+							<div class="text-center" ng-click="addcaract(item.goods_id,item.products_type)">
+								<!--
+								<div class="">
+									<a href="#" class="text-large padding-bottom-5">预订</a>
+									<span class="small text-orange">{{item.price}}</span><span class="small text-orange">元</span>
+								</div>	-->
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<!-- end: REGISTER BOX -->
+
+
+
+
+
+
+	</div>
+</div>
+<!-- end: REGISTRATION -->

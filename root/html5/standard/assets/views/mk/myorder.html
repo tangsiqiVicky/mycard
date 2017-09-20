@@ -1,0 +1,145 @@
+<script src="assets/js/controllers/mk/OrderCtrl.js"></script>
+
+<!-- start: REGISTRATION -->
+<div class="row">
+	<div class="main-login col-xs-12" style="margin-bottom:60px;">
+
+		<!-- start: REGISTER BOX -->
+				<div class="box-register small" ng-controller="OrderCtrl">
+
+
+	<div id="payContent" style="display:none;border:1px solid #dddddd;background:#fff;" class="roundrec">
+					<div class="modal-header">
+					<h3 class="modal-title">支付订单&nbsp;&nbsp;{{PO_ID}}</h3>
+					</div>
+					<div class="modal-body">
+							<div class="radio clip-radio radio-primary radio-inline">
+								<input type="radio" id="radio1" name="inline" value="wx" ng-model="paymode">
+								<label for="radio1">
+									<img src="assets/images/wxpay.png" style="width:80px;height:30px;">
+								</label>
+							</div>
+							<div class="radio clip-radio radio-primary radio-inline">
+								<input type="radio" id="radio2" name="inline" value="ali" ng-model="paymode">
+								<label for="radio2">
+									<img src="assets/images/alipay.png" style="width:80px;height:30px;">
+								</label>
+							</div>
+					</div>
+					<div class="modal-footer">
+					<button class="btn btn-primary" ng-click="ok_pay($event)">现在支付</button>
+					<button class="btn btn-primary" ng-click="cancel_pay($event)">以后支付</button>
+					</div>
+</div>
+
+
+												<div class="row">
+												<div class="col-xs-12">
+														<div class="panel-body">
+
+															<div>
+																<div class="text-center">
+																	<span class="mini-pie"> <canvas class="tc-chart" tc-chartjs-doughnut chart-options="options" chart-data="data" chart-legend="chart2" width="100"></canvas> <span>{{total}}</span> </span>
+																	<span class="inline text-large no-wrap">订单概况</span>
+																</div>
+																<div class="margin-top-20 text-center legend-xs">
+																	<div tc-chartjs-legend chart-legend="chart2" class="inline"></div>
+																</div>
+															</div>
+														</div>
+														<div class="panel-footer">
+															<div class="clearfix padding-5 space5">
+																<div class="col-xs-6 text-center no-padding">
+																	<div class="border-right border-dark">
+																		<a ><span class="text-bold block text-extra-large">{{total_num}}</span></a>
+																		<span class="text-light">订单数</span>
+																	</div>
+																</div>
+
+																<div class="col-xs-6 text-center no-padding">
+																	<a ><span class="text-bold block text-extra-large">{{total_amount | number:2}}</span></a>
+																	<span class="text-light">总金额</span>
+																</div>
+															</div>
+														</div>
+												</div>
+												</div>
+
+
+
+
+								<div class="row">
+								<div class="col-xs-12" style="padding-bottom: 100px">
+
+
+										<table ng-table="tableParams" class="table">
+										 <thead>
+											<tr>
+												<th style="width:40px;"><nobr>序号</nobr></th>
+												<th>订单号</th>
+												<th>商家</th>
+												<th>金额</th>
+												<th class="hidden-xs">日期</th>
+												<th class="hidden-xs">备注</th>
+												<th>操作</th>
+											</tr>
+										</thead>
+											<tbody>
+															<tr ng-repeat="item in $data">
+																<td style="width:40px;">{{item.sortno}}</td>
+																<td><a ui-sref="app.wx.me.orderdetail({po_id:'{{item.PO_ID}}',make_date:'{{item.Make_date}}'})">{{item.PO_ID}}</a></td>
+																<td><a ui-sref="app.wx.me.shopinfo({shop_id:'{{item.shop_id}}'})">{{item.shop_name}}</a></td>
+																<td class="text-center">{{item.amount | number:2}}</td>
+																<td class="hidden-xs">{{item.Make_date}}</td>
+																<td class="hidden-xs"><img src="{{serviceRoot+item.pic}}" style="width:30px;"  onclick="javascript:{window.open(this.src)}"></td>
+																<td class="text-center">
+
+																	<div class="visible-md visible-lg hidden-sm hidden-xs">
+																							<a href="#" ng-if="item.Status==='生效'" class="btn btn-transparent btn-xs" ng-click="payact(item.PO_ID,item.amount)" tooltip-placement="top" tooltip="支付"> <i class="fa fa-paypal"></i></a>
+																							<a href="#" ng-if="item.Status==='草拟'" class="btn btn-transparent btn-xs" ng-click="delit(item.PO_ID)" tooltip-placement="top" tooltip="删除"> <i class="fa fa-times"></i></a>
+																	</div>
+																	<div class="visible-xs visible-sm hidden-md hidden-lg" ng-if="item.Status==='生效'||item.Status==='草拟'">
+																								<div class="btn-group" dropdown is-open="status.isopen">
+																									<button type="button" class="btn btn-primary btn-o btn-sm dropdown-toggle" dropdown-toggle>
+																										<i class="fa fa-cog"></i>&nbsp;<span class="caret"></span>
+																									</button>
+																									<ul class="dropdown-menu pull-right dropdown-light" role="menu">
+																										<li ng-if="item.Status==='生效'">
+																											<a href="#" class="small" ng-click="payact(item.PO_ID,item.amount)"> <i class="fa fa-paypal"></i>&nbsp;支付</a>
+																										</li>
+																										<li ng-if="item.Status==='草拟'">
+																											<a href="#" class="small" ng-click="delit(item.PO_ID)"> <i class="fa fa-times"></i>&nbsp;删除</a>
+																											<a href="#" class="small" ng-click="sure(item.PO_ID,item.Status)"> <i class="fa fa-check"></i>&nbsp;确定</a>
+																										</li>
+
+																									</ul>
+																								</div>
+																	</div>
+
+																</td>
+
+															</tr>
+											</tbody>
+
+
+
+										</table>
+
+
+								</div>
+								</div>
+
+
+
+
+
+
+
+				</div>
+				<!-- end: REGISTER BOX -->
+
+
+
+	</div>
+</div>
+<!-- end: REGISTRATION -->

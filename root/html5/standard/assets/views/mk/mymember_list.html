@@ -1,0 +1,104 @@
+<script src="assets/js/controllers/mk/MemListCtrl.js"></script>
+
+<!-- start: REGISTRATION -->
+<div class="row">
+	<div class="main-login col-xs-12" style="margin-bottom:60px;">
+		
+		<!-- start: REGISTER BOX -->
+				<div class="box-register small" ng-controller="MemListCtrl">
+
+
+					<div>
+					<form id="f1" class="form-register">
+
+						
+						    
+                              
+                   <!-- start: SIMPLE TABLE WITH PAGINATION -->                             
+						<div>
+
+						<!--
+										<p>
+											<strong>Page:</strong> {{tableParams.page()}}
+										</p>
+										<p>
+											<strong>Count per page:</strong> {{tableParams.count()}}
+										</p>-->
+										<table ng-table="tableParams" class="table table-striped">
+										<thead>
+											<tr>
+												<th><nobr>序号</nobr></th>
+												<th>推荐</th>
+												<th>编号/名称</th>
+												<th>电话</th>
+												<th class="hidden-xs">时间</th>
+												<th>操作</th>
+											</tr>
+										</thead>
+											<tbody>
+											<tr ng-repeat="item in $data">
+												<td>{{item.sortno}}</td>
+												<td><a ui-sref="app.wx.me.scan({qrcode:'ID:{{item.inviter_id}}'})">{{item.inviter_id}}</a></td>
+												<td><img src="{{item.headimgurl}}" style="width:30px;"  onclick1="javascript:{window.open(this.src)}"></a><br><a ui-sref="app.wx.me.scan({qrcode:'ID:{{item.user_id}}'})">{{item.user_id}}</a><br>{{item.nickname}}</td>
+												<td>{{item.phone}}</td>
+												<td class="hidden-xs">{{item.create_time}}</td>
+												<td>
+
+
+															<div class="visible-md visible-lg hidden-sm hidden-xs">
+																						<a href="#" class="btn btn-transparent btn-xs" ng-click="editit(item.key)" tooltip-placement="top" tooltip="Edit"> <i class="fa fa-pencil"></i></a>
+																						<a href="#" class="btn btn-transparent btn-xs" ng-click="delit(item.key)" tooltip-placement="top" tooltip="Delete"> <i class="fa fa-times"></i></a>
+															</div>
+															<div class="visible-xs visible-sm hidden-md hidden-lg">
+																						<div class="btn-group" dropdown is-open="status.isopen">
+																							<button type="button" class="btn btn-primary btn-o btn-sm dropdown-toggle" dropdown-toggle>
+																								<i class="fa fa-cog"></i>&nbsp;<span class="caret"></span>
+																							</button>
+																							<ul class="dropdown-menu pull-right dropdown-light" role="menu">
+																								<li>
+																									<a href="#" class="small" ng-click="editit(item.key)"> <i class="fa fa-pencil"></i>&nbsp;编辑</a>
+																								</li>
+																								<li>
+																									<a href="#" class="small" ng-click="delit(item.key)"> <i class="fa fa-times"></i>&nbsp;删除</a>
+																								</li>
+																								
+																							</ul>
+																						</div>
+															</div>
+
+											
+												</td>
+											</tr>
+										</tbody>
+										</table>
+									</div>
+						<!-- end: SIMPLE TABLE WITH PAGINATION -->
+								
+
+
+							
+							<div class="form-actions">
+								<a ui-sref="app.wx.me.mymember">
+									<i class="fa fa-chevron-circle-left"></i> 返回
+								</a>
+								
+							</div>
+
+                             
+                              
+						
+					</form>  
+					</div>
+                              
+						
+<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>
+
+				</div>
+				<!-- end: REGISTER BOX -->
+
+				
+
+					
+	</div>
+</div>
+<!-- end: REGISTRATION -->

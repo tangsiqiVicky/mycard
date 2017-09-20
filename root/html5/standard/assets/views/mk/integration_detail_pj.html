@@ -1,0 +1,75 @@
+<script src="assets/js/controllers/mk/integration_detail_pj_Ctrl.js"></script>
+
+<!-- start: REGISTRATION -->
+<div class="row">
+	<div class="main-login col-xs-12" style="margin-top:0px;">
+		
+		<!-- start: REGISTER BOX -->
+				<div class="box-register" ng-controller="integration_detail_pj_Ctrl">
+
+
+					<div>
+					<form id="f1" class="form-register">
+
+						
+					       
+                              
+                   <!-- start: SIMPLE TABLE WITH PAGINATION -->                             
+						<div>
+
+						<!--
+										<p>
+											<strong>Page:</strong> {{tableParams.page()}}
+										</p>
+										<p>
+											<strong>Count per page:</strong> {{tableParams.count()}}
+										</p>-->
+										<table ng-table="tableParams" class="table table-striped">
+										<thead>
+											<tr>
+												<th><nobr>商家</nobr></th>
+												<th>消费</th>
+												<th class="hidden-xs">时间</th>
+												<th>评价</th>
+												<th>操作</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr ng-repeat="item in $data">
+												
+												<td>{{item.shop_name}}</td>
+												<td>{{item.cash_paid}}</td>
+												<td class="hidden-xs">{{item.creat_time}}</td>
+												<td>
+												<div>
+													<a href="#" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="赞"><i class="ti ti-thumb-up"></i></a>
+													<a href="#" class="btn btn-transparent btn-xs tooltips" tooltip-placement="top" tooltip="踩"><i class="ti ti-thumb-down"></i></a>
+													<a href="#" class="btn btn-transparent btn-xs tooltips" tooltip-placement="top" tooltip="拒绝评价"><i class="ti ti-shift-left-alt"></i></a>
+												</div>
+												</td>
+												<td></td>
+											</tr>
+										</tbody>
+										</table>
+									</div>
+						<!-- end: SIMPLE TABLE WITH PAGINATION -->
+								
+
+
+                             
+                              
+						
+					</form>  
+					</div>
+                              
+						
+
+				</div>
+				<!-- end: REGISTER BOX -->
+
+				
+
+					
+	</div>
+</div>
+<!-- end: REGISTRATION -->

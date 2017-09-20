@@ -1,0 +1,67 @@
+<script src="assets/js/controllers/mk/integration_detail_used_Ctrl.js"></script>
+
+<!-- start: REGISTRATION -->
+<div class="row">
+	<div class="main-login col-xs-12" style="margin-top:0px;">
+		
+		<!-- start: REGISTER BOX -->
+				<div class="box-register" ng-controller="integration_detail_used_Ctrl">
+
+
+					<div>
+					<form id="f1" class="form-register">
+
+						
+						    
+                              
+                   <!-- start: SIMPLE TABLE WITH PAGINATION -->                             
+						<div>
+
+						<!--
+										<p>
+											<strong>Page:</strong> {{tableParams.page()}}
+										</p>
+										<p>
+											<strong>Count per page:</strong> {{tableParams.count()}}
+										</p>-->
+										<table ng-table="tableParams" class="table table-striped">
+										<thead>
+											<tr>
+												<th>商家\\单号</th>
+												<th>积分</th>
+												<th class="hidden-xs">时间</th>
+												<th>操作</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr ng-repeat="item in $data">
+												
+												<td><div class="title2">{{item.shop_name}}</div><br>单号：{{item.pay_no}}</td>
+												<td><div class="title2">{{item.points_paid}}</div></td>
+												
+												<td class="hidden-xs">{{item.creat_time}}</td>
+												<td></td>
+											</tr>
+										</tbody>
+										</table>
+									</div>
+						<!-- end: SIMPLE TABLE WITH PAGINATION -->
+								
+
+
+                             
+                              
+						
+					</form>  
+					</div>
+                              
+						
+
+				</div>
+				<!-- end: REGISTER BOX -->
+				
+
+					
+	</div>
+</div>
+<!-- end: REGISTRATION -->

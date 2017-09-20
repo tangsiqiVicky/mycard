@@ -1,0 +1,140 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="standard/assets/js/snips.js"></script>
+<link rel="stylesheet" href="standard/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" type="text/css" />
+<link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="standard/assets/css/styles.css">
+<link rel="stylesheet" href="standard/assets/css/plugins.css">
+
+<div class="row">
+<div class="box-register text-center">
+<div id="tipdiv" style="padding:50px;text-align:center;color:red;display:block;"><img src="standard/assets/images/ajax-loader.gif" align=absmiddle><h1>请稍候。。。等待结束提醒</h1></div>
+</div>
+</div>
+<script language="javascript">
+
+
+//这个页面是用于短信邀请注册
+
+var v=request.QueryString("v");
+
+
+function finishact(theinvitor,phone,password)
+{
+document.getElementById("tipdiv").innerHTML="<a href='http://www.mycard.top/h5-js/html5/login.html?uid="+phone+"&pwd="+password+"'><h1><u id='loginuobj' style='font-weight:bold;'>登录</u></h1></a><h2>更多功能请进入微信公众号使用，通过“<span style='color:red;'>发展会员</span>”可获得分享收益</h2><br><br><div style='background:#efefef;padding:30px;'><h1>恭喜注册名卡联盟会员成功，<br><br>用户编号：&lt;U-"+phone+">，<br><br>密码：<"+password+">，<br><br>注册手机号：<"+phone+">,<br><br><br>请关注公众号<名卡联盟>后开启名卡生活之旅，<br><br>祝您愉快！</h1></div><br><br><br><img src='http://www.mycard.top/h5-js/html5/qrcode_for_mk.jpg'><br>长按二维码关注【名卡联盟】<br><br><br><br><br><br><br><br><h1>如果您还在纠结要不要介绍给朋友？请看看下面吧！<br><br></h1><img src='standard/assets/images/a4/mk.jpg'><br><br><img src='standard/assets/images/a4/mem.jpg'><br><br><img src='standard/assets/images/a4/shop.jpg'><br><br><img src='standard/assets/images/a4/sense.jpg'><br><br><img src='standard/assets/images/a4/rule.jpg'><br><br><img src='standard/assets/images/a4/hope.jpg'>";
+
+var sms_msg="恭喜注册名卡联盟会员成功，获得10元名卡币（可提现或消费），用户编号：<U-"+phone+">，密码：<"+password+">，注册手机号：<"+phone+">,请关注公众号<名卡联盟>后开启名卡生活之旅，祝您愉快！【名卡联盟】";
+//sendmsg(phone,sms_msg);//已经在后台发送了
+
+setTimeout(function() {  
+	alert(sms_msg);
+$("#loginuobj").click();
+},1000);
+
+}
+
+function erract(theinvitor,phone,password,msg)
+{
+document.getElementById("tipdiv").innerHTML="<a href='http://www.mycard.top/h5-js/html5/login.html?theinvitor="+theinvitor+"'><h1><u style='font-weight:bold;'>新注册</u></h1></a><h2>更多功能请进入微信公众号使用，通过“<span style='color:red;'>发展会员</span>”可获得分享收益</h2><br><br><div style='background:#efefef;padding:30px;'><h1>"+msg+"</h1><br><br><a href='http://www.mycard.top/h5-js/html5/login.html?uid="+phone+"&pwd="+password+"'><h1><u style='font-weight:bold;'>登录</u></h1></a></div><br><br><br><img src='http://www.mycard.top/h5-js/html5/qrcode_for_mk.jpg'><br>长按二维码关注【名卡联盟】<br><br><br><br><br><br><br><br><h1>如果您还在纠结为什么要注册？请看看下面吧！<br><br></h1><img src='standard/assets/images/a4/mk.jpg'><br><br><img src='standard/assets/images/a4/mem.jpg'><br><br><img src='standard/assets/images/a4/shop.jpg'><br><br><img src='standard/assets/images/a4/sense.jpg'><br><br><img src='standard/assets/images/a4/rule.jpg'><br><br><img src='standard/assets/images/a4/hope.jpg'>";
+}
+
+function beginreg()
+{
+setTimeout(function() {  
+var options = {
+																
+																url:myforwardurl(serviceRoot+'mk_regist?actiontype=register&invite_code='+v+'&issms=1',serviceRoot),
+																async: false,
+																type: 'get',
+																dataType: 'jsonp',
+																data: null,
+																resetForm:true,
+																timeout:60000,
+																jsonp:'callback',
+																success: function (rv) {
+																	var isok=false;
+																	var msg="";
+																	var theuid="";
+																	var thepwd="";
+																	var theinvitor="";
+
+
+																		$.each(rv.data,function(idx,item){
+																			
+																			if(item.result=="1")
+																			{
+																			isok=true;
+																			}
+																			
+																			theinvitor=item.theinvitor;
+																			theuid=item.uid;
+																			thepwd=item.pwd;
+																			msg=item.result_text;
+																			
+																														
+																									})
+
+
+																		
+
+
+																			if(isok)
+																			{
+																				finishact(theinvitor,theuid,thepwd);																	
+																			}
+																			else
+																			{
+																				erract(theinvitor,theuid,thepwd,msg);	
+																			}
+																			
+
+
+
+
+																	
+																},
+																error: function(XMLHttpRequest, textStatus, errorThrown) {
+																	alert("v error"+textStatus+","+errorThrown);
+																	 }
+															};
+															
+															$.ajax(options);
+},100);		
+
+}
+
+
+/*已经在后台发送了
+function sendmsg(mobile,sms_msg)
+{
+var options = {
+																
+																url:myforwardurl(serviceRoot+'mk_main_info?actiontype=sendsms&mobile='+mobile+'&sms_msg='+sms_msg,serviceRoot),
+																async: false,
+																type: 'get',
+																dataType: 'jsonp',
+																data: null,
+																resetForm:true,
+																timeout:60000,
+																jsonp:'callback',
+																success: function (rv) {
+
+																	
+																},
+																error: function(XMLHttpRequest, textStatus, errorThrown) {
+																	
+																	 }
+															};
+															$.ajax(options);
+															return false;
+}
+*/
+$(document).ready(function (ev) {
+beginreg();
+});
+</script>
+
+
+

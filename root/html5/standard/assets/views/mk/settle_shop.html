@@ -1,0 +1,128 @@
+<script src="assets/js/controllers/mk/SettleSHOPCtrl.js"></script>
+
+
+
+<!-- start: REGISTRATION -->
+<div class="row">
+	<div class="main-login col-xs-12" style="margin-bottom:60px;">
+		
+		<!-- start: REGISTER BOX -->
+			
+
+
+
+<div class="box-login" ng-controller="SettleSHOPCtrl">
+
+
+			<div class="col-md-12">
+
+						<form id="f1" class="form-register small">
+
+											<div class="form-group">
+
+											<input style="display:none;" id="pay_type" name="pay_type" value="{{pay_type_value}}">
+											<div class="clip-radio radio-primary">
+												<input type="radio" id="rg-cash" name="pay_type_radio" value="cash" ng-model="pay_type_value">
+												<label for="rg-cash">
+													现金
+												</label>
+												<input type="radio" id="rg-point" name="pay_type_radio" value="point" ng-model="pay_type_value">
+												<label for="rg-point">
+													积分
+												</label>
+												<input type="radio" id="rg-card" name="pay_type_radio" value="card" ng-model="pay_type_value">
+												<label for="rg-card">
+													储值
+												</label>
+												
+											</div>
+										</div>
+
+										<div class="form-group">
+
+											请输入手机号和匹配码，或
+											<button type="button" id="scanbtn" class="btn btn-primary" ng-click="scanbtn_act()">
+												扫码 <i class="ti ti-target"></i>
+											</button>
+
+										</div>
+
+
+
+										<div class="">
+											<div class="form-group" >
+												<span class="input-icon">
+													<input type="text" class="form-control" id="phone" name="phone" placeholder="手机号或会员编号">
+													<i class="fa fa-user"></i> </span>
+											</div>
+											<div class="form-group">
+												<span class="input-icon">
+													<input type="text" class="form-control" id="code" name="code" placeholder="匹配码">
+													<i class="fa fa-lock"></i> </span>
+											</div>
+											<div class="form-group">
+												<span class="input-icon">
+													<input type="text" class="form-control" id="price" name="price" placeholder="消费金额">
+													<i class="ti ti-money"></i> </span>
+											</div>
+										</div>
+
+										
+
+
+										<div class="form-actions">
+
+
+											<button type="button" id="settle_savebtn" class="btn btn-primary pull-right" ng-click="settle_save()">
+												确定 <i class="fa fa-arrow-circle-right"></i>
+											</button>
+										</div>
+										<div class="new-account">
+											客户储值?
+											<a href1="" ui-sref="app.wx.me.incharge_new">
+												储值
+											</a>
+										</div>
+
+								</form>
+
+
+
+
+
+
+							<div class="form-actions">
+								<a ui-sref="app.wx.me.settle">
+									<i class="fa fa-chevron-circle-left"></i> 返回
+								</a>
+								
+							</div>
+
+
+
+
+
+			</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+				<!-- end: REGISTER BOX -->
+
+				<!-- start: COPYRIGHT -->
+					<div class="copyright small">
+						&copy; <span class="current-year"></span><span class="text-bold text-uppercase small"> SNIPS</span>. <span class="small">All rights reserved</span>
+					</div>
+					<!-- end: COPYRIGHT -->
+					
+	</div>
+</div>
+<!-- end: REGISTRATION -->

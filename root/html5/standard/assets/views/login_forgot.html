@@ -1,0 +1,74 @@
+<script src="assets/js/controllers/mk/ForgotCtrl.js"></script>
+
+<!-- start: FORGOT -->
+<div class1="row">
+	<div class="main-login col-xs-12" style="margin-top:0px;">
+		<div class="logo">
+				<a href1 ui-sref1="app.eco.firstpage"><img ng-src="{{app.layout.logo}}" alt="{{app.name}}"/></a>
+			</div>
+		<!-- start: FORGOT BOX -->
+				<div class="box-forgot" ng-controller="ForgotCtrl">
+					<form id="f1" class="form-forgot">
+					<div class="title">
+							忘记密码?
+						</div>
+						
+							<p>
+								请输入手机号.
+							</p>
+							<div class="form-group">
+								<span class="input-icon">
+									<input type="text" class="form-control" id="mobile" name="mobile" placeholder="手机号">
+									<i class="fa fa-mobile"></i> 
+                                    
+                                    </span>
+							</div>
+                            
+                            
+                            
+                            <div class="form-group">
+								<span class="input-icon">
+									<input type="text" class="form-control" id="validno" name="validno" placeholder="请先获取验证码，再输入验证码">
+									<i class="fa ti-pencil"></i> 
+									<a class="forgot" href1="" ng-click="sendCode()">
+										{{description}}
+									</a>
+									</span>
+							</div>
+                            <div class="form-group">
+								<span class="input-icon">
+									<input type="password" class="form-control" id="password" name="password" placeholder="请输入新的密码">
+									<i class="fa fa-lock"></i> </span>
+							</div>
+							<div class="form-group">
+								<span class="input-icon">
+									<input type="password" class="form-control" id="password_again" name="password_again" placeholder="再次输入一边新密码">
+									<i class="fa fa-lock"></i> </span>
+							</div>
+                            
+                            
+                           
+                            
+							
+                          
+                            
+							<div class="form-actions">
+								<a class="btn btn-primary btn-o" href1="login_signin.html" ui-sref="login.signin">
+									<i class="fa fa-chevron-circle-left"></i> 登录
+								</a>
+								<button type="button" id="forgot_submit" class="btn btn-primary pull-right">
+									提交 <i class="fa fa-arrow-circle-right"></i>
+								</button>
+							</div>
+						
+					</form>
+					<!-- start: COPYRIGHT -->
+					<div class="copyright small">
+						&copy; <span class="current-year"></span><span class="text-bold text-uppercase small"> SNIPS</span>. <span class="small">All rights reserved</span>
+					</div>
+					<!-- end: COPYRIGHT -->
+				</div>
+				<!-- end: FORGOT BOX -->
+	</div>
+</div>
+<!-- end: FORGOT -->

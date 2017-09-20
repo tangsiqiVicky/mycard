@@ -1,0 +1,62 @@
+<script src="assets/js/controllers/mk/MyPublishAddrNewCtrl.js"></script>
+
+<!-- start: REGISTRATION class="main-login col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4"-->
+<div class="row">
+	<div class="main-login col-xs-12" style="margin-top:0px;">
+		
+		<!-- start: REGISTER BOX -->
+				<div class="box-register small" ng-controller="MyPublishAddrNewCtrl">
+					
+							<form id="f1" class="form-register">
+					<div class="title">
+							新建地址
+						</div>
+						
+                            <p>
+								收货人:
+							</p>
+							<div class="form-group">
+								<input type="text" class="form-control" id="shr" name="shr" placeholder="收货人">
+							</div>
+							<p>
+								地址:
+							</p>
+							<div class="form-group">
+								<input type="text" class="form-control" id="addr" name="addr" placeholder="地址">
+							</div>
+
+							<p>
+								电话:
+							</p>
+							<div class="form-group">
+								<input type="text" class="form-control" id="tel" name="tel" placeholder="电话">
+							</div>
+
+							<p>
+								备注:
+							</p>
+							<div class="form-group">
+								<input type="text" class="form-control" id="remark" name="remark" placeholder="备注">
+							</div>
+							
+							
+							
+							<div class="form-actions">
+								<a ui-sref="app.wx.me.mypublish_addr">
+									<i class="fa fa-chevron-circle-left"></i> 返回
+								</a>
+								<button type="button" id="submit" class="btn btn-primary pull-right">
+									提交 <i class="fa fa-arrow-circle-right"></i>
+								</button>
+							</div>
+						
+					</form>
+
+					
+				</div>
+				<!-- end: REGISTER BOX -->
+
+				
+	</div>
+</div>
+<!-- end: REGISTRATION -->

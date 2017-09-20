@@ -1,0 +1,27 @@
+
+登录
+
+http://www.mycard.top/h5-js/mk_login?login_name=用户编号&login_password=密码
+result:1  result_text:信息
+
+
+
+
+获取云端联系人
+
+http://www.mycard.top/h5-js/mk_main_info?actiontype=getlxr&user_id=用户编号
+data: sortno;key;id;lxr;tel;remark;
+
+
+
+
+把本机联系人提交至云端
+
+http://www.mycard.top/h5-js/mk_main_info?actiontype=addlxr_bat
+
+传递json数据流  
+user_id:用户编号     
+data：
+{"lxr":"张三", "tel":"13911111111"}
+{"lxr":"张三", "tel":"13911111111"}
+

@@ -1,0 +1,320 @@
+<!--大背景轮播 -->
+<link rel="stylesheet" href="assets/css/supersized.css">
+<script src="assets/js/supersized.min.js"></script>
+
+
+
+<script src="assets/js/controllers/mk/dcCtrl.js"></script>
+
+<link href="assets/css/test_rx.css" rel="stylesheet" type="text/css" />
+
+<div class="row contant">
+    <div class="main-login col-xs-12" ng-controller="dcCtrl">
+
+
+<form  id="f1">
+	<div class="wjdt_title">
+
+		<p style="font-size: 1rem;">{{dc_name}}&nbsp;&nbsp;
+			<button type="button" id="login2" class="btn btn-green pull-right margin-right-5 " ui-sref="app.eco.dc_detail">
+                            <i class="ti ti-user"></i>
+                        </button>
+		</p>
+
+		 <div class="clearfix space5"></div><div class="clearfix space5"></div>
+
+        <hr/>
+		<p class="pull-right" style="padding-right:5px;padding-top:2px;">问卷调查</p>
+		<img src="{{serviceRoot+logo}}" style="width:4rem; position:absolute; top:1rem; left:1.5rem; ">
+
+	</div>
+
+
+
+
+
+
+
+
+
+
+<!--以下是新做问卷开始-->
+
+	<div class="dtks_box" ng-if="record_id==''">
+
+		<div id="Q{{$index}}" class="kcks_title_ts" ng-repeat="item in data" ng-show="Q_index==$index" ng-hide="Q_index!=$index">
+			<p class="notice">{{notice}}</p>
+			<br><br>
+			<h4 class=" kctm_zzbt">{{item.sortno}}/{{length}}、{{item.question_desc}}</h4>
+			<ul class="dxt_box " >
+				<li ng-repeat="items in item.data" style="cursor:pointer;">
+					<div id="Q_{{item.question_id}}_{{items.option_id}}" ng-click="clickQuestion($event,item,'{{item.question_id}}_{{items.option_id}}')" style="width: 100%;height:48px;">
+
+						<input class="a1" ng-if="item.single_or_multi=='0'" name="option_id" type="radio" value="{{items.option_id}}" ng-model="checkvalue"/>
+						<input class="a2" ng-if="item.single_or_multi=='1'" name="option_id" type="checkbox"  value="{{items.option_id}}" ng-model="checkvalue"/>
+
+						<!--<input  name="option_desc" type="text" ng-value="items.option_id" ng-model="checkid"/>-->
+						<lable>
+							<span ng-if="items.isuserdef=='0'">{{items.option_id}}.{{items.option_desc}}</span>
+							<span ng-if="items.isuserdef=='1'">{{items.option_id}}.{{items.option_desc}}&nbsp;
+						</span>
+
+
+						</lable>
+					</div>
+					<div ng-if="items.isuserdef=='1'" style="padding-bottom:2rem ">
+						<textarea name="usercontent" id="usercontent_{{item.question_id}}_{{items.option_id}}" ng-change="clickQuestion(null,item,'{{item.question_id}}_{{items.option_id}}')" style="background-color:#f7f7f7 !important;width: 100%" ng-model="myValue"></textarea>
+						<!--<input name="usercontent" id="usercontent"  type="text"  style="position:relative;top:1.1rem;left:-3.2rem;margin-bottom:1rem;background-color:rgba(255,255,255,1) !important;height: 1.6rem; width: 10rem"/>-->
+					</div>
+
+
+				</li>
+				<!--<li> <input ng-if="item.single_or_multi==1" name="option_desc" type="checkbox" value="items.option_desc" ng-model="items.option_desc" /><span>{{items.option_id}}{{items.option_desc}}</span> </li>-->
+
+			</ul>
+
+
+
+
+			<input type="text" class="form-control" name="right_answer" ng-model="item.right_answer" style="display: none">
+			<input type="text" class="form-control" name="score" ng-model="item.score" style="display: none">
+			<!--我的得分：{{score}}-->
+
+		</div>
+
+
+		<div class="kcks_title_ts" ng-show="Q_index==length" ng-hide="Q_index!=length">
+			<div class="row text-center" >
+				<h6 class=" kctm_zzbt">感谢您参与问卷，请留下联系方式</h6>
+			</div>
+			<br>
+
+
+
+			<div class="row">
+					<div class="col-xs-3 text-right">
+						<span>姓名：</span>
+					</div>
+					<div class="col-xs-8">
+					<span class="input-icon">
+					<input type="text" class="form-control" id="name" name="name" placeholder="姓名">
+					<i class="fa fa-user"></i>
+
+					</span>
+					</div>
+					<div class="col-xs-1"></div>
+				</div>
+
+				<div class="clearfix space5"></div>
+
+				<div class="row">
+					<div class="col-xs-3 text-right">
+						<span>电话：</span>
+					</div>
+					<div class="col-xs-8">
+					<span class="input-icon">
+					<input type="text" class="form-control" id="tel" name="tel" placeholder="电话">
+					<i class="fa fa-mobile"></i>
+
+					</span>
+					</div>
+					<div class="col-xs-1"></div>
+				</div>
+
+			<div class="clearfix space5"></div>
+
+			<div class="row">
+					<div class="col-xs-3 text-right">
+						<span>公司：</span>
+					</div>
+					<div class="col-xs-8">
+					<span class="input-icon">
+					<input type="text" class="form-control" id="company" name="company" placeholder="公司">
+					<i class="fa fa-gear"></i>
+
+					</span>
+					</div>
+					<div class="col-xs-1"></div>
+				</div>
+
+				<div class="clearfix space5"></div>
+
+
+
+		</div>
+			<input type="text" ng-model="dataInfo" name="DateInfo" style="display: none">
+
+
+
+	</div>
+
+
+
+
+
+	<div class="kasj_db_but" ng-click="submit()"  ng-if="record_id==''"> <a href="javascript:void(0);">提交</a> </div>
+
+
+
+
+
+	<div class="remark"  ng-if="record_id==''">
+		<p>{{remark}}</p>
+	</div>
+
+<!--新做问卷结束-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--以下是显示问卷详情开始-->
+		<div class="notice" ng-if="record_id!=''">
+					<div class="row text-center">
+						<h4 class=" kctm_zzbt">问卷记录</h4>
+					</div>
+		</div>
+
+<div class="dtks_box" ng-if="record_id!=''" style="margin-top:0px;">
+
+		<div class="clearfix space5"></div>
+
+
+
+		<br>
+
+
+
+		<div>
+
+			<div class="row">
+					<div class="col-xs-3 text-right">
+						<span>姓名：</span>
+					</div>
+					<div class="col-xs-8">
+					<span class="input-icon">
+					<input type="text" class="form-control" id="name" name="name" placeholder="姓名" ng-model="name">
+					<i class="fa fa-user"></i>
+
+					</span>
+					</div>
+					<div class="col-xs-1"></div>
+				</div>
+
+				<div class="clearfix space5"></div>
+
+				<div class="row">
+					<div class="col-xs-3 text-right">
+						<span>电话：</span>
+					</div>
+					<div class="col-xs-8">
+					<span class="input-icon">
+					<input type="text" class="form-control" id="tel" name="tel" placeholder="电话" ng-model="tel">
+					<i class="fa fa-mobile"></i>
+
+					</span>
+					</div>
+					<div class="col-xs-1"></div>
+				</div>
+
+			<div class="clearfix space5"></div>
+
+			<div class="row">
+					<div class="col-xs-3 text-right">
+						<span>公司：</span>
+					</div>
+					<div class="col-xs-8">
+					<span class="input-icon">
+					<input type="text" class="form-control" id="company" name="company" placeholder="公司" ng-model="company">
+					<i class="fa fa-gear"></i>
+
+					</span>
+					</div>
+					<div class="col-xs-1"></div>
+				</div>
+
+				<div class="clearfix space5"></div>
+
+
+
+		</div>
+
+
+<div class="clearfix space5"></div>
+<div class="clearfix space5"></div>
+
+
+
+
+
+		<div id="Q{{$index}}" class="kcks_title_ts" ng-repeat="item in data">
+			<br>
+			<h4 class=" kctm_zzbt">{{item.sortno}}/{{length}}、{{item.question_desc}}</h4>
+			<ul class="dxt_box " >
+				<li>
+					<lable>
+						<span>{{item.answer}}.{{item.answer_desc}} . {{item.usercontent}}</span>
+					</lable>
+
+				</li>
+
+			</ul>
+
+		</div>
+
+
+
+</div>
+<!--问卷详情结束-->
+
+
+
+
+</form>
+<div class="copyright  text-white text-center margin-top-20">
+	© <span class="current-year"></span><span class="text-bold text-uppercase"> 数诺科技</span>. <span class="">All rights reserved </span><span class="">400-021-4001</span>
+</div>
+
+
+</div>
+</div>
+<!--<div ng-controller="demo as d">-->
+<!--<div ng-click="d.click('parent',$event)">-->
+	<!--given some text for click-->
+	<!--<hr>-->
+	<!--<input type="checkbox" ng-model="d.stopPropagation" />Stop Propagation ?-->
+	<!--<hr>-->
+	<!--<button type="button" ng-click="d.click('button',$event)">button</button>-->
+
+<!--</div>-->
+<!--</div>-->

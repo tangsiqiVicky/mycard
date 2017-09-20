@@ -1,0 +1,58 @@
+<script src="assets/js/controllers/mk/MsgListCtrl.js"></script>
+
+<!-- start: REGISTRATION -->
+<div class="row">
+	<div class="main-login col-xs-12" style="margin-bottom:60px;">
+		
+		<!-- start: REGISTER BOX -->
+				<div class="box-register small" ng-controller="MsgListCtrl">
+
+
+					<div>
+					<form id="f1" class="form-register">
+
+						
+						     
+                              
+                   <!-- start: SIMPLE TABLE WITH PAGINATION -->                             
+						<div>
+
+						<!--
+										<p>
+											<strong>Page:</strong> {{tableParams.page()}}
+										</p>
+										<p>
+											<strong>Count per page:</strong> {{tableParams.count()}}
+										</p>-->
+										<table ng-table="tableParams" class="table table-striped">
+											<tr ng-repeat="item in $data">
+											<td data-title="'序号'">{{item.id}}</td>
+												<td data-title="'商家'"><a ui-sref="app.wx.me.shopinfo({shop_id:'{{item.shop_id}}'})">{{item.shop_name}}</a></td>
+												<td data-title="'发送者'">{{item.from_name}}</td>
+												<td data-title="'消息'">{{item.messages}}</td>
+												<td data-title="'时间'">{{item.create_time}}</td>
+												
+											</tr>
+										</table>
+									</div>
+						<!-- end: SIMPLE TABLE WITH PAGINATION -->
+								
+
+
+                             
+                              
+						
+					</form>  
+					</div>
+                              
+						
+
+				</div>
+				<!-- end: REGISTER BOX -->
+
+				
+
+					
+	</div>
+</div>
+<!-- end: REGISTRATION -->

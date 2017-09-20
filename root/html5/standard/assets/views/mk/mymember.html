@@ -1,0 +1,83 @@
+<script src="assets/js/controllers/mk/MemCtrl.js"></script>
+
+<!-- start: REGISTRATION -->
+<div class="row">
+	<div class="main-login col-xs-12">
+		
+		<!-- start: REGISTER BOX -->
+				<div class="box-register" ng-controller="MemCtrl">
+					<form id="f1" class="form-register">
+
+						
+
+                            <div class="form-group">
+                                  <label class="col-sm-block control-label" for="mymemnum">
+                                      发展会员数
+                                  </label>
+                                  <div class="col-sm-block">
+                                      <input placeholder="" id="mymemnum" class="form-control" readOnly>
+                                  </div>
+                              </div>
+								
+								<div class="form-group">
+                                  <label class="col-sm-block control-label" for="mempoints">
+                                      贡献积分数
+                                  </label>
+                                  <div class="col-sm-block">
+                                      <input placeholder="" id="mempoints" class="form-control" readOnly>
+                                  </div>
+                              </div>
+                              
+							  <div class="row">
+								<div class="col-xs-12">
+									<div class="panel panel-white">
+										<div class="panel-body">
+											<div class="box-tree">
+												<span ng-if="doing_async">...loading...</span>
+												<abn-tree tree-data="my_data" tree-control="my_tree" on-select="my_tree_handler(branch)" expand-level="3" initial-selection="Granny Smith" icon-leaf="ti-file" icon-expand="ti-plus" icon-collapse="ti-minus"></abn-tree>
+											</div>
+										</div>
+									</div>
+									<div class="alert alert-warning">
+										{{ output }}&nbsp;&nbsp;&nbsp;&nbsp;<a class="" ui-sref="app.wx.me.mymemberlist({level:level})">
+																				 查看 <i class="fa fa-chevron-circle-right"></i>
+																			</a>
+									</div>
+								</div>
+							</div>
+
+
+                              
+                              
+                              <p>&nbsp;</p>
+                              
+                              <div class="form-group">
+                                  <div class="col-sm-block">
+                                  
+                                  <a class="btn btn-light-orange btn-block" ui-sref="app.wx.me.invite">
+									 新邀请 <i class="fa fa-chevron-circle-right"></i>
+								</a>
+                                    
+                                  </div>
+                              </div>
+
+							  <div class="form-group">
+                                  <div class="col-sm-block">
+                                  
+                                  <a class="btn btn-azure btn-block" ui-sref="app.wx.me.mymemberlist">
+									 会员名单 <i class="ti ti-user"></i>
+								</a>
+                                    
+                                  </div>
+                              </div>
+                              
+						
+					</form>
+					
+				</div>
+				<!-- end: REGISTER BOX -->
+
+				
+	</div>
+</div>
+<!-- end: REGISTRATION -->

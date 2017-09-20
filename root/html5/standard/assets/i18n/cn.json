@@ -1,0 +1,347 @@
+﻿{
+
+
+  "dashboard": {
+"WELCOME": "欢迎使用 {{appName}}",
+"dbsw":"待办事务","dbsw_desc":"工作流待处理流转事务管理.",
+"ywdd":"业务订单","ywdd_desc":"业务订单一览、查询、处理.",
+"jczl":"基础资料","jczl_desc":"业务基础资料维护.",
+"zb":"周边",
+"map":"商家地图",
+"xf":"消费",
+"self":"会员中心",
+"po":"消费预订",
+"po_all":"全套",
+"po_eat":"吃",
+"po_dress":"穿",
+"po_live":"住",
+"po_entertainment":"玩",
+"po_travel":"旅游",
+"po_woman":"美容",
+"po_other":"其他",
+"cart":"购物车",
+"settle":"消费结算",
+"plan":"消费计划",
+"dealstat":"交易统计",
+"ding":"订",
+"newact":"最新活动",
+"wode":"我的",
+"scanmk":"关注MK",
+"invite":"发展会员",
+"newact":"最新活动",
+"oneminute":"名卡一分钟",
+"mypublish":"管理",
+
+"myintegration":"我的积分",
+"myincharge":"我的储值",
+"myorder":"我的订单",
+"mymember":"我的会员",
+"mymsg":"我的消息",
+"myticket":"我的卡券",
+"mysendgift":"一键送礼",
+
+"point_right":"积分授权",
+"mkman":"名卡后台",
+"yiy":"摇一摇",
+"fx":"发现",
+"scan":"扫一扫",
+
+"fav":"收藏",
+"guide":"导航",
+
+"iwant":"我要",
+"shop":"商家",
+
+
+
+
+"help":"帮助"
+  },
+
+
+	  "topbar": {
+
+		    "messages": {
+			"MAIN": "消息",
+			"HEADER": "未读",
+			"SEEALL": "全部"
+		    },
+
+		    
+		    "activities": {
+		      "MAIN": "活动",
+		      "HEADER": "新通知",
+		      "SEEALL": "全部"
+		    },
+
+		    "user": {
+		      "PROFILE": "配置",
+		      "CALENDAR" : "日程",
+		      "MESSAGES" : "我的消息",
+		      "LOCKSCREEN" : "锁屏",
+		      "LOGOUT" : "退出"
+		    }
+
+	  },
+
+
+
+
+  "offsidebar": {
+
+	    "chat": {
+	      "ONLINE": "在线",
+	      "OFFLINE": "离线",
+	      "BACK": "后退",
+	      "SEND" : "发送",
+	      "PLACEHOLDER": "消息"
+	    },
+	    "favorites": {
+	      "MAIN": "收藏"
+	    },
+	    "settings": {
+	      "MAIN": "设置",
+	      "NOTIFICATIONS": "提醒",
+	      "SHOWEMAIL": "显示邮件",
+	      "SHOWUSERS": "显示离线用户",
+	      "EMAILALERT": "邮件提醒",
+	      "SMSALERT": "短信提醒",
+	      "SAVE" : "应用"     
+	    }  
+  },
+
+
+
+
+  "sidebar": {
+
+    "heading": {
+      "NAVIGATION": "主菜单",
+      "FEATURES": "个人事务",
+      "DOCUMENTATION": "帮助"
+    },
+    "search": {
+      "PLACEHOLDER": "Search..."
+    },
+
+    "nav": {
+      "dashboard": {
+      	"MAIN": "工作台"
+      },
+      "element": {
+      	"MAIN": "UI元素",
+        "ELEMENTS": "元素",
+        "BUTTONS": "按钮",
+        "LINKS": "链接",
+        "FONTAWESOME" : "字体图标",
+        "LINEARICONS" : "线性图标",
+        "MODALS" : "对话框",
+        "TOGGLE" : "提示框",
+        "TABS" : "标签",
+        "PANELS" : "面板",
+        "NOTIFICATIONS": "提示",
+        "SLIDERS": "滑块",
+        "TREEVIEW": "树",
+        "MEDIA": "媒体",
+        "NESTABLE": "列表",
+        "TYPOGRAPHY": "Typography"
+      },
+      "mk": {
+      	"MAIN": "名卡管理",
+        "seller":{
+        	"MAIN": "商家",
+        	"type" : "分类",
+        	"search" : "查询",
+        	"carefor" : "关怀"
+        },
+	"member":{
+        	"MAIN": "会员",
+        	"reg" : "注册",
+        	"search" : "查询",
+        	"carefor" : "关怀"
+        }
+      },
+      "hm": {
+      	"MAIN": "酒店管理",
+	"reception": "接待",
+	"room": "客房管理",
+	"member": "会员管理",
+	"service": "礼宾服务",
+	"rm": "餐饮管理",
+	"stat": "统计查询"
+        
+      },
+      "eco": {
+      	"MAIN": "名卡生态",
+	"firstpage": "首页",
+	"gis": "周边",
+	"partner": "合作伙伴",
+	"shop":"商家",
+	"fav":"推荐"
+	
+      },
+      "wx": {
+      	"MAIN": "微信",
+	
+	"seller": "商家管理",
+	"deal": "交易",
+	"me": {
+        	"MAIN": "我",
+        	"reg" : "注册",
+        	"login" : "登录",
+        	"invite" : "邀请",
+		"integration" : "积分",
+		"search" : "查询"
+        }
+
+	
+      },
+      "tables": {
+        "MAIN": "表格",
+        "BASIC": "基本",
+        "RESPONSIVE": "返回值表",
+        "DYNAMIC": "动态",
+        "DATA": "分页"
+      },
+      "forms": {
+        "MAIN": "表单",
+        "ELEMENTS": "Form Elements",
+        "XEDITABLE": "X-Editable Elements",
+        "TEXTEDITOR": "Text Editor",
+        "WIZARD": "Form Wizard",
+        "VALIDATION": "Form Validation",
+        "CROPPING": "Image Cropping",
+        "UPLOAD": "Multiple File Upload"
+      },
+      "login": {
+        "MAIN": "登录",
+        "LOGIN": "Login Form",
+        "REGISTRATION": "Registration Form",
+        "FORGOT": "Forgot Password Form",
+        "LOCKSCREEN": "Lock Screen"
+      },
+      "pages": {
+        "MAIN": "页面",
+        "USERPROFILE": "配置",
+        "INVOICE": "Invoice",
+        "TIMELINE": "Timeline",
+        "CALENDAR": "日程",
+        "MESSAGES": "消息",
+        "BLANKPAGE": "Starter Page"
+      },
+      "utilities": {
+        "MAIN": "Utilities",
+        "SEARCHRESULT": "Search Results",
+        "ERROR404": "Error 404",
+        "ERROR500": "Error 500",
+        "PRICING": "Pricing Table"
+      },
+      "3level": {
+        "MAIN": "3 Level Menu",
+        "Item1": {
+        	"MAIN": "Item 1",
+        	"LINK1" : "Sample Link 1",
+        	"LINK2" : "Sample Link 2",
+        	"LINK3" : "Sample Link 3"
+        },
+        "Item2": {
+        	"MAIN": "Item 2",
+        	"LINK1" : "Sample Link 1",
+        	"LINK2" : "Sample Link 2",
+        	"LINK3" : "Sample Link 3"
+        },
+        "Item3": {
+        	"MAIN": "Item 3",
+        	"LINK1" : "Sample Link 1",
+        	"LINK2" : "Sample Link 2",
+        	"LINK3" : "Sample Link 3"
+        }
+      },
+      "4level": {
+        "MAIN": "4 Level Menu",
+        "Item1": {
+        	"MAIN": "Item 1",
+        	"link1" : {
+        		"MAIN": "Sample Link 1",
+        		"LINK1" : "Link 1",
+        		"LINK2" : "Link 2",
+        		"LINK3" : "Link 3"         		
+        	},
+        	"link2" : {
+        		"MAIN": "Sample Link 2",
+        		"LINK1" : "Link 1",
+        		"LINK2" : "Link 2",
+        		"LINK3" : "Link 3"        		
+        	},
+        	"link3" : {
+        		"MAIN": "Sample Link 3",
+        		"LINK1" : "Link 1",
+        		"LINK2" : "Link 2",
+        		"LINK3" : "Link 3"       		
+        	}        	
+        },
+        "Item2": {
+        	"MAIN": "Item 2",
+        	"link1" : {
+        		"MAIN": "Sample Link 1",
+        		"LINK1" : "Link 1",
+        		"LINK2" : "Link 2",
+        		"LINK3" : "Link 3"        		
+        	},
+        	"link2" : {
+        		"MAIN": "Sample Link 2",
+        		"LINK1" : "Link 1",
+        		"LINK2" : "Link 2",
+        		"LINK3" : "Link 3"        		
+        	},
+        	"link3" : {
+        		"MAIN": "Sample Link 3",
+        		"LINK1" : "Link 1",
+        		"LINK2" : "Link 2",
+        		"LINK3" : "Link 3"         		
+        	}        	
+        },
+        "Item3": {
+        	"MAIN": "Item 3",
+        	"link1" : {
+        		"MAIN": "Sample Link 1",
+        		"LINK1" : "Link 1",
+        		"LINK2" : "Link 2",
+        		"LINK3" : "Link 3"        		
+        	},
+        	"link2" : {
+        		"MAIN": "Sample Link 2",
+        		"LINK1" : "Link 1",
+        		"LINK2" : "Link 2",
+        		"LINK3" : "Link 3"        		
+        	},
+        	"link3" : {
+        		"MAIN": "Sample Link 3",
+        		"LINK1" : "Link 1",
+        		"LINK2" : "Link 2",
+        		"LINK3" : "Link 3"        		
+        	}        	
+        }
+      },
+      "maps": {
+        "MAIN": "地图"
+      },
+      "charts": {
+        "MAIN": "图表"
+      }
+    }
+  },
+  "footer": {
+    "copyright": {
+    	"MAIN": "Copyright",
+      	"MESSAGE": "All rights reserved"
+    }
+  },
+  "setting": {
+  	"MAIN" : "切换样式",
+    "FIXEDHEADER": "固定顶栏",
+    "FIXEDSIDEBAR": "固定边栏",
+    "CLOSEDSIDEBAR": "关闭边栏",
+    "FIXEDFOOTER": "固定底栏"
+  }
+}

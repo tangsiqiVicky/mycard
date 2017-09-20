@@ -1,0 +1,95 @@
+<script src="assets/js/controllers/mk/dcrecordCtrl.js"></script>
+<style>
+	.table>tbody>tr>td,.table>thead>tr>th {
+		padding: 4px !important;
+	}
+</style>
+
+
+<!-- start: REGISTRATION -->
+<div class="row">
+	<div class="main-login col-xs-12" style="margin-bottom:60px;">
+
+		<!-- start: REGISTER BOX -->
+				<div class="box-register " ng-controller="dcrecordCtrl">
+
+
+
+
+
+
+
+
+
+
+								<div class="row">
+								<div class="col-xs-12" style="padding-bottom:20px">
+
+
+										<table ng-table="tableParams" class="table">
+										 <thead>
+											<tr>
+												<th ><nobr>序号</nobr></th>
+												<th>问卷编号</th>
+
+												<th>记录编号</th>
+												<th>姓名</th>
+												<th class="hidden-xs">日期</th>
+												<th>礼品订单</th>
+											</tr>
+										</thead>
+											<tbody>
+															<tr  ng-repeat="item in data">
+																<td style="width:10px !important;">{{item.sortno}}</td>
+																<td><a ui-sref="app.eco.dc({dc_id:'{{item.dc_id}}'})">{{item.dc_id}}<br>{{item.dc_name}}</a></td>
+																<td><a ui-sref="app.eco.dc({record_id:'{{item.record_id}}'})">{{item.record_id}}</a></td>
+																<td>{{item.name}}<br>{{item.tel}}<br>{{item.company}}</td>
+
+
+																<td class="hidden-xs">{{item.create_date | date}}</td>
+																<!--<td><a href="app.eco.gift({po_id:'{{item.po_id}}'})">{{item.po_id}}</a></td>-->
+																<td><a href="{{item.gift_po_show_url}}?po_id={{item.po_id}}">{{item.po_id}}</a></td>
+
+															</tr>
+											</tbody>
+
+
+
+										</table>
+
+
+								</div>
+								</div>
+
+
+
+
+
+
+
+
+
+
+							<div class="form-actions">
+								<a ui-sref="app.eco.dc_man">
+									<i class="fa fa-chevron-circle-left"></i> 返回
+								</a>
+
+							</div>
+
+
+
+
+
+
+
+
+
+				</div>
+				<!-- end: REGISTER BOX -->
+
+
+
+	</div>
+</div>
+<!-- end: REGISTRATION -->

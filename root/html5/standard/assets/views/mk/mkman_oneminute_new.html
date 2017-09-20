@@ -1,0 +1,135 @@
+<script src="assets/js/controllers/mk/Mkman_oneminute_New_Ctrl.js"></script>
+
+<!-- start: REGISTRATION class="main-login col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4"-->
+<div class="row">
+	<div class="main-login col-xs-12" style="margin-top:0px;">
+		
+		<!-- start: REGISTER BOX -->
+				<div class="box-register" ng-controller="Mkman_oneminute_New_Ctrl">
+					
+							<form id="f1" class="form-register">
+					<div class="title">
+							{{currTitle}}
+						</div>
+						
+						
+
+                            <p>
+								标题:
+							</p>
+							<div class="form-group">
+								<input type="text" class="form-control" id="ONE_TITLE" name="ONE_TITLE" placeholder="标题" ng-model="ONE_TITLE">
+							</div>
+							<p>
+								简短描述:
+							</p>
+							<div class="form-group">
+								<textarea type="text" class="form-control" id="ONE_DESC_short" name="ONE_DESC_short" placeholder="简短描述" ng-model="ONE_DESC_short"></textarea>
+							</div>
+							<p>
+								详细描述:
+							</p>
+							<div class="form-group">
+								<textarea type="text" class="form-control" id="ONE_DESC" name="ONE_DESC" placeholder="详细描述" ng-model="ONE_DESC"></textarea>
+							</div>
+
+
+
+
+
+							<div class="col-xs-12" style="padding:0px;">
+								<div class="col-xs-6" style="padding:0px;"><p>
+												缩略图:
+											</p>
+								<img id="previewimg_ThumbsPic" style="width:100px;height:60px;" src="{{serviceRoot+ThumbsPic}}">
+
+											
+											<div class="form-group" style="padding-top:5px;">
+
+											<span class="input-icon">
+													<input type="text" class="form-control" id="ThumbsPic" name="ThumbsPic" placeholder="缩略图" ng-model="ThumbsPic" style="display:none;">
+													<!--<i class="fa fa-picture-o"></i>-->
+													<a class="btn btn-primary btn-o" ng-click="chooseimg('ThumbsPic')">
+														选择 (250*150)
+													</a> </span>
+
+												
+												
+											</div>
+								</div>
+								<div class="col-xs-6" style="padding:0px;"><p>
+												大图:
+											</p>
+								<img id="previewimg_Pic" style="width:100px;height:60px;" src="{{serviceRoot+Pic}}">
+
+											
+											<div class="form-group" style="padding-top:5px;">
+
+											<span class="input-icon">
+													<input type="text" class="form-control" id="Pic" name="Pic" placeholder="大图" ng-model="Pic" style="display:none;">
+													<!--<i class="fa fa-picture-o"></i>-->
+													<a class="btn btn-primary btn-o" ng-click="chooseimg('Pic')">
+														选择
+													</a> </span>
+
+												
+											</div>
+								</div>
+								
+								</div>
+
+
+								<p>&nbsp;</p>
+
+								<div class="col-xs-12" style="padding:0px;">
+								<div class="col-xs-6" style="padding:0px;">
+													<p>
+														有效:
+													</p>
+													<div class="form-group">
+													
+														<switch ng-model="isvalid" class="green"></switch>
+													
+														<input style="display:none;" type="text" class="form-control" id="isvalid" name="isvalid" placeholder="有效" ng-model="isvalid">
+													</div>
+								</div>
+								<div class="col-xs-6" style="padding:0px;">
+													<p>
+														排序号:
+													</p>
+													<div class="form-group">
+													
+														<input type="text" class="form-control" id="SortNo" name="SortNo" placeholder="排序号" ng-model="SortNo" touchspin data-min="0" data-max="100" data-step="1">
+													</div>
+								</div>
+								
+								</div>
+
+
+							
+							
+<p>&nbsp;</p>
+
+							
+							
+							
+							
+							<div class="form-actions">
+								<a ui-sref="app.wx.me.mkman_oneminute">
+									<i class="fa fa-chevron-circle-left"></i> 返回
+								</a>
+								<button type="button" id="submit" class="btn btn-primary pull-right">
+									提交 <i class="fa fa-arrow-circle-right"></i>
+								</button>
+							</div>
+						
+					</form>
+
+					
+				</div>
+				<!-- end: REGISTER BOX -->
+
+				
+	</div>
+</div>
+<!-- end: REGISTRATION -->

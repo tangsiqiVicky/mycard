@@ -1,0 +1,67 @@
+<script src="assets/js/controllers/mk/YiyCtrl.js"></script>
+
+<style type="text/css">
+
+.hand { width: 100px; height: 100px; margin:0 auto; background: url(assets/images/hand.png) no-repeat; }
+.hand-animate { -webkit-animation: hand_move infinite 2s; }
+.result { background: #393B3C; border: #2C2C2C 1px solid; box-shadow: inset #4D4F50 0 0 0 1px; border-radius: 10px; color: #fff; padding: 10px; width: 300px; opacity: 0;
+        -webkit-transition: all 1s;
+           -moz-transition: all 1s;
+            -ms-transition: all 1s;
+             -o-transition: all 1s;
+                transition: all 1s; }
+.result-show { opacity: 1; margin-top: 50px; }
+
+ @-webkit-keyframes hand_move {
+        0% {
+            -webkit-transform: rotate(0);
+               -moz-transform: rotate(0);
+                -ms-transform: rotate(0);
+                 -o-transform: rotate(0);
+                    transform: rotate(0); }
+        50% {
+            -webkit-transform: rotate(30deg);
+               -moz-transform: rotate(30deg);
+                -ms-transform: rotate(30deg);
+                 -o-transform: rotate(30deg);
+                    transform: rotate(30deg); }
+        100% {
+            -webkit-transform: rotate(0);
+               -moz-transform: rotate(0);
+                -ms-transform: rotate(0);
+                 -o-transform: rotate(0);
+                    transform: rotate(0); }
+    }
+</style>
+
+<!-- start: REGISTRATION -->
+<div ng-controller="YiyCtrl">
+	<div class="main-login col-xs-12" style="margin-top:100px;">
+		
+
+		
+						<div id="hand" class="hand" ng-click="handclick()"></div> 
+						
+
+
+				
+
+
+					
+					
+					
+					
+					<div id="result"></div>
+
+
+
+
+                        <!-- start: COPYRIGHT -->
+                    <div class="copyright">
+                        &copy; <span class="current-year"></span><span class="text-bold text-uppercase"> SNIPS</span>. <span>All rights reserved</span>
+                    </div>
+                    <!-- end: COPYRIGHT -->
+                    
+	</div>
+</div>
+<!-- end: REGISTRATION -->

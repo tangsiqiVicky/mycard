@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="clipApp">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+		<meta http-equiv="Pragma" content="no-cache" />
+		<meta http-equiv="Expires" content="0" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<meta name="description" content="{{app.description}}">
+		<meta name="keywords" content="app, responsive, angular, bootstrap, dashboard, admin">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" /> 
+		<meta name="HandheldFriendly" content="true" /> 
+		<meta name="apple-touch-fullscreen" content="yes" />
+	</head>
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="standard/assets/js/snips.js"></script>
+
+<script language="javascript">
+//var rnd="?rnd="+Math.random()
+//window.location="index.html"+rnd
+//alert("wx_interface:"+window.location.href)
+
+//alert("wx_interface uid:"+uid+",pwd:"+pwd)
+
+var menuid=request.QueryString("menuid");
+
+
+			
+//https://api.weixin.qq.com/bizwifi/account/get_connecturl?access_token
+
+												var options = {
+																// url:myforwardurl(serviceRoot+"snwx_act?mytype=getconnurl",serviceRoot),
+																url:myforwardurl(serviceRoot2+"snwx/snWXWX/?mytype=getconnurl",serviceRoot2),
+																async: false,
+																type: 'get',
+																dataType: 'json',
+																data:null,
+																resetForm:true,
+																timeout:60000,
+																// jsonp:'callback',
+																success: function (rv) {
+																	var isok=false;
+																	var msg="";
+																	
+
+																	   if(rv.result=="1")
+																		{
+																	   isok=true;
+																		msg=rv.result_text;
+
+																		}
+																		else
+																		{
+																			alert(msg);
+																			
+																		}
+
+
+																		if(isok)
+																		{
+																			
+																		window.location=msg;
+																				
+
+
+																		}
+
+								
+																	
+																},
+																error: function(XMLHttpRequest, textStatus, errorThrown) {
+																	   
+																		
+																	 }
+															};
+															$.ajax(options);
+
+
+
+
+
+</script>
+
+</html>
+
+<script>//window.location="jsAPIDemo/takePhoto.html"</script>

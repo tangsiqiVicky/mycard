@@ -1,0 +1,20 @@
+<script language="javascript">
+var request = 
+ { 
+ QueryString : function(val) 
+ { 
+  var rv="";
+ try
+ {
+ var uri = window.location.href; 
+ var re = new RegExp("" +val+ "=([^&?]*)", "ig"); 
+ rv=((uri.match(re))?(uri.match(re)[0].substr(val.length+1)):"");
+ }catch(e){}
+ return rv; 
+ } 
+ } 
+</script>
+<script>
+var uid=request.QueryString("uid");
+var pwd=request.QueryString("pwd");
+window.location="standard/index.html?uid="+uid+"&pwd="+pwd</script>

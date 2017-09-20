@@ -1,0 +1,118 @@
+<script src="assets/js/controllers/mk/MyPublishShopinfoCtrl.js"></script>
+
+<!-- start: REGISTRATION class="main-login col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4"-->
+<div class="row">
+	<div class="main-login col-xs-12" style="margin-bottom:60px;">
+		
+		<!-- start: REGISTER BOX -->
+				<div class="box-register small" ng-controller="MyPublishShopinfoCtrl">
+					
+							<div class="row">
+								<div class="col-xs-12">
+
+
+										<table ng-table="tableParams" class="table table-striped">
+										<thead>
+											<tr>
+												<th style="width:40px;"><nobr>序号</nobr></th>
+												<th>名称</th>
+												<th class="hidden-xs">分类</th>
+												<th class="hidden-xs">地址</th>
+												<th class="hidden-xs">评价</th>
+												<th>操作</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr ng-repeat="item in $data">
+												<td>{{item.id}}</td>
+												<td><a ui-sref="app.wx.me.shopinfo({shop_id:'{{item.shop_id}}'})">{{item.shop_id}}<br>{{item.name}}<br><img src="{{serviceRoot+item.logo}}" style="width:30px;"  onclick="javascript:{window.open(this.src)}"></a></td>
+												<td class="hidden-xs">{{item.subtype}}</td>
+												<td class="hidden-xs">{{item.address}}</td>
+												<td class="hidden-xs">{{item.star}}</td>
+												<td>
+
+																<div class="visible-md visible-lg hidden-sm hidden-xs">
+																						<a href="#" class="btn btn-transparent btn-xs" ng-click="editit(item.shop_id)" tooltip-placement="top" tooltip="Edit"> <i class="fa fa-pencil"></i></a>
+																						<a href="#" class="btn btn-transparent btn-xs" ng-click="delit(item.shop_id)" tooltip-placement="top" tooltip="Delete"> <i class="fa fa-times"></i></a>
+																						<a href="#" class="btn btn-transparent btn-xs" ui-sref="app.wx.me.shops_admin({shop_id:'{{item.shop_id}}'})" tooltip-placement="top" tooltip="Administrator"> <i class="fa fa-user"></i></a>
+																						<a href="#" class="btn btn-transparent btn-xs" ui-sref="app.wx.me.shops_oper({shop_id:'{{item.shop_id}}'})" tooltip-placement="top" tooltip="Operator"> <i class="fa fa-meh-o"></i></a>
+																</div>
+																<div class="visible-xs visible-sm hidden-md hidden-lg">
+																							<div class="btn-group" dropdown is-open="status.isopen">
+																								<button type="button" class="btn btn-primary btn-o btn-sm dropdown-toggle" dropdown-toggle>
+																									<i class="fa fa-cog"></i>&nbsp;<span class="caret"></span>
+																								</button>
+																								<ul class="dropdown-menu pull-right dropdown-light" role="menu">
+																									<li>
+																										<a href="#" class="small" ng-click="editit(item.shop_id)"> <i class="fa fa-pencil"></i>&nbsp;编辑</a>
+																									</li>
+																									<li>
+																										<a href="#" class="small" ng-click="delit(item.shop_id)"> <i class="fa fa-times"></i>&nbsp;删除</a>
+																									</li>
+																									<li>
+																										<a href="#" class="small" ui-sref="app.wx.me.shops_admin({shop_id:'{{item.shop_id}}'})"> <i class="fa fa-user"></i>&nbsp;管理员</a>
+																									</li>
+																									<li>
+																										<a href="#" class="small" ui-sref="app.wx.me.shops_oper({shop_id:'{{item.shop_id}}'})"> <i class="fa fa-meh-o"></i>&nbsp;操作员</a>
+																									</li>
+																									
+																								</ul>
+																							</div>
+																</div>
+
+
+												
+												
+												</td>
+											</tr>
+										</tbody>
+										</table>
+
+
+								</div>
+								</div>
+
+<!--
+						member1.put("id",sortno); 
+						member1.put("key",rs.getString("id"));
+						member1.put("subtype",rs.getString("subtype").replaceAll("NULL",""));
+						member1.put("name",rs.getString("name").replaceAll("NULL",""));						
+						member1.put("address",rs.getString("address").replaceAll("NULL",""));						
+						member1.put("photo",rs.getString("photo").replaceAll("NULL",""));
+						member1.put("latitude",rs.getString("latitude"));
+						member1.put("longitude",rs.getString("longitude"));
+						
+						member1.put("province",rs.getString("province"));
+						member1.put("city",rs.getString("city"));
+						member1.put("district",rs.getString("district"));
+						member1.put("contact",rs.getString("contact"));
+						member1.put("contact_phone",rs.getString("contact_phone"));
+						member1.put("email",rs.getString("email"));
+						member1.put("invite_code",rs.getString("invite_code"));
+						member1.put("distance",rs.getString("distance"));
+						member1.put("star",rs.getString("star"));
+-->
+							 
+
+
+							  <div class="form-actions">
+								<a ui-sref="app.wx.me.mypublish">
+									<i class="fa fa-chevron-circle-left"></i> 返回
+								</a>
+								<button type="button" ng-click="newact()" class="btn btn-primary pull-right">
+									新增 <i class="fa fa-plus"></i>
+								</button>
+							</div>
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+					
+				</div>
+				<!-- end: REGISTER BOX -->
+
+				
+	</div>
+</div>
+<!-- end: REGISTRATION -->

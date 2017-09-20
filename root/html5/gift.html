@@ -1,0 +1,31 @@
+<script language="javascript">
+
+var request =
+ {
+ QueryString : function(val)
+ {
+
+  var rv="";
+ try
+ {
+ var uri = window.location.href;
+ var re = new RegExp("\\?" +val+ "=([^&?]*)", "ig");
+ rv=((uri.match(re))?(uri.match(re)[0].substr(val.length+2)):"");
+
+
+ if(rv==""){
+ re = new RegExp("\\&" +val+ "=([^&?]*)", "ig");
+ rv=((uri.match(re))?(uri.match(re)[0].substr(val.length+2)):"");
+ }
+
+ }catch(e){}
+ return rv;
+ }
+ }
+</script>
+<script>
+var po_id=request.QueryString("po_id");
+//window.location="standard/wx_interface.html?menuid=gift&po_id="+po_id
+window.location="standard/index.html#/app/eco/gift?po_id="+po_id+"&menu_defaultshow=false"
+
+</script>

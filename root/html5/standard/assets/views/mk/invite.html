@@ -1,0 +1,238 @@
+<script src="assets/js/controllers/mk/InviteCtrl.js"></script>
+
+<!-- start: LOGIN -->
+<div class="row">
+    <div class="main-login col-xs-12" style="margin-bottom:60px;" ng-controller="InviteCtrl">
+
+
+        <div id="asideContent" style="display:none;border:1px solid #dddddd;background:#fff;" class="roundrec">
+            <!--<script type="text/ng-template" id="asideContent.html">-->
+            <div class="modal-header" style="height:60px;">
+
+                <div class="col-xs-12">
+
+                    <div class="col-xs-8">
+                        <h3 class="modal-title">通讯录</h3>
+                    </div>
+                    <div class="col-xs-4 align-right">
+                        <a href1 ng-click="downloadit()">助手下载</a>
+                    </div>
+
+                </div>
+
+
+            </div>
+            <div class="modal-body">
+
+                <div style="width:100%;height:200px;overflow:auto;">
+                    <table ng-table="tableParams" class="table">
+                        <thead>
+                        <tr>
+                            <th style="width:40px;">
+                                <nobr>序号</nobr>
+                            </th>
+                            <th>姓名</th>
+                            <th>号码</th>
+                            <th>操作</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="item in $data track by $index" class="small">
+                            <td>{{$index+1}}</td>
+                            <td><a ng-click="gettel({{item.tel}})">{{item.lxr}}</a></td>
+                            <td><a ng-click="gettel({{item.tel}})">{{item.tel}}</a></td>
+                            <td>
+                                <div ng-if="item.key!=''"><a href="#" class="small" ng-click="delit(item.key)"><i
+                                        class="fa fa-trash-o fa-2x"></i></a></div>
+                            </td>
+
+                        </tr>
+                        </tbody>
+
+
+                    </table>
+                </div>
+
+
+            </div>
+            <div class="modal-footer text-left">
+
+
+                <div class="col-xs-12">
+
+                    <form id="f2" class="form-horizontal padding-bottom-20" role="form" ng-submit="newlxr()">
+                        <div class="form-group">
+                            <label class="col-xs-4 control-label">姓名</label>
+                            <div class="col-xs-8">
+                                <input type="text" class="form-control" id="lxr" name="lxr"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-xs-4 control-label">电话</label>
+                            <div class="col-xs-8">
+                                <input type="text" class="form-control" id="tel" name="tel"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-xs-offset-2 col-xs-10">
+                                <button type=submit name="submit" class="btn btn-primaryy btn-wide pull-right">新增
+                                </button>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+            <!--</script>-->
+        </div>
+
+
+        <!-- start: LOGIN -->
+        <!-- start: LOGIN BOX -->
+        <div class="box-login small">
+
+
+            <form id="f1" class="form-login">
+
+
+
+                <div class="col-xs-12">
+
+
+                    <div class="panel panel-blue">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">请输入被邀请人手机号</h4>
+                            <ct-paneltool class="panel-tools" tool-refresh="load1"></ct-paneltool>
+                        </div>
+                        <div class="panel-body">
+                            <span class="input-icon">
+                                    <input type="text" class="form-control" id="invited" name="invited"
+                                           placeholder="受邀者手机号码" onblur="javascript:{chginvited()}" required>
+                                    <i class="fa fa-user"></i>
+                                    <a class="forgot" href1="" ng-click="open('asideContent')">
+                                        <div style="position:absolute;z-index:1000;width:100px;margin-left:-70px;">选择联系人</div>
+                                    </a>
+                                    </span>
+                        </div>
+                    </div>
+
+<!--
+                    <div class="form-group">
+                        <h5 class="small">短信、扫码、发微信朋友，请输入手机号</h5>
+                    </div>
+                    <div class="form-group">
+								<span class="input-icon">
+									<input type="text" class="form-control" id="invited" name="invited"
+                                           placeholder="受邀者手机号码" onblur="javascript:{chginvited()}" required>
+									<i class="fa fa-user"></i>
+									<a class="forgot" href1="" ng-click="open('asideContent')">
+										<div style="position:absolute;z-index:1000;width:100px;margin-left:-70px;">选择联系人</div>
+									</a>
+									</span>
+                    </div>
+                -->
+                </div>
+
+
+
+                    <div class="col-xs-12">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">选择以下方式邀请</h4>
+                            <ct-paneltool class="panel-tools" tool-refresh="load1"></ct-paneltool>
+                        </div>
+                        <div class="panel-body">
+
+
+
+
+                                                <div>
+                                                    <div>
+                                                        <h5 class="small" style="color:orange">方式一、短信邀请</h5>
+                                                    </div>
+                                                    <div>
+                                								<span class="input-icon">
+                                									<input type="text" class="form-control" id="sms_msg" name="sms_msg"
+                                                                           placeholder="邀请信息" value="" readonly>
+                                									<i class="fa fa-comment"></i> </span>
+                                                    </div>
+                                                </div>
+
+                                                <p>&nbsp;</p>
+
+                                                <div>
+                                                    <div class="col-xs-6"></div>
+                                                    <div class="col-xs-6 text-right">
+                                                        <button type="button" id="sms_submit" class="btn btn-primary">
+                                                            发短信 <i class="fa fa-arrow-circle-right"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+
+
+
+                                                 <div>
+                                                    <p>&nbsp;</p>
+
+                                                    <div class="form-group">
+                                                        <h5 class="small" style="color:green">方式二、面对面扫码邀请</h5>
+                                                    </div>
+                                                    <!--<button type="button" ng-click="getqrcode()" class="btn btn-primary">
+                                                            显示二维码 <i class="fa fa-arrow-circle-right"></i>
+                                                        </button>-->
+
+                                                    <div class="form-actions" style="text-align:center" align=center>
+                                                        <img id="qrcode" src="{{serviceRoot}}qrcode?msg={{invite_qrcode_validno}}&width=140&height=140"
+                                                             style="width:150px;height:150px;border:1px solid #efefef;" ng-click="getqrcode()">
+                                                        <br>请被邀请者扫描此二维码
+                                                    </div>
+
+                                                    <p>&nbsp;</p>
+                                                    <div class="form-group">
+                                                        <h5 class="small" style="color:blue">方式三、发微信朋友、朋友圈</h5>
+                                                    </div>
+                                                    <!--<button type="button" ng-click="getqrcode()" class="btn btn-primary">
+                                                            显示二维码 <i class="fa fa-arrow-circle-right"></i>
+                                                        </button>-->
+                                                    <div class="col-xs-12">
+                                                        <div class="col-xs-6 text-right">
+                                                        </div>
+                                                        <div class="col-xs-6 text-right">
+                                                            <div style="right:5px;margin-top:-30px;position:absolute;filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=30);opacity: 0.3;">
+                                                                <img src="assets/images/arrow.png"></div>
+                                                            <p>&nbsp;</p>
+                                                            邀请微信朋友，请选择上方菜单分享
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                        </div>
+                </div>
+
+
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+
+            </form>
+
+        </div>
+        <!-- end: LOGIN BOX -->
+
+
+        <!-- start: COPYRIGHT -->
+        <div class="copyright small">
+            &copy; <span class="current-year"></span><span class="text-bold text-uppercase small"> SNIPS</span>. <span
+                class="small">All rights reserved</span>
+        </div>
+        <!-- end: COPYRIGHT -->
+
+
+    </div>
+</div>
+<!-- end: LOGIN -->
+
+

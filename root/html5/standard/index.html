@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="cn" data-ng-app="clipApp">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+    <meta http-equiv="Pragma" content="no-cache"/>
+    <meta http-equiv="Expires" content="0"/>
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="{{app.description}}">
+    <meta name="keywords" content="app, responsive, angular, bootstrap, dashboard, admin">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-touch-fullscreen" content="yes"/>
+    <title data-ng-bind="pageTitle()"></title>
+    <!-- Google fonts -->
+    <link rel="stylesheet"
+          href="css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic"
+          type="text/css"/>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css">
+
+
+
+
+
+    <!--
+            <link href="../bower_components/slick.js/slick/slick.css" rel="stylesheet" media="screen" />
+            <link href="../bower_components/slick.js/slick/slick-theme.css" rel="stylesheet" media="screen" />
+            <link href="../bower_components/swiper/dist/css/swiper.min.css" rel="stylesheet" media="screen" />
+            <link href="../bower_components/magnific-popup/dist/magnific-popup.css" rel="stylesheet" media="screen" />
+    -->
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.min.css">
+    <!--daterangepicker-->
+    <link rel="stylesheet" href="assets/css/daterangepicker.css">
+
+    <!-- Themify Icons -->
+
+    <link rel="stylesheet" href="../bower_components/themify-icons/themify-icons.css">
+    <!-- Loading Bar -->
+    <link rel="stylesheet" href="../bower_components/angular-loading-bar/build/loading-bar.min.css">
+    <!-- Animate Css -->
+    <link rel="stylesheet" href="../bower_components/animate.css/animate.min.css">
+    <!-- Clip-Two CSS -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/plugins.css">
+    <!-- Clip-Two Theme -->
+    <link rel="stylesheet" data-ng-href="assets/css/themes/{{ app.layout.theme }}.css"/>
+
+
+    <style>
+        .topbanner {
+            display: block;
+            background: rgba(239, 239, 244, 1);
+            border-bottom: 0px solid #0a3248;
+            position: fixed;
+            height: 55px;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow1: 0px 0px 8px #0a3248;
+        }
+
+        .bottombanner {
+            display: block;
+            background: rgba(239, 239, 244, 1);
+            border-top: 1px solid rgb(239, 239, 244);
+            position: fixed;
+            height: 55px;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow1: 0px 0px 8px #0a3248;
+        }
+
+        .cart_bottombanner {
+            display: block;
+            background: rgba(255, 255, 255, 1);
+            border-top: 1px solid rgb(239, 239, 244);
+            position: fixed;
+            height: 55px;
+            bottom: 0px;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow1: 0px 0px 8px #0a3248;
+        }
+
+        .gis_bottombanner {
+            width: 80%;
+            display: block;
+            background: rgba(255, 255, 255, 1);
+            border-top: 1px solid rgb(239, 239, 244);
+            position: fixed;
+            height: 55px;
+            bottom: 10px;
+            left: 10%;
+            right: 0;
+            z-index: 1000;
+            box-shadow1: 0px 0px 8px #0a3248;
+        }
+
+        .totop {
+            display: none;
+            position: fixed;
+            bottom: 60px;
+            right: 5px;
+            z-index: 10000;
+        }
+
+        .divModal {
+            display: none;
+            position: absolute;
+            z-index: 10000;
+            left: 0px;
+            top: 0px;
+            width: 200%;
+            height: 200%;
+            padding-left: 100%;
+            padding-top: 100%;
+            margin-left:-50%;
+            margin-top:-50%;
+        }
+
+        .text-dark-user {
+            height: 100%;
+            color: #ffffff !important; /*0a3248*/
+        }
+
+        .text-dark-user-forbottom {
+            height: 100%;
+            color: #0a3248 !important; /*0a3248*/
+        }
+
+        .text-dark-user-click {
+            height: 100%;
+            color: #ca141d !important;
+            background: rgb(239, 239, 244);
+        }
+
+        #menu .fa {
+            font-size: 20px;
+            line-height: 40px;
+        }
+
+        #menu .ti {
+            font-size: 20px;
+            line-height: 40px;
+        }
+
+        #menu img {
+            width: 45px;
+        }
+
+        #menu .caption {
+            padding-top: 10px;
+            color: #666666 !important; /*0a3248*/
+        }
+
+        #alertmsg {
+            position: fixed;
+            top: 10px;
+            right: 35px;
+            z-index: 2000000;
+            width: 1px;
+            height: 52px;
+            line-height: 52px;
+            font-size: 20px;
+            text-align: center;
+            color: #fff;
+            background: #360;
+            display: none
+        }
+
+        #msg {
+            position: fixed;
+            top: 10px;
+            right: 35px;
+            z-index: 10000;
+            width: 1px;
+            height: 52px;
+            line-height: 52px;
+            font-size: 20px;
+            text-align: center;
+            color: #fff;
+            background: #360;
+            display: none
+        }
+
+        #msg2 {
+            position: fixed;
+            top: 10px;
+            right: 35px;
+            z-index: 10000;
+            width: 1px;
+            height: 52px;
+            line-height: 52px;
+            font-size: 20px;
+            text-align: center;
+            color: #fff;
+            background: #360;
+            display: none
+        }
+
+        .u-flyer {
+            display: block;
+            width: 50px;
+            height: 50px;
+            border-radius: 50px;
+            position: fixed;
+            z-index: 9999;
+        }
+    </style>
+
+
+    <!-- SNIPS MENU --><!-- 右下角菜单 -->
+    <!--
+    <link rel='stylesheet prefetch' href='assets/css/animate.min.css'>
+    -->
+</head>
+<body ng-controller="AppCtrl">
+<div id="alertmsg"></div>
+
+<div ui-view id="app"
+     ng-class="{'app-mobile' : app.isMobile, 'app-navbar-fixed' : app.layout.isNavbarFixed, 'app-sidebar-fixed' : app.layout.isSidebarFixed, 'app-sidebar-closed':app.layout.isSidebarClosed, 'app-footer-fixed':app.layout.isFooterFixed}"></div>
+
+
+<!-- jQuery -->
+<!--<script src="../bower_components/jquery/dist/jquery.min.js"></script>-->
+<script src="assets/js/jquery-2.2.3.min.js"></script>
+<script src="assets/js/moment.js"></script>
+<script src="assets/js/daterangepicker.js"></script>
+
+
+<script src="../bower_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.js"></script>
+<!--slider
+<script src="../bower_components/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js"></script>
+<script src="../bower_components/sticky-kit/jquery.sticky-kit.min.js"></script>
+<script src="../bower_components/jquery.appear.js/jquery.appear.js"></script>
+<script src="../bower_components/slick.js/slick/slick.min.js"></script>
+<script src="../bower_components/swiper/dist/js/swiper.jquery.min.js"></script>
+<script src="../bower_components/jquery.stellar/jquery.stellar.min.js"></script>
+<script src="../bower_components/countto/jquery.countTo.js"></script>
+<script src="../bower_components/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
+-->
+
+
+<!--大背景轮播
+<link rel="stylesheet" href="assets/css/supersized.css">
+<script src="assets/js/supersized.min.js"></script>
+-->
+
+
+<script src="assets/js/snips.js"></script>
+<script src="assets/js/shake.js"></script>
+<!--layer-->
+<script src="../bower_components/layer/layer.js"></script>
+<!-- Fastclick -->
+<script src="../bower_components/fastclick/lib/fastclick.js"></script>
+<!-- Angular -->
+<script src="../bower_components/angular/angular.min.js"></script>
+<script src="../bower_components/angular-cookies/angular-cookies.min.js"></script>
+<script src="../bower_components/angular-animate/angular-animate.min.js"></script>
+<script src="../bower_components/angular-touch/angular-touch.min.js"></script>
+<script src="../bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+<script src="../bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+<!-- Angular storage -->
+<script src="../bower_components/underscore/underscore.js"></script>
+<script src="../bower_components/ngstorage/ngStorage.min.js"></script>
+<!-- Angular Translate -->
+<script src="../bower_components/angular-translate/angular-translate.min.js"></script>
+<script src="../bower_components/angular-translate-loader-url/angular-translate-loader-url.min.js"></script>
+<script src="../bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
+<script src="../bower_components/angular-translate-storage-local/angular-translate-storage-local.min.js"></script>
+<script src="../bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.min.js"></script>
+<!-- oclazyload -->
+<script src="../bower_components/oclazyload/dist/ocLazyLoad.min.js"></script>
+<!-- breadcrumb -->
+<script src="../bower_components/angular-breadcrumb/dist/angular-breadcrumb.min.js"></script>
+<!-- UI Bootstrap -->
+<script src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+
+<!-- Loading Bar -->
+<script src="../bower_components/angular-loading-bar/build/loading-bar.min.js"></script>
+<!-- Angular Scroll -->
+<script src="../bower_components/angular-scroll/angular-scroll.min.js"></script>
+<script src="../bower_components/components-modernizr/modernizr.js"></script>
+<!-- Clip-Two Scripts -->
+<script src="assets/js/app.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/config.constant.js"></script>
+<script src="assets/js/config.router.js"></script>
+<script src="assets/js/echarts.min.js"></script>
+<!-- Clip-Two Directives   俞 取消
+<script src="assets/js/directives/toggle.js"></script>
+<script src="assets/js/directives/perfect-scrollbar.js"></script>
+<script src="assets/js/directives/empty-links.js"></script>
+<script src="assets/js/directives/sidebars.js"></script>
+<script src="assets/js/directives/off-click.js"></script>
+<script src="assets/js/directives/full-height.js"></script>-->
+<!--<script src="assets/js/directives/panel-tools.js"></script>
+<script src="assets/js/directives/char-limit.js"></script>
+<script src="assets/js/directives/dismiss.js"></script>
+<script src="assets/js/directives/compare-to.js"></script>俞 取消-->
+<script src="assets/js/directives/select.js"></script>
+<!--<script src="assets/js/directives/messages.js"></script>
+<script src="assets/js/directives/chat.js"></script>-->
+<!--<script src="assets/js/directives/sparkline.js"></script>-->
+<script src="assets/js/directives/touchspin.js"></script>
+<!--<script src="assets/js/directives/file-upload.js"></script>-->
+<!-- Clip-Two Controllers -->
+<script src="assets/js/controllers/mainCtrl.js"></script>
+<script src="assets/js/controllers/bootstrapCtrl.js"></script>
+
+
+<script src="assets/js/jquery.jmpopups-0.5.1.js"></script>
+
+
+
+
+
+<!-- Google Apis
+<script src="//maps.googleapis.com/maps/api/js?v=3.exp&libraries=weather,visualization"></script>
+
+
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>-->
+
+
+<iframe id="hidefrm" name="hidefrm" style="display:none;"></iframe>
+
+
+<!-- 右下角菜单begin -->
+<!--
+<div id='ss_menu' style="display:none;">
+	<div><i class="fa fa-home" ui-sref="app.eco.firstpage" onClick="javascript:{$('#ss_toggle').click();}"></i></div>
+	<div><i class="fa fa-map-marker" ui-sref="app.eco.gis" onClick="javascript:{$('#ss_toggle').click();}"></i></div>
+	<div><i class="fa fa-shopping-cart" ui-sref="app.wx.deal" onClick="javascript:{$('#ss_toggle').click();}"></i></div>
+	<div><i class="fa fa-user" ui-sref="app.wx.me.self" onClick="javascript:{$('#ss_toggle').click();}"></i></div>
+	<div class='menu'>
+		<div class='share' id='ss_toggle' data-rot='180'>
+			<div class='circle'></div>
+			<div class='bar'></div>
+		</div>
+	</div>
+</div>
+
+<script src="assets/js/menu.js"></script>
+-->
+<!-- 右下角菜单end -->
+
+<audio style="display:none" id="musicBox1" preload="metadata" controls src="assets/images/5018.wav"></audio>
+<audio style="display:none" id="musicBox2" preload="metadata" controls src="assets/images/5012.wav"></audio>
+
+
+<div id="topbanner" class="row topbanner" style="display:none;height:55px;">
+
+
+    <div class="col-xs-4 text-center">
+        <div class1="titlebar" style="padding-top:15px;">
+            <a href1 ng-click="back()" style="color:rgba(10, 50, 72, 1)"><i class="ti ti-arrow-left fa-2x"></i></a>
+        </div>
+    </div>
+    <div class="col-xs-4 text-center">
+        <div class1="titlebar" style="padding:5px;">
+            <a href1 ui-sref="app.eco.firstpage"><img ng-src="{{app.layout.just_logo}}" alt="{{app.name}}"/></a>
+        </div>
+    </div>
+    <div class="col-xs-4 text-center">
+        <div class1="titlebar" style="padding-top:15px;">
+            <a href1 ui-sref="app.eco.firstpage" style="color:rgba(10, 50, 72, 1)"><i
+                    class="ti ti-home fa-stack-1x fa-2x"></i></a>
+
+            <a href1 ng-click="getlocation()" style="color:rgba(10, 50, 72, 1)"><i
+                    class="ti  ti-location-pin fa-2x"></i></a>
+        </div>
+    </div>
+
+</div>
+
+
+<div id="bottombanner" class="row bottombanner" style="display:none;">
+
+    <div class="col-xs-3 text-center" style="height:100%;">
+        <div onclick="javascript:{chgclickbottomtabindex(0)}" style="height:100%;">
+            <a href="#" tooltip="{{dynamicTooltip}}">
+                <!--<a ui-sref="app.wx.me.sjlist" style="color:rgba(10, 50, 72, 1)"><i class="fa fa-gift fa-2x"></i><div translate="dashboard.newact"></div></a>-->
+                <div id="bottom_tab0" href1 ui-sref="app.eco.firstpage" style="padding-top:5px;padding-bottom:2px;"><img
+                        id="logoimg" ng-src="{{justlogo}}" alt="{{app.name}}" class="img-rounded"
+                        style="width:45px;height:45px;"/></div>
+            </a>
+        </div>
+    </div>
+
+    <div class="col-xs-3 text-center small" style="height:100%;">
+        <div onclick="javascript:{chgclickbottomtabindex(1)}" style="height:100%;">
+            <a href="#" tooltip="{{dynamicTooltip}}">
+                <div id="bottom_tab1" ui-sref="app.wx.me.zb" class="text-dark-user-forbottom"
+                     style="padding-top:8px;padding-bottom:2px;"><i class="ti ti-direction fa-2x"></i>
+                    <div translate="dashboard.fx"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+
+    <div class="col-xs-3 text-center small" style="height:100%;">
+        <div onclick="javascript:{chgclickbottomtabindex(2)}" style="height:100%;">
+            <a href="#" tooltip="{{dynamicTooltip}}">
+                <div id="bottom_tab2" ui-sref="app.wx.me.cart" class="text-dark-user-forbottom"
+                     style="padding-top:8px;padding-bottom:2px;"><i class="ti ti-shopping-cart fa-2x"></i>
+                    <div translate="dashboard.cart"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!--<div class="col-xs-4 text-center small" tooltip="{{tooltip01}}">
+        <div style="padding-top:8px;padding-bottom:2px;" onclick="javascript:{chgclickbottomtabindex(1)}" >
+        <a href="#" tooltip="{{dynamicTooltip}}">
+            <div id="bottom_tab1" ui-sref="app.wx.deal" class="text-dark-user-forbottom"><i class="fa fa-magic fa-2x"></i><div translate="dashboard.ding"></div></div>
+            </a>
+        </div>
+    </div>-->
+
+
+    <div class="col-xs-3 text-center small" style="height:100%;">
+        <div onclick="javascript:{chgclickbottomtabindex(3)}" style="height:100%;">
+            <a href="#" tooltip="{{dynamicTooltip}}">
+                <div id="bottom_tab3" ui-sref="app.wx.me.self" class="text-dark-user-forbottom"
+                     style="padding-top:8px;padding-bottom:2px;"><i class="ti ti-user fa-2x"></i>
+                    <div translate="dashboard.wode"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+
+<div id="totopbtn" class="totop"><i class="fa fa-angle-up fa-4x"></i></div>
+
+<div id="masklayer" class="divModal"><i class="fa fa-spinner fa-2x"></i></div>
+
+
+
+<!--<div id="openidisnull" style="display:none;color:red;position:absolute;top:0px;left:0px;z-index:10000;height:30px;width:500px;font-size:16px;">重要：当您看到此信息，表示您需要在微信中打开本系统！</div>-->
+
+</body>
+</html>

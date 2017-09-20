@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="clipApp">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+    <meta http-equiv="Pragma" content="no-cache"/>
+    <meta http-equiv="Expires" content="0"/>
+</head>
+<script src="../bower_components/jquery/dist/jquery.min.js"></script>
+<script src="assets/js/snips.js"></script>
+
+<script language="javascript">
+    //var rnd="?rnd="+Math.random()
+    //window.location="index.html"+rnd
+    //alert("wx_interface:"+window.location.href)
+
+    //alert("wx_interface uid:"+uid+",pwd:"+pwd)
+
+    var menuid = request.QueryString("menuid");
+    if (menuid.indexOf("~~X") > 0) {
+        uid = menuid.split("~~X")[1];
+        pwd = menuid.split("~~X")[2];
+        theinvitor = menuid.split("~~X")[3];
+        menuid = menuid.split("~~X")[0];
+    }
+    //alert("menuid:"+menuid)
+    //alert("wx_interface uid:"+uid)
+    //alert("wx_interface pwd:"+pwd)
+    //alert("wx_interface theinvitor:"+theinvitor)
+    var code = request.QueryString("code");
+    var needwxright = request.QueryString("needwxright");
+
+    //alert("wx_interface:"+menuid)
+    //alert("code:"+code)
+    if (code == null || code == "") {
+alert(111111)
+        //if(needwxright=="true" || uid!="")
+        //{//window.location="index.html#/app/eco/firstpage";
+        //alert(window.location.href.split("standard/")[0]+"standard/wx_interface.html?menuid="+menuid)
+//获取传过来的menuid,并接着传至后面跳转页面
+        window.open("https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + appid + "&redirect_uri=" + encodeURI(window.location.href.split("standard/")[0] + "standard/wx_interface.html?menuid=" + menuid + "~~X" + uid + "~~X" + pwd + "~~X" + theinvitor + "~~X") + "&response_type=code&scope=snsapi_userinfo&state=001#wechat_redirect", "_self");
+//跳转至wx_interface_main.html获取code、wx ID 并——》校验是否绑定？没绑定就跳转至登录页面，绑定则直接跳转至menuid页面
+        //}
+        //else
+        //{
+        //	gotopage(menuid,"");
+        //}
+
+
+    }
+    else {
+
+        get_user_id_by_oauth2_code(code);
+
+    }
+
+
+    function After_get_user_id_by_oauth2_code(rv) {
+
+
+        if (rv != null) {
+            user_id = rv.user_id;
+            nickname = rv.nickname;
+            var sex = rv.sex;
+            var province = rv.province;
+            var city = rv.city;
+            var country = rv.country;
+            var headimgurl = rv.headimgurl;
+            //var unionid = rv.unionid;
+            openid = rv.openid;
+
+
+            var otherstr = "&nickname=" + nickname + "&sex=" + sex + "&province=" + province + "&city=" + city + "&country=" + country + "&headimgurl=" + encodeURI(headimgurl) + "&uid=" + uid + "&pwd=" + pwd + "&theinvitor=" + theinvitor;
+
+            var rnd = "";
+            if (user_id != "")//已经绑定过，直接进入
+            {
+
+                rnd = "?rnd=" + Math.random() + "&openid=" + openid + "&user_id=" + user_id + "&menuid=" + menuid + "&theinvitor=" + theinvitor;//+"&picture="+picture
+
+            }
+            else//未绑定，进入登录界面，并带openid及其他信息存数据库
+            {
+                rnd = "?rnd=" + Math.random() + "&openid=" + openid + otherstr
+
+
+            }
+
+
+            //alert(menuid+","+rnd)
+
+            gotopage(menuid, rnd);
+
+
+        }
+        else {
+            //alert("无法获取用户信息");
+            //var rnd="?rnd="+Math.random()+"&openid="+"&uid="+uid+"&pwd="+pwd
+            //window.location="index.html#/login/signin"+rnd
+            gotopage(menuid, "");
+        }
+    }
+
+
+    function gotopage(menuid, rnd) {
+        if (menuid == "cart_man") {
+            window.location = "index.html#/app/wx/me/cart" + rnd
+        }
+        else if (menuid == "po") {
+            window.location = "index.html#/app/wx/me/po" + rnd
+        }
+        else if (menuid == "deal_man") {
+            window.location = "index.html#/app/wx/deal" + rnd
+        }
+        else if (menuid == "settle_man") {
+            window.location = "index.html#/app/wx/me/settle" + rnd
+        }
+        else if (menuid == "eco_man") {
+            window.location = "index.html#/app/eco/gis" + rnd
+        }
+        else if (menuid == "integration_man") {
+            window.location = "index.html#/app/wx/me/integration" + rnd
+        }
+        else if (menuid == "member_man") {
+            window.location = "index.html#/app/wx/me/mymember" + rnd
+        }
+        else if (menuid == "pay_code") {
+            window.location = "index.html#/app/wx/me/pay_code" + rnd
+        }
+        else if (menuid == "plan_man") {
+            window.location = "index.html#/app/wx/me/plan" + rnd
+        }
+        else if (menuid == "problem") {
+            window.location = "index.html#/app/wx/me/problem" + rnd
+        }
+        else if (menuid == "self_man") {
+
+            window.location = "index.html#/app/wx/me/self" + rnd
+        }
+        else if (menuid == "firstpage") {
+            window.location = "index.html#/app/eco/firstpage" + rnd
+        }
+        else if (menuid == "about") {
+            window.location = "index.html#/app/wx/me/about" + rnd
+        }
+        else if (menuid == "oneminute") {
+            window.location = "index.html#/app/wx/me/oneminute" + rnd
+        }
+        else if (menuid == "invite") {
+            window.location = "index.html#/app/wx/me/invite" + rnd
+        }
+        else if (menuid == "registration") {
+
+            window.location = "index.html#/login/registration" + rnd
+        }
+        else if (menuid == "shopreg") {
+
+            window.location = "index.html#/login/shopregistration" + rnd
+        }
+        else if (menuid == "yjcp") {
+            //window.location="index.html#/app/wx/me/shopgoods_by_producttype"+rnd+"&shop_id=S-kxnc&producttype=有机商品"
+            window.location = "index.html#/app/eco/yjcp" + rnd
+        }
+        else if (menuid == "xxdj") {
+            window.location = "index.html#/app/eco/xxdj" + rnd
+        }
+        else {
+            window.location = "index.html#/app/eco/firstpage" + rnd
+        }
+    }
+
+</script>
+
+</html>

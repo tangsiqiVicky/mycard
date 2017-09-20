@@ -1,0 +1,48 @@
+<script src="assets/js/controllers/mk/mkslidepicTypeCtrl.js"></script>
+
+<!-- start: REGISTRATION class="main-login col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4"-->
+<div class="row">
+	<div class="main-login col-xs-12" style="margin-top:0px;">
+		
+		<!-- start: REGISTER BOX -->
+				<div class="box-register" ng-controller="mkslidepicTypeCtrl">
+					
+							<div class="row">
+								<div class="col-xs-12">
+
+
+										<table ng-table="tableParams" class="table small">
+										 <thead>
+											<tr>
+												<th style="width:40px;"><nobr>序号</nobr></th>
+												<th>类别</th>
+												
+											</tr>
+										</thead>
+											<tbody>
+															<tr ng-repeat="item in $data">
+																<td style="width:40px;">{{item.id}}</td>
+																<td><a ui-sref="app.wx.me.mkslidepic({mod_type:'{{item.mod_type}}'})">{{item.mod_type}}</a></td>
+																
+															</tr>
+											</tbody>
+										</table>
+
+
+								</div>
+								</div>
+
+
+
+
+							
+
+
+					
+				</div>
+				<!-- end: REGISTER BOX -->
+
+				
+	</div>
+</div>
+<!-- end: REGISTRATION -->

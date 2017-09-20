@@ -1,0 +1,87 @@
+<script src="assets/js/controllers/mk/InChargeNewCtrl.js"></script>
+
+<!-- start: LOGIN -->
+<div class="row">
+	<div class="main-login col-xs-12">
+		
+		<!-- start: LOGIN -->
+				<!-- start: LOGIN BOX -->
+				<div class="box-login" ng-controller="InChargeNewCtrl">
+				
+					<form id="f1" class="form-login">
+
+						
+						
+						
+							
+							<div class="form-group">
+							
+								请输入手机号、匹配码和储值金额，或
+								<button type="button" id="scanbtn" class="btn btn-primary" ng-click="scanbtn_act()">
+									扫码 <i class="ti ti-target"></i>
+								</button>
+							
+							</div>
+
+
+							<div class="form-group">
+								<span class="input-icon">
+									<input type="text" class="form-control" id="phone" name="phone" placeholder="手机号或会员编号">
+									<i class="fa fa-user"></i> </span>
+							</div>
+							<div class="form-group">
+								<span class="input-icon">
+									<input type="text" class="form-control" id="code" name="code" placeholder="匹配码">
+									<i class="fa fa-lock"></i> </span>
+							</div>
+							<div class="form-group">
+								<span class="input-icon">
+									<input type="text" class="form-control" id="cash" name="cash" placeholder="实收金额">
+									<i class="ti ti-money"></i> </span>
+							</div>
+							<div class="form-group">
+								<span class="input-icon">
+									<input type="text" class="form-control" id="balance" name="balance" placeholder="储值额度">
+									<i class="ti ti-money"></i> </span>
+							</div>
+							<div class="form-actions">
+							
+								
+								<button type="button" id="savebtn" class="btn btn-primary pull-right" ng-click="incharge_save()">
+									确定 <i class="fa fa-arrow-circle-right"></i>
+								</button>
+							</div>
+							
+						 
+					</form>
+					
+
+
+							<div class="form-actions">
+								<a ui-sref="app.wx.me.settle_shop">
+									<i class="fa fa-chevron-circle-left"></i> 返回
+								</a>
+								
+							</div>
+
+
+
+
+
+				</div>
+				<!-- end: LOGIN BOX -->
+				
+
+
+				
+
+
+
+					
+			</div>
+		</div>
+		<!-- end: LOGIN -->
+
+
+		
+

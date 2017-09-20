@@ -1,0 +1,882 @@
+<script src="../../js/controllers/mk/list.js"></script>
+<script src="assets/js/controllers/mk/CartCtrl.js"></script>
+<style>
+    /*.clip-check label:before{*/
+    /*width: 15px !important;*/
+    /*height: 15px !important;*/
+    /*}*/
+    /*.clip-check label:after{*/
+    /*width: 15px !important;*/
+    /*height: 15px !important;*/
+    /*}*
+    /
+     */
+
+
+</style>
+<!-- start: REGISTRATION -->
+<div class="row">
+    <div class="main-login" style="margin-bottom:60px;">
+
+        <!-- start: REGISTER BOX -->
+        <div class="box-register small" ng-controller="CartCtrl" style="padding-top:0px;padding-bottom:0px;">
+
+
+            <div id="payContent" style="display:none;border:1px solid #dddddd;background:#fff;" class="roundrec">
+                <div class="modal-header">
+                    <h3 class="modal-title">支付订单&nbsp;&nbsp;{{PO_ID}}</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="radio clip-radio radio-primary radio-inline">
+                        <input type="radio" id="radio1" name="inline" value="wx" ng-model="paymode">
+                        <label for="radio1">
+                            <img src="assets/images/wxpay.png" style="width:80px;height:30px;">
+                        </label>
+                    </div>
+                    <div class="radio clip-radio radio-primary radio-inline">
+                        <input type="radio" id="radio2" name="inline" value="ali" ng-model="paymode">
+                        <label for="radio2">
+                            <img src="assets/images/alipay.png" style="width:80px;height:30px;">
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" ng-click="ok($event)">现在支付</button>
+                    <button class="btn btn-primary" ng-click="close()">以后支付</button>
+                </div>
+            </div>
+
+
+            <div id="asideContent" style="display:none;border:1px solid #dddddd;background:#fff;" class="roundrec">
+                <!--<script type="text/ng-template" id="asideContent.html">-->
+
+                <div class="modal-body" id="modal-body2">
+
+                    <div style="width:100%;height:200px;overflow:auto;">
+                        <table ng-table="addr_tableParams" class="table">
+                            <thead>
+                            <tr>
+                                <th style="width:40px;">
+                                    <nobr>序号</nobr>
+                                </th>
+                                <th>收货人</th>
+                                <th>地址</th>
+                                <th>电话</th>
+                                <th>操作</th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="item in $data">
+                                <td>{{item.sortno}}</td>
+                                <td>
+                                    <a ng-click="getaddr('{{item.shr}}','{{item.addr}}','{{item.tel}}')">{{item.shr}}</a>
+                                </td>
+                                <td>
+                                    <a ng-click="getaddr('{{item.shr}}','{{item.addr}}','{{item.tel}}')">{{item.addr}}</a>
+                                </td>
+                                <td>
+                                    <a ng-click="getaddr('{{item.shr}}','{{item.addr}}','{{item.tel}}')">{{item.tel}}</a>
+                                </td>
+                                <td>
+                                    <div ng-if="item.key!=''"><a href="#" class="small" ng-click="addr_delit(item.key)"><i
+                                            class="fa fa-times"></i></a></div>
+                                </td>
+
+                            </tr>
+                            </tbody>
+
+
+                        </table>
+                    </div>
+
+
+                </div>
+
+                <!--
+                                    <div class="modal-header" style="height:60px;">
+                                                <h3 class="modal-title">新增地址</h3>
+                                                </div>
+
+                                    <div class="modal-body">
+
+
+                                                        <div class="col-xs-12">
+
+                                                        <form id="f2" class="form-horizontal" role="form" ng-submit="newaddr()">
+                                                            <div class="col-xs-6">
+
+                                                                <div class="form-group" style="padding-right:10px;">
+                                                                    <input type="text" class="form-control" id="theshr" name="shr" placeholder="收货人"/>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xs-6">
+
+                                                                <div class="form-group">
+                                                                    <input type="text" class="form-control" id="theaddr" name="addr" placeholder="地址"/>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xs-6">
+
+                                                                <div class="form-group" style="padding-right:10px;">
+                                                                    <input type="text" class="form-control" id="thetel" name="tel" placeholder="电话"/>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-xs-6">
+
+                                                                <div class="form-group">
+                                                                <button type=submit name="submit" class="btn btn-primaryy btn-wide pull-right">保存</button>
+
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+
+                                    </div>
+                -->
+
+
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+
+                <div class="col-xs-12" align=center>
+
+                    <button class="btn btn-primary btn-o" ng-click="close()">取消</button>
+                </div>
+
+                <p>&nbsp;</p>
+
+
+                <!--</script>-->
+            </div>
+
+
+            <loading></loading>
+
+
+
+            <div class="row" ng-hide="isEmpty==='true'" style="padding-top:15px;">
+
+                <div class="col-xs-12">
+
+                    <div class="col-xs-4 text-left">
+                        <!--<div ui-sref="app.eco.firstpage" style="cursor:pointer;">
+                            <i class="ti ti-home fa-2x text-primary"></i><span class="small">首页</span>
+                        </div>-->
+
+                        <button type="button" id="login2" class="btn btn-green" ui-sref="app.eco.firstpage">
+                            <i class="ti ti-home"></i> 首页
+                        </button>
+
+
+                    </div>
+                    <div class="col-xs-4 text-center text-large">
+                        <div translate="dashboard.cart"></div>
+                    </div>
+                    <div class="col-xs-4 text-right danger">
+
+                        <!--<div ui-sref="app.wx.me.shoplist" style="cursor:pointer;">
+                        <i class="ti ti-plus fa-2x text-primary"></i><span class="small">继续添加</span>
+                        </div>-->
+
+                        <button type="button" id="login" class="btn btn-orange" ui-sref="app.wx.me.shoplist">
+                            去逛逛 <i class="fa fa-arrow-circle-right"></i>
+                        </button>
+
+
+                    </div>
+                </div>
+
+
+                <div class="clearfix space5"></div>
+
+
+            </div>
+
+
+            <!-- start: SIMPLE TABLE WITH PAGINATION -->
+
+
+            <!--
+                      <div class="panel panel-transparent">
+
+                         <div class="panel-body">
+                             <v-accordion class="vAccordion--default">
+                                 <v-pane expanded="$first">
+                                     <v-pane-header style1="background:#b5e1fc;">
+                                         <h5>商品</h5>
+                                     </v-pane-header>
+                                     <v-pane-content>
+                                         <p>
+                     -->
+
+
+            <div ng-hide="isEmpty==='true'">
+
+                <!--
+                                <p>
+                                    <strong>Page:</strong> {{tableParams.page()}}
+                                </p>
+                                <p>
+                                    <strong>Count per page:</strong> {{tableParams.count()}}
+                                </p>-->
+                <table ng-table="tableParams" class="table">
+
+                    <tbody ng-repeat="shop in theshop">
+
+
+                    <!--<pre>{{selected}}</pre>-->
+
+
+                    <tr bgColor="#f7f7f7">
+                        <td>
+                            <div class="checkbox clip-check check-primary checkbox-inline small" >
+                                <!--<input type="checkbox" id="{{shop.shop_id}}" ng-click="selectAll($event,'','',shop.data)" ng-checked="isSelectedAll(shop.data)"/>-->
+
+                                <!--<label for="{{shop.shop_id}}">-->
+                                <div > {{shop.shop_name}}</div>
+                                <!--</label>-->
+                            </div>
+                        </td>
+                    </tr>
+                    <tr ng-repeat="item in shop.data track by $index">
+                        <!--<td style="width:20px;" ng-if="$index ==0" rowspan="{{shop.data.length}}">{{shop.sortno}}</td>-->
+                        <td>
+                            <div class="row">
+                                <div class="col-xs-1 ">
+
+                                    <div style="position:absolute;margin-left:-10px;color:#efefef;display:none;">
+                                        {{shop.sortno}}
+                                    </div>
+
+                                    <div class="checkbox clip-check check-primary checkbox-inline small" >
+                                        <!--<input  id={{item.sortno}} type="checkbox" ng-model="x" ng-click="chk(item.sortno,x)" class="checkbox" />-->
+                                        <input type="checkbox" name="selected" id={{item.key}} ng-checked="isSelected(item.key)" ng-click="updateSelection($event,item.key,item.qty,shop.data)"/>
+
+                                        <label for="{{item.key}}">
+                                            <div class="small"></div>
+                                        </label>
+                                    </div>
+
+
+                                </div>
+                                <div class="col-xs-1 ">
+
+                                    <img style="width:40px;height:40px;" src="{{serviceRoot+item.photo}}"><br>
+
+                                </div>
+                                <div  class="col-xs-1 ">
+                                </div>
+
+                                <div ng-if="shop.member==0" class="col-xs-3 padding-left-0">
+                                    <div>
+                                        {{item.person_info}}
+                                        <!--￥{{item.price*item.qty | number:2}}<br>-->
+                                        <a ng-if="item.dateprice!=''" class="small" ng-click="roomdetails(item.dateprice)">房价及入住时间详情</a>
+                                    </div>
+                                    <div class="small" style="margin-top:10px;">单价：￥{{item.price | number:2}}</div>
+                                </div>
+                                <div  ng-if="shop.member==1" class="col-xs-3 padding-left-0">
+                                    <div>
+                                        <!--￥{{item.member_price*item.qty | number:2}}<br>-->
+                                        <a ng-if="item.dateprice!=''" ng-click="roomdetails(item.dateprice)">房价及入住时间详情</a>
+                                    </div>
+                                    <div class="small" style="margin-top:10px;">单价：￥{{item.member_price | number:2}}</div>
+
+
+                                </div>
+                                <div class="col-xs-3" ng-if="item.room_qty!=undefined">
+                                    <div style="width:60px;">
+
+                                        <span id="qtyspan{{item.key}}" style="display:none">{{item.qty}}</span>
+                                        <div id="qtydiv{{item.key}}"><input name="qty{{item.key}}" type="text"
+                                                                            style="width:30px;display:none;"
+                                                                            class="text-center small" ng-model=item.qty
+                                                                            ng-change="chgqty(item.key,item.qty)"
+                                                                            touchspin data-max="{{item.room_qty}}"
+                                                                            data-min="1"  data-step="1"
+                                                                            data-decimals="0"></div>
+                                    </div>
+                                    <!--ng-change="chgqty(item.key,item.qty)" name="qty" touchspin data-min="0" data-max="10000" data-step="1" data-decimals="0" -->
+                                </div>
+                                <div class="col-xs-3" ng-if="item.room_qty==undefined">
+                                    <div style="width:60px;">
+                                        <span id="qtyspan{{item.key}}" style="display:none">{{item.qty}}</span>
+                                        <div id="qtydiv{{item.key}}"><input name="qty{{item.key}}" type="text"
+                                                                            style="width:30px;display:none;"
+                                                                            class="text-center small" ng-model=item.qty
+                                                                            ng-change="chgqty(item.key,item.qty)"
+                                                                            touchspin data-max="999"
+                                                                            data-min="1"  data-step="1"
+                                                                            data-decimals="0"></div>
+                                    </div>
+                                    <!--ng-change="chgqty(item.key,item.qty)" name="qty" touchspin data-min="0" data-max="10000" data-step="1" data-decimals="0" -->
+                                </div>
+                                <div class="col-xs-3 text-right">
+                                    <a href="#" class="small" ng-click="delit(item.key)">删除</a><br>
+                                    <a ng-click="getticket(item.key,item.product_no)">使用优惠券</a>
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-xs-1">
+                                </div>
+                                <div class="col-xs-3 ">
+                                    {{item.name}}
+                                </div>
+                                <div class="col-xs-2 ">
+
+                                </div>
+                                <div class="col-xs-4 ">
+                                    小计：￥<span id="key_{{item.key}}">{{item.amount|number:2}}</span>
+                                </div>
+                                <div class="col-xs-3">
+
+                                </div>
+
+                            </div>
+
+                            <div id="roomcontent" style="display:none;border:1px solid #dddddd;background:#fff;" class="roundrec">
+
+                                <div class="modal-header">
+                                    <h3 class="modal-title">房价及入住时间详情</h3>
+                                </div>
+
+                                <div class="modal-body" id="roomcontent-body1">
+                                    <div id="room_div" style="width:100%;height:190px;overflow:auto;">
+                                        <table class="table" >
+                                            <thead>
+                                            <tr>
+                                                <th>
+                                                    <nobr>日期</nobr>
+                                                </th>
+                                                <th>门市价</th>
+                                                <th>会员价</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+
+                                            <tr ng-repeat="dateprice in dateprice">
+                                                <td>{{dateprice.set_date}}</td>
+                                                <td>
+                                                    <a>{{dateprice.price}}元</a>
+                                                </td>
+                                                <td>
+                                                    <a>{{dateprice.member_price}}元</a>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+
+
+                                        </table>
+
+                                    </div>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <div class="row">
+                                        <div class="col-xs-12" align=center>
+                                            <button class="btn btn-primary" ng-click="close()">确定</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div id="asideContentticket" style="display:none;border:1px solid #dddddd;background:#fff;" class="roundrec" >
+                                <!--<script type="text/ng-template" id="asideContent.html">-->
+                                <div class="modal-header" style="height:60px;" ng-if="ticketdata!=''">
+
+
+                                    <div class="col-xs-12">
+
+                                        <div class="col-xs-8">
+                                            <h3 class="modal-title">选择卡劵</h3>
+                                        </div>
+
+
+                                    </div>
+
+
+                                </div>
+                                <div class="modal-body text-center" style="overflow:auto; height:270px;" ng-if="ticketdata==''">
+                                    暂无卡券
+                                </div>
+                                <div class="modal-body" id="modal-body3" style="overflow:auto; height:270px;" ng-if="ticketdata!=''">
+                                    <!--<pre>{{choseArr}}</pre>-->
+
+                                    <table  class="table table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th style="width:40px;">
+                                                <nobr>卡劵编号</nobr>
+                                            </th>
+                                            <th>卡劵类型</th>
+                                            <th  class="hidden-xs">卡劵期限</th>
+
+
+                                        </tr>
+                                        </thead>
+                                        <tbody >
+
+                                        <tr ng-repeat="item in ticketdata">
+                                            <td>
+
+                                                <div class="checkbox clip-check check-primary checkbox-inline small" >
+                                                    <input  id={{item.ticket_id}} type="checkbox"  ng-checked="item.isselect" ng-model="x" ng-click="chk(item.ticket_id,x)"  class="checkbox" />
+                                                    <label for="{{item.ticket_id}}">
+                                                        <div class="small">{{item.ticket_id}}</div>
+                                                    </label>
+                                                </div>
+
+                                            </td>
+                                            <td><a >{{item.ticket_type}}</a></td>
+                                            <td  class="hidden-xs">{{item.b_date}}--{{item.e_date}}</td>
+
+
+
+                                        </tr>
+                                        </tbody>
+                                    </table>
+
+
+                                </div>
+                                <div class="modal-footer"  ng-if="ticketdata!=''">
+                                    <div class="row">
+                                        <div class="col-xs-12" align=center>
+                                            <button class="btn btn-primary" ng-click="userTicketByCart()">确定</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <!--</script>-->
+                            </div>
+                            <div class="col-xs-12" style="margin: 0;padding: 0; margin-top: 5px;"
+                                 ng-if="item.person_info!=''">
+                                <accordion close-others="oneAtATime" class="accordion">
+                                    <accordion-group is-open="status.open">
+                                        <accordion-heading class="detail">
+                                            <span font-size="80%">详情</span><i class="pull-right fa"
+                                                 ng-class="{'fa-angle-up ': status.open, 'fa-angle-down': !status.open}"></i>
+                                        </accordion-heading>
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <span class="small">开始日期：{{item.b_date}}</span>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <span class="small">结束日期：{{item.e_date}}</span>
+                                            </div>
+                                        </div>
+                                        <div ng-repeat="person_info in item.person_info" class="row">
+                                            <div class="col-xs-6">
+                                                <span class="small">姓名：{{person_info.person_name}}</span>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <span class="small">手机：{{person_info.phone}}</span>
+                                            </div>
+                                        </div>
+                                    </accordion-group>
+                                </accordion>
+                            </div>
+
+
+
+
+                            <!--
+                            <div class="col-xs-1 visible-md visible-lg hidden-sm hidden-xs">
+                                                        <a id="editA{{item.key}}" style="display:block" href="#" class="btn btn-transparent btn-xs" ng-click="editit(item.key)" tooltip-placement="top" tooltip="Edit"> <i class="fa fa-pencil"></i></a>
+                                                        <a id="okitA{{item.key}}" style="display:none" href="#" class="btn btn-transparent btn-xs" ng-click="okit(item.key)" tooltip-placement="top" tooltip="Save"> <i class="fa fa-check-square-o"></i></a>
+                                                        <a href="#" class="btn btn-transparent btn-xs" ng-click="delit(item.key)" tooltip-placement="top" tooltip="Delete"> <i class="fa fa-times"></i></a>
+                            </div>
+                            <div class="visible-xs visible-sm hidden-md hidden-lg">
+                                                        <div class="btn-group" dropdown is-open="status.isopen">
+                                                            <button type="button" class="btn btn-primary btn-o btn-sm dropdown-toggle" dropdown-toggle>
+                                                                <i class="fa fa-cog"></i>&nbsp;<span class="caret"></span>
+                                                            </button>
+                                                            <ul class="dropdown-menu pull-right dropdown-light" role="menu">
+                                                                <li id="editB{{item.key}}" style="display:block">
+                                                                    <a href="#" class="small" ng-click="editit(item.key)"> <i class="fa fa-pencil"></i>&nbsp;修改</a>
+                                                                </li>
+                                                                <li id="okitB{{item.key}}" style="display:none">
+                                                                    <a href="#" class="btn btn-transparent btn-xs" ng-click="okit(item.key)" tooltip-placement="top" tooltip="Save"> <i class="fa fa-check-square-o"></i>&nbsp;保存</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="#" class="small" ng-click="delit(item.key)"> <i class="fa fa-times"></i>&nbsp;删除</a>
+                                                                </li>
+
+                                                            </ul>
+                                                        </div>
+                            </div>
+                        -->
+
+
+                        </td>
+                    </tr>
+
+
+                    </tbody>
+
+                </table>
+
+
+                <!--
+                                                    <div class="col-xs-12">
+                                                                <div class="col-xs-1 text-center">
+                                                                序号
+                                                                </div>
+                                                                <div class="col-xs-5 text-center">
+                                                                品名
+                                                                </div>
+                                                                <div class="col-xs-2 text-center">
+                                                                数量
+                                                                </div>
+                                                                <div class="col-xs-2 text-center">
+                                                                单价
+                                                                </div>
+                                                                <div class="col-xs-2text-center">
+                                                                金额
+                                                                </div>
+                                                    </div>
+
+                                                    <div class="col-xs-12" ng-repeat="shop in $data">
+
+                                                        <div class="col-xs-12">{{shop.shop_name}}</div>
+                                                                    <div class="col-xs-12" ng-repeat="item in shop.data track by $index">
+                                                                            <div class="col-xs-1 text-center">
+                                                                            {{item.sortno}}
+                                                                            </div>
+                                                                            <div class="col-xs-5 text-center">
+                                                                            {{item.name}}
+                                                                            </div>
+                                                                            <div class="col-xs-2 text-center">
+                                                                            {{item.qty}}
+                                                                            </div>
+                                                                            <div class="col-xs-2 text-center">
+                                                                            {{item.price}}
+                                                                            </div>
+                                                                            <div class="col-xs-2text-center">
+                                                                            {{item.amount}}
+                                                                            </div>
+                                                                    </div>
+                                                    </div>
+
+                -->
+
+            </div>
+            <!--
+                                                </p>
+                                            </v-pane-content>
+                                        </v-pane>
+
+
+
+
+
+                                        <v-pane>
+                                            <v-pane-header style1="background:#b5e1fc;">
+                                                <h5>备注</h5>
+                                            </v-pane-header>
+                                            <v-pane-content>
+                                                <p>
+
+                                                -->
+
+            <form id="f1" class="form-register" ng-hide="isEmpty==='true'">
+
+
+                <div class="row">
+
+                    <div class="col-xs-12">
+
+                        <div ng-click="showhide_addr()"
+                             style="height:40px;cursor:pointer;background:#f7f7f7;padding:10px;">
+                            <i class="ti ti-location-pin text-primary"></i>编辑地址
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="clearfix space5"></div>
+                <div class="clearfix space5"></div>
+
+
+                <div class="row" ng-show="addrshow_flag">
+
+                    <div class="col-xs-12">
+
+                        <div class="form-group">
+
+                          <span class="input-icon">
+                              <input placeholder="收货人" id="shr" name="shr"
+                                     class="form-control text-small"><i
+                                  class="fa fa-user"></i>
+                          </span>
+                        </div>
+
+                        <div class="form-group">
+                              <span class="input-icon">
+                                      <input placeholder="收货地址" id="addr" name="addr"
+                                             class="form-control text-small"><i
+                                      class="fa fa-map-marker"></i>
+                                      <a class="forgot" ng-click="open('asideContent')">
+                                        选择地址
+                                    </a>
+                                  </span>
+
+                        </div>
+
+
+                        <div class="form-group">
+                               <span class="input-icon">
+                                      <input placeholder="联系电话" id="tel" name="tel"
+                                             class="form-control text-small"><i
+                                       class="fa fa-mobile"></i>
+                                  </span>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="row">
+
+                    <div class="col-xs-12">
+
+                        <div ng-click="open('liuyandiv')"
+                             style="height:40px;cursor:pointer;background:#f7f7f7;padding:10px;">
+                            <i class="ti ti-pin2 text-primary"></i>留言
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="clearfix space5"></div>
+                <div class="clearfix space5"></div>
+
+
+                <div id="liuyandiv" style="display:none;border:1px solid #dddddd;background:#fff;" class="roundrec">
+                    <div class="modal-header">
+                        <h3 class="modal-title">留言</h3>
+                    </div>
+                    <div class="modal-body" id="modal-body" style="overflow:auto;">
+                        <div class="row" ng-show1="liuyanshow_flag">
+
+                            <div class="col-xs-12">
+                                <div class="col-xs-6">
+                                    <p>
+                                        附图:
+                                    </p>
+                                    <img id="previewimg_pic" style="width:100px;height:60px;display:none;"
+                                         src="{{serviceRoot+pic}}">
+
+                                    <table ng-table="tableParams3" class="table">
+
+                                        <tbody>
+                                        <tr ng-repeat="item in $data" class="small">
+                                            <td><img style="width:100px;height:60px;"
+                                                     src="{{serviceRoot+item.slidesimg}}"></td>
+                                            <td>
+                                                <div><a href="#" class="small" ng-click="delpic(item.key)"><i
+                                                        class="fa fa-trash-o fa-2x"></i></a></div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+
+
+                                    <div class="form-group" style="padding-top:5px;">
+
+                                        <span class="input-icon">
+                                            <input type="text"
+                                                   class="form-control"
+                                                   id="pic"
+                                                   name="pic"
+                                                   placeholder="图片"
+                                                   ng-model="pic"
+                                                   style="display:none;">
+                                            <!--<i class="fa fa-picture-o"></i>-->
+                                            <a class="btn btn-primary btn-o"
+                                               ng-click="chooseimg('pic')">
+                                                选择
+                                            </a> </span>
+
+
+                                    </div>
+
+                                    <!--
+                                    <div class="form-group" style="padding-top:10px;">
+
+
+                                                                                <span class="input-icon">
+                                                                                    <input type="text"
+                                                                                           class="form-control" id="pic"
+                                                                                           name="pic" placeholder="图片"
+                                                                                           ng-model="pic"
+                                                                                           style="display:none;">
+                                                                                    <i class="fa fa-picture-o"></i>
+                                                                                    <a class="btn btn-primary btn-o"
+                                                                                       ng-click="chooseimg('pic')">
+                                                                                        选择
+                                                                                    </a> </span>
+
+
+                                    </div>-->
+                                </div>
+                                <div class="col-xs-6">
+                                    <img id="previewimg_voice" style="display:none;" src="{{havevoice}}"
+                                         ng-click="play('voice')">
+
+                                    <p>
+                                        留言:
+                                    </p>
+                                    <div class="row">
+
+
+                                        <input type="text" class="form-control" id="voice" name="voice" placeholder="录音"
+                                               ng-model="voice" style="display:none;">
+                                        <!--<i class="fa fa-picture-o"></i>-->
+
+
+                                        <div class="col-xs-3" style="" ng-click="record('voice')">
+                                            <a class="btn btn-primary btn-o"><i class="fa fa-circle"></i></a>
+                                        </div>
+                                        <div class="col-xs-3" style="" ng-click="stopRecord('voice')">
+                                            <a class="btn btn-primary btn-o"><i class="fa fa-square"></i></a>
+                                        </div>
+
+
+                                    </div>
+
+
+                                    <div class="row" style="padding-top:5px;">
+                                        <div class="col-xs-3" style="" ng-click="play('voice')">
+                                            <a class="btn btn-primary btn-o"><i class="fa fa-play"></i></a>
+                                        </div>
+                                        <div class="col-xs-3" style="" ng-click="stop('voice')">
+                                            <a class="btn btn-primary btn-o"><i class="fa fa-stop"></i></a>
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="row" style="padding-top:5px;display:none;">
+                                        <div class="col-xs-3" style="" ng-click="uploadvoice('voice')">
+                                            <a class="btn btn-primary btn-o"><i class="fa fa-upload"></i></a>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <div class="modal-footer">
+
+
+                        <div class="row">
+                            <div class="col-xs-12" align=center>
+                                <button class="btn btn-primary" ng-click="close()">确定</button>
+                                <button class="btn btn-primary btn-o" ng-click="close()">取消</button>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+                <p>&nbsp;</p>
+            </form>
+
+            <!--
+                                                            </p>
+                                                        </v-pane-content>
+                                                    </v-pane>
+
+
+
+                                                </v-accordion>
+
+                                            </div>
+                                        </div>
+                                -->
+
+
+            <!-- end: SIMPLE TABLE WITH PAGINATION -->
+
+
+            <div class="row" ng-show="isEmpty==='true'" align=center style="padding-top:50px;">
+                <div>
+                    <img src="assets/images/emptycart.png">
+                </div>
+                <br>
+                <div style="margin-top:50px;">
+
+                    购物车是空的耶~~~<br><br>
+
+
+                    <button type="button" id="login2" class="btn btn-green" ui-sref="app.eco.firstpage">
+                        <i class="ti ti-home"></i> 首页
+                    </button>
+
+                    <button type="button" id="login" class="btn btn-orange" ui-sref="app.wx.me.shoplist">
+                        去逛逛 <i class="fa fa-arrow-circle-right"></i>
+                    </button>
+
+                </div>
+
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+            </div>
+
+
+            <div class="row cart_bottombanner" ng-hide="isEmpty==='true'">
+
+                <div class="col-xs-12">
+
+
+                    <div class="col-xs-8 text-left padding-right-0">
+                        <div style="padding-top:10px;">
+                            <div class="text-warning text-bold">合计：<br>数量：{{cartnum}} &nbsp;
+                                金额：{{cartamount | number:2}}&nbsp;折扣后：{{cartamount-discount_amount|number:2}}
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-xs-4 text-right padding-left-0">
+                        <div style="padding-top:10px;">
+                            <button type="button" id="login" class="btn btn-orange" ng-click="submitpo()">
+                                提交订单 <i class="fa fa-arrow-circle-right"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+
+
+        <!-- end: REGISTER BOX -->
+
+
+    </div>
+</div>
+<!-- end: REGISTRATION -->

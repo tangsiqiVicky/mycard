@@ -1,0 +1,96 @@
+<script src="assets/js/controllers/mk/LoginCtrl.js"></script>
+
+<!-- start: REGISTRATION -->
+<div class="row">
+	<div class="main-login col-xs-12">
+		
+		<!-- start: REGISTER BOX -->
+				<div class="box-register" ng-controller="selfCtrl">
+					<form id="f1" class="form-register">
+
+
+						
+
+						<input type="text" style="display:none;" name="actiontype" value="register">
+                            
+							<p>
+								个人信息:
+							</p>
+							<div class="form-group">
+								<input type="text" class="form-control" name="full_name" placeholder="姓名">
+							</div>
+							
+							<div class="form-group">
+								<label class="block">
+									性别
+								</label>
+								<div class="clip-radio radio-primary">
+								<input style="display:none;" name="gender" value="{{gender_value}}">
+									<input type="radio" id="rg-female" name="gender_radio" value="female" ng-model="gender_value">
+									<label for="rg-female">
+										女
+									</label>
+									<input type="radio" id="rg-male" name="gender_radio" value="male" ng-model="gender_value">
+									<label for="rg-male">
+										男
+									</label>
+								</div>
+							</div>
+							<p>
+								帐户信息:
+							</p>
+							<div class="form-group">
+								<input style="display:none;" name="client_type" value="{{client_type_value}}">
+								<div class="clip-radio radio-primary">
+									<input type="radio" id="rg-shop" name="client_type_radio" value="shop" ng-model="client_type_value">
+									<label for="rg-shop">
+										商家
+									</label>
+									<input type="radio" id="rg-member" name="client_type_radio" value="member" ng-model="client_type_value">
+									<label for="rg-member">
+										个人
+									</label>
+								</div>
+							</div>
+		
+							<div class="form-group">
+								<span class="input-icon">
+									<input type="text" class="form-control" id="phone" name="phone" placeholder="手机号">
+									<i class="fa fa-mobile"></i> </span>
+							</div>
+							
+							
+							
+
+
+
+							<p style="padding-top:60px;text-align:center;">
+
+							<a href1="login_signin.html" style="padding-right:40px;">
+								<button type="button" id="reg_submit" class="btn btn-primary pull-center">
+									<i class="ti ti-save"></i> 保存  
+								</button>
+							</a>
+							
+									<a href1="login_signin.html" ui-sref="login.forgot">
+										<button type="button" class="btn btn-wide btn-success">
+									修改密码 
+								</button>
+									</a>
+									
+									<a href1="login_signin.html" ui-sref="login.signin">
+										<button type="button" class="btn btn-wide btn-danger">
+									退出登录 
+								</button>
+									</a>
+								</p>
+						
+					</form>
+					
+				</div>
+				<!-- end: REGISTER BOX -->
+
+				
+	</div>
+</div>
+<!-- end: REGISTRATION -->

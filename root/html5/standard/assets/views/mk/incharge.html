@@ -1,0 +1,61 @@
+<script src="assets/js/controllers/mk/InChargeCtrl.js"></script>
+
+<!-- start: REGISTRATION -->
+<div class="row">
+    <div class="main-login col-xs-12">
+
+        <!-- start: REGISTER BOX -->
+        <div class="box-register" ng-controller="InChargeCtrl">
+
+
+            <div>
+                <form id="f1" class="form-register">
+
+
+                    <!-- start: SIMPLE TABLE WITH PAGINATION -->
+                    <div>
+
+                        <!--
+                                        <p>
+                                            <strong>Page:</strong> {{tableParams.page()}}
+                                        </p>
+                                        <p>
+                                            <strong>Count per page:</strong> {{tableParams.count()}}
+                                        </p>-->
+                        <table ng-table="tableParams" class="table table-striped">
+                            <tr ng-repeat="item in $data">
+                                <td data-title="'商家'"><a href1="#" class="gooey-menu-item">{{item.shop_name}}</a></td>
+                                <td data-title="'储值'"><a href1="#" class="gooey-menu-item">{{item.in_amount}}</a></td>
+                                <td data-title="'消费'"><a href1="#" class="gooey-menu-item">{{item.out_amount}}</a></td>
+                                <td data-title="'余额'"><a href1="#" class="gooey-menu-item">{{item.card_amount}}</a></td>
+                                <td data-title="'记录查询'" style="width:20%;">
+
+
+                                    <a class="btn btn-orange btn-block" ng-click="showdetail('{{item.shop_id}}')">
+                                        储值记录 <i class="fa fa-chevron-circle-right"></i>
+                                    </a>
+
+                                    <a class="btn btn-azure btn-block" ng-click="showxfdetail('{{item.shop_id}}')">
+                                        消费记录 <i class="fa fa-chevron-circle-right"></i>
+                                    </a>
+
+                                </td>
+
+
+                            </tr>
+                        </table>
+                    </div>
+                    <!-- end: SIMPLE TABLE WITH PAGINATION -->
+
+
+                </form>
+            </div>
+
+
+        </div>
+        <!-- end: REGISTER BOX -->
+
+
+    </div>
+</div>
+<!-- end: REGISTRATION -->

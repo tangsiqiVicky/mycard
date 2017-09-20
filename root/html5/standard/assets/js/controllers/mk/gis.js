@@ -1,0 +1,639 @@
+'use strict';
+
+
+function OnresizeEvent() {
+
+
+    $("#mapcontainer").css("height", page_h + "px");
+
+}
+
+
+function gpsguide(id) {
+
+}
+
+
+function After_ClickOnMap(pt, pos, addr) {
+
+}
+
+
+app.controller('GISCtrl', ["$scope", "$location", "$rootScope", '$cookieStore', 'ngTableParams', function ($scope, $location, $rootScope, $cookieStore, ngTableParams) {
+
+    $scope.currTitle = "周边";
+    /*
+     function ZoomControl(){
+     // 默认停靠位置和偏移量
+     var w=(window['innerWidth'] || document.documentElement.scrollWidth);
+     var h=(window['innerHeight'] || document.documentElement.scrollHeight);
+     this.defaultAnchor = BMAP_ANCHOR_TOP_RIGHT;
+     this.defaultOffset = new BMap.Size(60, 20);
+     }
+     */
+
+
+//$("#tempmenudiv").css("left",($("#mapcontainer").offsetWidth-150)+"px");
+//$("#tempmenudiv").css("right",(60)+"px");
+//$("#tempmenudiv").css("top",(60)+"px");
+
+
+    var TB_data = [];
+    $scope.tableParams = new ngTableParams({
+        page: 1, // show first page
+        count: 10 // count per page
+    }, {
+        total: TB_data.length, // length of data
+        counts: [],
+        getData: function ($defer, params) {
+            $defer.resolve(TB_data.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+        }
+    });
+
+
+    $scope.zbss_searchobj_value1 = false
+    $scope.zbss_searchobj_value2 = false
+    $scope.zbss_searchobj_value3 = false
+    $scope.zbss_searchobj_value4 = false
+    $scope.zbss_searchobj_value5 = false
+    $scope.zbss_searchobj_value6 = false
+
+
+    $scope.zbss_searchobj_value7 = false
+    $scope.zbss_searchobj_value8 = false
+    $scope.zbss_searchobj_value9 = false
+    $scope.zbss_searchobj_value10 = false
+    $scope.zbss_searchobj_value11 = false
+
+
+    $scope.showtype_value = "map";
+
+
+    $scope.open = function (id) {
+
+        $scope.zbss_justshowmem_value1 = true;
+        $scope.localaddress = cur_addr;
+        $scope.localpos = cur_pos;
+
+        $.openPopupLayer({
+            name: "myStaticPopup",
+            width: page_w,
+            height: page_h,
+            target: id,
+            container: "",
+            hidebyclickbg: "false"
+        });
+
+        if(id=="myModalContent1")
+        {
+             $("#search_modal_body").css("height", (page_h-180) + "px");
+        }
+       
+
+       if(id=="myModalContent2")
+        {
+        $("#ifrm1").css("height", (page_h) + "px");
+        }
+
+    }
+
+
+//func_obj=$scope.open;
+
+
+    $scope.close = function () {
+        $.closePopupLayer();
+
+    }
+
+
+    $scope.searchmap = function (arg) {
+
+
+        var rv = false;
+
+        if (arg == 1)  //搜周边
+        {
+
+            //alert("1:"+cur_pos);
+//if(cur_pos=="")
+            //{
+//cur_pos=$cookieStore.get("cur_pos");
+//alert("2:"+cur_pos)
+            //}
+
+
+            if (cur_pos == "" || cur_pos == undefined) {
+                alert("无法定位当前位置，请在地图上点选位置")
+                $scope.close();
+                is_select = true;
+                return false;
+            }
+
+
+            var str = "酒店,餐饮,汽车,美容,娱乐,健身,超市,学校,医院,园区,专卖店";
+            var namestr = str;
+            var namestrs = namestr.split(",");
+            str = "hotel,restaurant,car,cosmetology,entertainment,body,supermarket,school,hospital,park,mall";
+            var strs = str.split(",");
+            var truefalse = $("#zbss_searchobj_value").val();
+
+            var truefalses = truefalse.split(",");
+            var keynamestr = "";
+            var keystr = "";
+            for (var i = 0; i < truefalses.length; i++) {
+                if (truefalses[i] == "true") {
+                    keystr = keystr + strs[i] + ",";
+                    keynamestr = keynamestr + namestrs[i] + ",";
+                }
+
+            }
+            if (keystr != "") {
+                keystr = keystr.substring(0, keystr.length - 1);
+            }
+            if (keynamestr != "") {
+                keynamestr = keynamestr.substring(0, keynamestr.length - 1);
+            }
+            if (keystr != "") {
+                var myKeys = keystr.split(",");
+
+
+//alert(cur_pos)
+                var isok = false;
+                var num = 0;
+
+                if ($("#zbss_justshowmem_value").val() == "true")//只显示联盟商家
+                {
+
+//alert(serviceRoot+'mk_main_info?actiontype=getshops&user_id='+user_id+"&longitude="+cur_pos.split(",")[0]+"&latitude="+cur_pos.split(",")[1]+"&subtype="+keystr+"&distance="+$("#distance").val())
+                    var options = {
+                        //url: myforwardurl(serviceRoot + 'mk_main_info?actiontype=getshops&user_id=' + user_id + "&longitude=" + cur_pos.split(",")[0] + "&latitude=" + cur_pos.split(",")[1] + "&subtype=" + keystr + "&distance=" + $("#distance").val(), serviceRoot),
+                        url: myforwardurl(serviceRoot2 + 'shops/getShopList?actiontype=getshops&user_id=' + user_id + "&longitude=" + cur_pos.split(",")[0] + "&latitude=" + cur_pos.split(",")[1] + "&subtype=" + keystr + "&distance=" + $("#distance").val(), serviceRoot2),
+                        async: false,
+                        type: 'get',
+                        dataType: 'json',
+                        data: null,
+                        resetForm: true,
+                        timeout: 60000,
+                        // jsonp: 'callback',
+                        success: function (rv) {
+
+                            var msg = "";
+
+                            //alert(rv.result)
+                            if (rv.result == "1") {
+                                isok = true;
+
+
+                                TB_data = rv.data;
+
+
+                                $.each(rv.data, function (idx, item) {
+                                    num = num + 1;
+                                })
+
+
+                                if (num > 0) {
+                                    $scope.close();
+
+                                    setTimeout(function () {
+
+
+                                        $scope.$apply(function () {
+
+
+                                            $scope.tableParams.reload();
+
+
+                                            //$scope.$apply(); //this triggers a $digest
+
+
+                                            $.openPopupLayer({
+                                                name: "myStaticPopup",
+                                                width: page_w,
+                                                height: page_h * 0.6,
+                                                layout_position: "bottom",
+                                                target: "r-result2",
+                                                container: ""
+                                            });
+
+
+                                        });
+
+
+                                    }, 500);
+
+
+                                }
+                                else {
+                                    alert("没有找到范围内符合条件的商家")
+                                }
+
+
+                            }
+                            else {
+                                msg = item.result_text;
+                                alert(msg)
+                            }
+
+
+//alert(data)
+
+
+                        },
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                            //alert("储值操作失败");
+
+                        }
+                    };
+
+                    $.ajax(options);
+
+
+                    //显示列表
+
+
+                }
+                else //地图搜索
+                {
+                    var local = new BMap.LocalSearch(map, {
+                        renderOptions: {
+                            map: map,
+                            autoViewport: true,
+                            panel: "r-result"
+                        }
+                    });
+                    //local.searchInBounds(myKeys, map.getBounds());
+
+                    map.removeOverlay(circle);
+                    circle = new BMap.Circle(point, $("#distance").val(), {
+                        fillColor: "blue",
+                        strokeWeight: 1,
+                        fillOpacity: 0.3,
+                        strokeOpacity: 0.3
+                    });
+                    map.addOverlay(circle);
+                    local.searchNearby(keynamestr.split(","), point, $("#distance").val());
+
+
+                    //显示列表
+
+                    $scope.close();
+
+                    $.openPopupLayer({
+                        name: "myStaticPopup",
+                        width: page_w * 0.9,
+                        height: page_h * 0.6,
+                        layout_position: "bottom",
+                        target: "r-result",
+                        container: ""
+                    });
+
+
+                }
+
+
+            }
+
+            rv = true;
+        }
+        else if (arg == 2) {
+
+            if ($("#showtype_value").val() != "") {
+
+                /*
+                 var app = angular.module('myApp', []);
+                 app.controller('customersCtrl', function($scope, $http) {
+                 $http.get("http://www.runoob.com/try/angularjs/data/Customers_JSON.php")
+                 .success(function (response) {$scope.names = response.records;});
+                 });
+                 */
+
+                $scope.names = ("A,B,C").split(",");
+
+                rv = true;
+
+            }
+            else {
+                alert("请选择显示方式")
+            }
+
+
+        }
+
+        return rv;
+    }
+
+
+    $scope.ok = function (arg) {
+
+        $scope.searchmap(arg)
+
+
+    };
+
+    $scope.cancel = function () {
+        $scope.close();
+    };
+
+
+    $scope.entershop = function (id) {
+        $scope.close();
+
+        $location.url("/app/wx/me/shopinfo?shop_id=" + id);
+    }
+
+
+    $scope.chgsearchcenter = function (id) {
+
+        $scope.close();
+        alert("请在地图上点选位置")
+        is_select = true;
+        cur_operid = id;
+    };
+
+
+    $scope.pj = function (id, arg) {
+
+        var options = {
+            url: myforwardurl(serviceRoot + 'mk_main_info?actiontype=pj&user_id=' + user_id + "&id=" + id, serviceRoot),
+            async: false,
+            type: 'get',
+            dataType: 'jsonp',
+            data: null,
+            resetForm: true,
+            timeout: 60000,
+            jsonp: 'callback',
+            success: function (rv) {
+               console.info('pjjjjj',rv);
+
+                var msg = "";
+
+                //alert(rv.result)
+                if (rv.result == "1") {
+                    isok = true;
+
+                }
+                else {
+                    msg = item.result_text;
+                }
+
+
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                //alert("储值操作失败");
+
+            }
+        };
+        $.ajax(options);
+
+    }
+
+
+    $scope.showonmap = function (key) {
+
+        is_select = false;
+
+        var name = "";
+        var photo = "";
+        var address = "";
+        var contact = "";
+        var contact_phone = "";
+        var longitude = "";
+        var latitude = "";
+
+
+        $.each(TB_data, function (idx, item) {
+
+            if (item.key == key) {
+                name = item.name;
+                photo = item.photo;
+                address = item.address;
+                contact = item.contact;
+                contact_phone = item.contact_phone;
+                longitude = item.longitude;
+                latitude = item.latitude;
+
+                return false;
+            }
+
+        })
+
+
+        if (name != "" && parseFloat(longitude) > 0 && parseFloat(latitude) > 0) {
+
+            var sContent =
+                "<h4 style='margin:0 0 5px 0;padding:0.2em 0'><a href1='#' class='gooey-menu-item' ui-sref=\"app.wx.me.shopinfo({shop_id:'{{" + key + "}}'})\">" + name + "</a></h4>" +
+                "<img style='float:right;margin:4px' id='imgDemo' src='" + photo + "' width='139' height='104' title='" + name + "'/>" +
+                "<p style='margin:0;line-height:1.5;font-size:13px;text-indent:2em'>" + address + "  【" + contact + "  " + contact_phone + "】</p>" +
+                "</div>";
+
+
+            var tmp_point = new BMap.Point(longitude, latitude);
+            map.centerAndZoom(tmp_point, 15);
+            var tmp_marker = new BMap.Marker(tmp_point);  // 创建标注
+            var infoWindow = new BMap.InfoWindow(sContent);  // 创建信息窗口对象
+
+            map.addOverlay(tmp_marker);              // 将标注添加到地图中
+            //alert(item.name)
+            var tmp_label = new BMap.Label(name, {offset: new BMap.Size(20, -20)});
+            tmp_label.setStyle({                                   //给label设置样式，任意的CSS都是可以的
+                color: "red",                   //颜色
+                fontSize: "14px",               //字号
+                fontWeight: "BOLD",
+                border: "0",                    //边
+                height: "20px",                //高度
+                width: "200px",                 //宽
+                textAlign: "center",            //文字水平居中显示
+                lineHeight: "120px",            //行高，文字垂直居中显示
+                background: "url(../../images/gohome.png)",    //背景图片，这是房产标注的关键！
+                cursor: "pointer"
+            });
+
+            tmp_marker.setLabel(tmp_label);
+            tmp_marker.openInfoWindow(infoWindow);
+
+
+            tmp_marker.addEventListener("click", function () {
+                this.openInfoWindow(infoWindow);
+                //图片加载完毕重绘infowindow
+                document.getElementById('imgDemo').onload = function () {
+                    infoWindow.redraw();   //防止在网速较慢，图片未加载时，生成的信息框高度比图片的总高度小，导致图片部分被隐藏
+                }
+
+            });
+
+
+        }
+        else {
+            alert("无商家位置信息，无法定位商家")
+        }
+
+    };
+
+
+    setTimeout(function () {
+
+        loadbaiduapi();
+
+        OnresizeEvent();
+
+    }, 100);
+
+
+    /*
+     setTimeout(function() {
+     $scope.$apply(function() {
+
+     $("#gooey-v").gooeymenu({
+     bgColor: "#68d099",
+     contentColor: "#0a3248",
+     style: "vertical",
+     horizontal: {
+     menuItemPosition: "glue"
+     },
+     vertical: {
+     menuItemPosition: "spaced",
+     direction: "down"
+     },
+     circle: {
+     radius: 90
+     },
+     margin: "small",
+     size: 70,
+     bounce: false,
+     bounceLength: "small",
+     transitionStep: 100,
+     hover: "#b5e1fc"
+     });
+
+
+     $("#tempmenudiv").css("display","block");
+     $("#tempmenudiv").click();
+
+
+
+     });
+     },2000);
+
+     */
+
+
+    showmenu(false);
+
+
+    setTimeout(function () {
+        $rootScope.logit(user_id, 'url', window.location.href.substring(window.location.href.indexOf("index.html#") + 11), $rootScope.currTitle);
+    }, 2000);
+
+
+}]);
+
+
+// Please note that $modalInstance represents a modal window (instance) dependency.
+// It is not the same as the $modal service used above.
+
+
+/*
+ app.controller('ModalInstanceCtrl', ["$scope", "$modalInstance", "items", function ($scope, $modalInstance, items) {
+
+ $scope.items = items;
+ $scope.selected = {
+ item: $scope.items[0]
+ };
+
+
+
+
+
+
+
+ $scope.searchmap=function(arg){
+
+ var rv=false;
+
+ if(arg==1)
+ {
+ var local = new BMap.LocalSearch(map,
+ { renderOptions:{map: map, autoViewport: true}});
+
+ var str="酒店,餐饮,汽车,美容,娱乐,健身";
+ var strs=str.split(",");
+ var truefalse=$("#searchobj_value").val();
+ var truefalses=truefalse.split(",");
+ var keystr="";
+ for(var i=0;i<truefalses.length;i++)
+ {
+ if(truefalses[i]=="true")
+ {
+ keystr=keystr+strs[i]+",";
+ }
+
+ }
+ if(keystr!=""){keystr=keystr.substring(0,keystr.length-1);}
+
+ if(keystr!="")
+ {
+ var myKeys = keystr.split(",");
+ //local.searchInBounds(myKeys, map.getBounds());
+ local.searchNearby(myKeys,point,$("#distance").val());
+ }
+
+ rv=true;
+ }
+ else if(arg==2)
+ {
+
+ if($("#showtype_value").val()!="")
+ {
+
+
+ var app = angular.module('myApp', []);
+ app.controller('customersCtrl', function($scope, $http) {
+ $http.get("http://www.runoob.com/try/angularjs/data/Customers_JSON.php")
+ .success(function (response) {$scope.names = response.records;});
+ });
+
+
+ $scope.names = ("A,B,C").split(",");
+
+ rv=true;
+
+ }
+ else{alert("请选择显示方式")}
+
+
+ }
+
+ return rv;
+ }
+
+
+
+
+ $scope.ok = function (arg) {
+ if($scope.searchmap(arg))
+ {
+ $modalInstance.close($scope.selected.item);
+ }
+ };
+
+ $scope.cancel = function () {
+ $modalInstance.dismiss('cancel');
+ };
+
+
+
+ }]);
+
+
+
+
+
+ */
+
+
+
+
+
+

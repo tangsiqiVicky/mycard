@@ -1,0 +1,99 @@
+<script src="assets/js/controllers/mk/LoginCtrl.js"></script>
+
+<!-- start: LOGIN -->
+<div class1="row">
+	<div class="main-login col-xs-12" style="margin-top:0px;">
+		<div class="row">
+		<div class="col-xs-6 text-left">
+			<div class="logo">
+				<a href1 ui-sref1="app.eco.firstpage"><img ng-src="{{app.layout.logo}}" alt="{{app.name}}"/></a>
+			</div>
+		</div>
+		</div>
+		<!-- start: LOGIN -->
+				<!-- start: LOGIN BOX -->
+				<div class="box-login" ng-controller="LoginCtrl">
+
+					<form id="f1" class="form-login">
+					<!--<div class="title">
+							登录
+						</div>-->
+
+
+						<div class="form-group" style="display:none;">
+								<input style="display:none1;" id="openid" name="openid" value="{{openid}}">
+								<input style="display:none1;" id="nickname" name="nickname" value="{{nickname}}">
+								<input style="display:none1;" id="sex" name="sex" value="{{sex}}">
+								<input style="display:none1;" id="province" name="province" value="{{province}}">
+								<input style="display:none1;" id="city" name="city" value="{{city}}">
+								<input style="display:none1;" id="country" name="country" value="{{country}}">
+								<input style="display:none1;" id="headimgurl" name="headimgurl" value="{{headimgurl}}">
+								<input style="display:none1;" id="applogin_token" name="applogin_token" value="{{applogin_token}}">
+
+
+
+								<input style="display:none;" id="client_type" name="client_type" value="{{client_type_value}}">
+								<div class="clip-radio radio-primary">
+									<input type="radio" id="rg-shop" name="client_type_radio" value="shop" ng-model="client_type_value">
+									<label for="rg-shop">
+										商家
+									</label>
+									<input type="radio" id="rg-member" name="client_type_radio" value="member" ng-model="client_type_value">
+									<label for="rg-member">
+										个人
+									</label>
+								</div>
+							</div>
+
+
+							<p>
+
+							</p>
+							<div class="form-group">
+								<span class="input-icon">
+									<input type="text" class="form-control" id="login_name" name="login_name" placeholder="手机号" onkeydown="javascript:{if(event.keyCode==13&&this.value!=''){f1.login_password.focus();}}">
+									<i class="fa fa-user"></i> </span>
+							</div>
+							<div class="form-group form-actions">
+								<span class="input-icon">
+									<input type="password" class="form-control password" id="login_password" name="login_password" placeholder="密码" onkeydown="javascript:{if(event.keyCode==13&&this.value!=''){document.getElementById('login').click();}}">
+									<i class="fa fa-lock"></i>
+									<a class="forgot" href1="login_forgot.html" ui-sref="login.forgot">
+										忘记密码
+									</a> </span>
+							</div>
+							<div class="form-actions">
+
+								<div class="checkbox clip-check check-primary">
+									<input type="checkbox" id="remember" ng-model="remember_value">
+									<label for="remember">
+										记住密码
+									</label>
+								</div>
+								<button type="button" id="login" class="btn btn-primary pull-right">
+									登录 <i class="fa fa-arrow-circle-right"></i>
+								</button>
+							</div>
+							<div class="new-account" ui-sref="login.registration">
+								还没有帐号?
+								<a href1="login_registration.html">
+									注册
+								</a>
+							</div>
+
+					</form>
+
+					<!-- start: COPYRIGHT -->
+					<div class="copyright small">
+						&copy; <span class="current-year"></span><span class="text-bold text-uppercase small"> SNIPS</span>. <span class="small">All rights reserved</span>
+					</div>
+					<!-- end: COPYRIGHT -->
+				</div>
+				<!-- end: LOGIN BOX -->
+			</div>
+		</div>
+		<!-- end: LOGIN -->
+
+
+
+

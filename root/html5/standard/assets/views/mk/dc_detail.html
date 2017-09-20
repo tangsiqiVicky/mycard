@@ -1,0 +1,129 @@
+<!--大背景轮播 -->
+<link rel="stylesheet" href="assets/css/supersized.css">
+<script src="assets/js/supersized.min.js"></script>
+
+<script src="assets/js/controllers/mk/dcdetailCtrl.js"></script>
+
+<link href="assets/css/test_rx.css" rel="stylesheet" type="text/css" />
+
+<div class="row">
+    <div class="main-login col-xs-12" ng-controller="dcdetailCtrl">
+
+<form  id="f1">
+	<div class="dc_title ">
+
+			<h5 class="text-center text-white">我的问卷</h5>
+		<hr/>
+	</div>
+
+		<div class="dtks_box" >
+
+			<div class="kcks_title_ts detail" ng-hide="visible">
+				<h5 class="text-center">验证手机号，查询问卷详情</h5>
+				<br>
+				<div class="row">
+					<div class="col-xs-3 text-right">
+						<span>手机号：</span>
+					</div>
+					<div class="col-xs-8">
+					<span class="input-icon">
+					<input type="text" class="form-control" id="mobile" name="mobile" placeholder="手机号">
+					<i class="fa fa-mobile"></i>
+
+					</span>
+					</div>
+					<div class="col-xs-1"></div>
+				</div>
+				<div class="row">
+					<div class="col-xs-3 text-right">
+						<span>验证码：</span>
+					</div>
+					<div class="col-xs-8">
+						<span class="input-icon">
+						<input type="text" class="form-control" id="validno" name="validno" placeholder="请先获取验证码">
+						<i class="fa ti-pencil"></i>
+						<a class="forgot" href1="" ng-click="sendCode()">
+							{{description}}
+						</a>
+						</span>
+					</div>
+					<div class="col-xs-1"></div>
+				</div>
+				<br>
+				</div>
+
+
+			<div class="kcks_title_ts last lastdetail"  ng-show="visible" >
+				<div class="row">
+				<div class="col-xs-12">
+					<table class="table table-hover">
+						<!--ng-show="visible1"-->
+						<thead>
+						<tr>
+
+							<th>问卷编号</th>
+							<th>问卷名称</th>
+							<th>订单编号</th>
+							<th>查看详情</th>
+
+						</tr>
+						</thead>
+						<tbody>
+						<tr ng-repeat="item in data" >
+
+							<td><a ui-sref="app.eco.dc({dc_id:'{{item.dc_id}}'})">{{item.dc_id}}&nbsp;<i class="fa fa-info"></i></a></td>
+							<td>{{item.dc_name}}</td>
+							<td>{{item.po_id}}</td>
+							<td class="text-center"><i class="fa fa-gift" ng-click="showqrcode(item.po_id,item.gift_po_show_url)"></i></td>
+
+						</tr>
+						</tbody>
+					</table>
+				</div>
+				</div>
+			</div>
+
+
+
+
+
+	</div>
+
+
+
+	<!--结束------------------------------------------>
+
+	<div class="kasj_db_but"> <a href="javascript:void(0);" ng-click="submit()" class="tj_zuotm" ng-hide="visible" >查询</a> </div>
+
+
+</form>
+<!--<div class="bottom copyright small text-white text-center margin-top-20">-->
+	<!--© <span class="current-year"></span><span class="text-bold text-uppercase small"> 数诺科技</span>. <span class="small">All rights reserved </span><span class="small">400-021-4001</span>-->
+<!--</div>-->
+<div class="copyright  text-white text-center margin-top-30">
+	© <span class="current-year"></span><span class="text-bold text-uppercase "> 数诺科技</span>. <span >All rights reserved </span><span class="">400-021-4001</span>
+</div>
+
+<div id="payContent2" style="display:none;position:absolute;background:#fff;" class="roundrec">
+	<div class="form-actions" style="text-align:center" align=center>
+		<a id="look"><img id="qrcode2" src="{{serviceRoot}}qrcode?msg={{giftqrcode}}&width=140&height=140"
+			 style="width:150px;height:150px;border:1px solid #efefef;">
+		<br><!--{{giftqrcode}}--><h5>点击查看礼品</h5><br></a>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+</div>

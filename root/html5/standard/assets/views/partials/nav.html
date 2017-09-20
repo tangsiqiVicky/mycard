@@ -1,0 +1,249 @@
+<!-- start: SEARCH FORM -->
+<div class="search-form">
+	<a class="s-open" href="#">
+		<i class="ti-search"></i>
+	</a>
+	<form class="navbar-form" role="search">
+		<a class="s-remove" href="#" ng-toggle-class="search-open" target=".navbar-form">
+			<i class="ti-close"></i>
+		</a>
+		<div class="form-group">
+			<input type="text" class="form-control" placeholder="{{ 'sidebar.search.PLACEHOLDER' | translate }}">
+			<button class="btn search-button" type="submit">
+				<i class="ti-search"></i>
+			</button>
+		</div>
+	</form>
+</div>
+<!-- end: SEARCH FORM -->
+<!-- start: MAIN NAVIGATION MENU -->
+<div class="navbar-title">
+	<span translate="sidebar.heading.NAVIGATION">Main Navigation</span>
+</div>
+<ul class="main-navigation-menu">
+	<li ui-sref-active="active">
+		<a ui-sref="app.dashboard">
+			<div class="item-content">
+				<div class="item-media">
+					<i class="ti-home"></i>
+				</div>
+				<div class="item-inner">
+					<span class="title" translate="sidebar.nav.dashboard.MAIN"> Dashboard </span>
+				</div>
+			</div>
+		</a>
+	</li>
+	<li ng-class="{'active open':$state.includes('app.mk')}">
+		<a href="javascript:void(0)">
+			<div class="item-content">
+				<div class="item-media">
+					<i class="ti-settings"></i>
+				</div>
+				<div class="item-inner">
+					<span class="title" translate="sidebar.nav.mk.MAIN"> MK Man </span><i class="icon-arrow"></i>
+				</div>
+			</div>
+		</a>
+		<ul class="sub-menu">
+			<li ui-sref-active="active">
+				<a href="javascript:void(0)">
+					<span class="title" translate="sidebar.nav.mk.seller.MAIN"> Seller </span>
+				</a>
+
+				<ul class="sub-menu">
+
+					<li ui-sref-active="active">
+						<a ui-sref="app.mk.seller.type">
+							<span class="title" translate="sidebar.nav.mk.seller.type">Type</span>
+						</a>
+					</li>
+
+					<li ui-sref-active="active">
+						<a ui-sref="app.mk.seller.search">
+							<span class="title" translate="sidebar.nav.mk.seller.search">Search</span>
+						</a>
+					</li>
+
+					<li ui-sref-active="active">
+						<a ui-sref="app.mk.seller.carefor">
+							<span class="title" translate="sidebar.nav.mk.seller.carefor">Care For</span>
+						</a>
+					</li>
+
+
+
+				</ul>
+
+
+			</li>
+			<li ui-sref-active="active">
+				<a href="javascript:void(0)">
+					<span class="title" translate="sidebar.nav.mk.member.MAIN"> Member </span>
+				</a>
+				<ul class="sub-menu">
+
+					<li ui-sref-active="active">
+						<a ui-sref="app.mk.member.reg">
+							<span class="title" translate="sidebar.nav.mk.member.reg">reg</span>
+						</a>
+					</li>
+
+					<li ui-sref-active="active">
+						<a ui-sref="app.mk.member.search">
+							<span class="title" translate="sidebar.nav.mk.member.search">Search</span>
+						</a>
+					</li>
+
+					<li ui-sref-active="active">
+						<a ui-sref="app.mk.member.carefor">
+							<span class="title" translate="sidebar.nav.mk.member.carefor">Care For</span>
+						</a>
+					</li>
+
+				
+				</ul>
+			</li>
+			
+		</ul>
+	</li>
+
+
+
+
+
+
+
+	<li ng-class="{'active open':$state.includes('app.hm')}">
+		<a href="javascript:void(0)">
+			<div class="item-content">
+				<div class="item-media">
+					<i class="ti-layout-grid2"></i>
+				</div>
+				<div class="item-inner">
+					<span class="title" translate="sidebar.nav.hm.MAIN"> HM </span><i class="icon-arrow"></i>
+				</div>
+			</div>
+		</a>
+		<ul class="sub-menu">
+			<li ui-sref-active="active">
+				<a ui-sref="app.hm.reception">
+					<span class="title" translate="sidebar.nav.hm.reception">reception</span>
+				</a>
+			</li>
+			<li ui-sref-active="active">
+				<a ui-sref="app.hm.room">
+					<span class="title" translate="sidebar.nav.hm.room">room</span>
+				</a>
+			</li>
+			<li ui-sref-active="active">
+				<a ui-sref="app.hm.member">
+					<span class="title" translate="sidebar.nav.hm.member">member</span>
+				</a>
+			</li>
+			<li ui-sref-active="active">
+				<a ui-sref="app.hm.service">
+					<span class="title" translate="sidebar.nav.hm.service">service</span>
+				</a>
+			</li>
+			<li ui-sref-active="active">
+				<a ui-sref="app.hm.rm">
+					<span class="title" translate="sidebar.nav.hm.rm">Restaurant Management</span>
+				</a>
+			</li>
+			<li ui-sref-active="active">
+				<a ui-sref="app.hm.stat">
+					<span class="title" translate="sidebar.nav.hm.stat">Stat</span>
+				</a>
+			</li>
+		</ul>
+	</li>
+	<li ng-class="{'active open':$state.includes('app.eco')}">
+		<a href="javascript:void(0)">
+			<div class="item-content">
+				<div class="item-media">
+					<i class="ti-pencil-alt"></i>
+				</div>
+				<div class="item-inner">
+					<span class="title" translate="sidebar.nav.eco.MAIN"> ECO </span><i class="icon-arrow"></i>
+				</div>
+			</div>
+		</a>
+		<ul class="sub-menu">
+			<li ui-sref-active="active">
+				<a ui-sref="app.eco.firstpage">
+					<span class="title" translate="sidebar.nav.eco.firstpage">firstpage</span>
+				</a>
+			</li>
+			<li ui-sref-active="active">
+				<a ui-sref="app.eco.gis">
+					<span class="title" translate="sidebar.nav.eco.gis">GIS</span>
+				</a>
+			</li>
+			<li ui-sref-active="active">
+				<a ui-sref="app.eco.partner">
+					<span class="title" translate="sidebar.nav.eco.partner">Partner</span>
+				</a>
+			</li>
+			
+		</ul>
+	</li>
+	
+	
+	
+	
+	
+
+
+
+
+
+
+	
+</ul>
+<!-- end: MAIN NAVIGATION MENU -->
+<!-- start: CORE FEATURES -->
+<div class="navbar-title">
+	<span translate="sidebar.heading.FEATURES">Core Features</span>
+</div>
+<ul class="folders">
+	<li>
+		<a ui-sref="app.pages.calendar">
+			<div class="item-content">
+				<div class="item-media">
+					<span class="fa-stack"> <i class="fa fa-square fa-stack-2x"></i> <i class="fa fa-terminal fa-stack-1x fa-inverse"></i> </span>
+				</div>
+				<div class="item-inner">
+					<span class="title" translate="sidebar.nav.pages.CALENDAR"> Calendar </span>
+				</div>
+			</div>
+		</a>
+	</li>
+	<!--
+	<li>
+		<a ui-sref="app.pages.messages">
+			<div class="item-content">
+				<div class="item-media">
+					<span class="fa-stack"> <i class="fa fa-square fa-stack-2x"></i> <i class="fa fa-folder-open-o fa-stack-1x fa-inverse"></i> </span>
+				</div>
+				<div class="item-inner">
+					<span class="title" translate="sidebar.nav.pages.MESSAGES"> Messages </span>
+				</div>
+			</div>
+		</a>
+	</li>
+	-->
+</ul>
+<!-- end: CORE FEATURES -->
+<!-- start: DOCUMENTATION BUTTON -->
+<div class="wrapper">
+	<a ui-sref="app.documentation" class="button-o">
+		<i class="ti-help"></i>
+		<span translate="sidebar.heading.DOCUMENTATION">Documentation</span>
+	</a>
+</div>
+<!-- end: DOCUMENTATION BUTTON -->
+
+
+
+
+<iframe id="hidefrm" name="hidefrm" style="display:none;"></iframe>

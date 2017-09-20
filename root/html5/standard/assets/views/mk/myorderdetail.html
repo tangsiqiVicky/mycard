@@ -1,0 +1,97 @@
+<script src="assets/js/controllers/mk/OrderDetailCtrl.js"></script>
+
+<!-- start: REGISTRATION -->
+<div class="row">
+	<div class="main-login col-xs-12">
+		
+		<!-- start: REGISTER BOX -->
+				<div class="box-register small" ng-controller="OrderDetailCtrl">
+
+
+				
+					
+
+												<div class="row">
+												<div class="col-xs-12 text-center">
+														订单详情
+												</div>
+												</div>
+
+<p>&nbsp;</p>
+
+												<div class="row">
+												<div class="col-xs-12 text-left">
+												编号：{{po_id}}<br>日期：{{make_date}}
+												</div>
+												</div>
+
+
+
+
+								<div class="row">
+								<div class="col-xs-12">
+
+
+										<table ng-table="tableParams" class="table">
+										 <thead>
+											<tr>
+												<th style="width:40px;"><nobr>序号</nobr></th>
+												<th>商家</th>
+												<th>品名</th>
+												<th class="hidden-xs">数量</th>
+												<th class="hidden-xs">单价</th>
+												<th>金额</th>
+											</tr>
+										</thead>
+											<tbody>
+															<tr ng-repeat="item in $data">
+																<td style="width:40px;">{{item.sortno}}</td>
+																<td><a ui-sref="app.wx.me.shopinfo({shop_id:'{{item.shop_id}}'})">{{item.shop_name}}</a></td>
+																<td>{{item.product_name}}</td>
+																<td class="hidden-xs">{{item.qty}}</td>
+																<td class="hidden-xs">{{item.price | number:2}}</td>
+																<td>{{item.amount | number:2}}</td>
+																
+															</tr>
+											</tbody>
+															
+											
+											
+										</table>
+
+
+								</div>
+								</div>
+
+
+
+
+
+									<div class="row">
+												<div class="col-xs-12 text-left">
+												收货人：{{SHR}}
+												</div>
+												<div class="col-xs-12 text-left">
+												地址：{{SH_ADDR}}
+												</div>
+												<div class="col-xs-12 text-left">
+												电话：{{TEL}}
+												</div>
+												<div class="col-xs-12 text-left">
+												物流：{{logistics_info}}
+												</div>
+									</div>
+
+					
+                            
+
+
+
+				</div>
+				<!-- end: REGISTER BOX -->
+
+				
+					
+	</div>
+</div>
+<!-- end: REGISTRATION -->

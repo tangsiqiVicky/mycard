@@ -1,0 +1,61 @@
+<script src="assets/js/controllers/mk/MyPublishTicketTypeCtrl.js"></script>
+
+<!-- start: REGISTRATION class="main-login col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4"-->
+<div class="row">
+    <div class="main-login col-xs-12" style="margin-bottom:60px;">
+
+        <!-- start: REGISTER BOX -->
+        <div class="box-register small" ng-controller="MyPublishTicketTypeCtrl">
+
+            <div class="row">
+                <div class="col-xs-12">
+
+
+                    <table ng-table="tableParams" class="table">
+                        <thead>
+                        <tr>
+                            <th style="width:40px;">
+                                <nobr>序号</nobr>
+                            </th>
+                            <th>商家</th>
+                            <th>卡券分类</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="item in $data">
+                            <td style="width:40px;">{{item.sortno}}</td>
+                            <td><a ui-sref="app.wx.me.shopinfo({shop_id:'{{item.shop_id}}'})">{{item.shop_name}}</a>
+                            </td>
+                            <td>{{item.ticket_type}}</td>
+                            <td>
+                                <div><a href="#" class="small" ng-click="delit(item.shop_id,item.ticket_type)"><i
+                                        class="fa fa-times"></i></a></div>
+                            </td>
+
+                        </tr>
+                        </tbody>
+                    </table>
+
+
+                </div>
+            </div>
+
+
+            <div class="form-actions">
+                <a ui-sref="app.wx.me.mypublish">
+                    <i class="fa fa-chevron-circle-left"></i> 返回
+                </a>
+                <button type="button" ng-click="newact()" class="btn btn-primary pull-right">
+                    新增 <i class="fa fa-plus"></i>
+                </button>
+            </div>
+
+
+        </div>
+        <!-- end: REGISTER BOX -->
+
+
+    </div>
+</div>
+<!-- end: REGISTRATION -->

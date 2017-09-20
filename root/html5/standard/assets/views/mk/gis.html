@@ -1,0 +1,387 @@
+<script src="assets/js/controllers/mk/gis.js"></script>
+<!--<link rel='stylesheet prefetch' href='assets/css/animate.min.css'>
+ SNIPS MAP MENU 
+		<script src="assets/js/gooey.min.js"></script>
+		<link rel="stylesheet" href="assets/css/gooey.min.css">
+-->
+
+
+<!-- start: REGISTRATION -->
+<div class="row">
+    <div class="main-login col-xs-12" ng-controller="GISCtrl">
+
+
+        <!-- start: REGISTER BOX -->
+
+
+        <!-- start: FEATURED BOX LINKS -->
+        <div id="mapcontainer">
+        </div>
+
+        <div id="r-result" style="display:none;overflow:auto;width1:100%;height:100px;padding:1px;" class="roundrec">
+        </div>
+
+
+        <div>
+
+            <!--
+            <form id="f1" class="form-register"></form>
+                    <div id="tempmenudiv" style="width:10px;height:10px;position:absolute;top:0px;left:20px;border:0px solid red;z-index:5;display:none;">
+                    <nav id="gooey-v">
+                    <input type="checkbox" class="menu-open" name="menu-open4" id="menu-open4"/>
+                    <label class="open-button" for="menu-open4">
+                    <span class="burger burger-1"></span>
+                    <span class="burger burger-2"></span>
+                    <span class="burger burger-3"></span>
+                    </label>
+                    <a href1="#" class="gooey-menu-item" ng-click="open('myModalContent1')"> <div translate="sidebar.nav.eco.shop"></div> </a>
+                    <a href1="#" class="gooey-menu-item" ng-click="open('myModalContent3')"> 会员 </a>
+                    <a href1="#" class="gooey-menu-item" ng-click="open('myModalContent4')"> <div translate="sidebar.nav.eco.fav"></div> </a>
+                    <a href1="#" class="gooey-menu-item" ui-sref="app.eco.firstpage"><i class="ti ti-home fa-2x"></i></a>
+
+                    </nav>
+                    </div>
+                    -->
+
+
+            <div id="r-result2"
+                 style="height:100px;display:none;border:1px solid #dddddd;background:#fff;overflow:auto;"
+                 class="roundrec">
+                <table ng-table="tableParams" class="table table-striped small">
+                    <tr ng-repeat="item in $data">
+                        <td data-title="'序号'">{{item.id}}、</td>
+                        <td data-title="'邀请码'">{{item.invite_code}}</td>
+                        <td data-title="'名称'" ng-click="showonmap({{item.key}})"><a href1="#">{{item.name}}</a><br>{{item.province}}
+                            {{item.city}} {{item.district}} {{item.address}}【{{item.distance}}米】
+                            <!--<br><a href1="#">{{item.contact}}</a><br>{{item.contact_phone}}<br>{{item.email}}</td>-->
+                        <td>
+                            <div ng-click="entershop('{{item.key}}')">
+                                <!--
+                                    <a href="#" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="赞" ng-click="pj({{item.key}},'0')"><i class="ti ti-thumb-up"></i></a>
+                                    <a href="#" class="btn btn-transparent btn-xs tooltips" tooltip-placement="top" tooltip="踩" ng-click="pj({{item.key}},'1')"><i class="ti ti-thumb-down"></i></a>
+                                    -->
+                                <a class="btn btn-orange btn-block small"
+                                   ui-sref="app.wx.me.shopinfo({shop_id:'{{item.key}}'})">
+                                    预订 <i class="fa fa-chevron-circle-right"></i>
+                                </a>
+
+                            </div>
+                        </td>
+
+                    </tr>
+                </table>
+            </div>
+
+
+            <div id="myModalContent1" style="display:none;border:1px solid #dddddd;background:#fff;" class="roundrec">
+
+                <div class="modal-header">
+                    <h3 class="modal-title">商家搜索</h3>
+                </div>
+                <div class="modal-body" id="search_modal_body">
+
+
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 margin-bottom-30 small">
+                            <label>
+                                <div class="small">当前位置：{{localaddress}}[{{localpos}}] &nbsp;&nbsp;&nbsp;&nbsp; <a href1
+                                                                                                                   class="links cl-effect-1"
+                                                                                                                   ng-click="chgsearchcenter('myModalContent1')">[换个位置]</a>
+                                </div>
+                            </label>
+
+                        </div>
+
+
+                        <div class="col-lg-8 col-md-12 small">
+
+                            <div class="form-group">
+
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <label>
+                                                <div class="small">距离（米）:</div>
+                                            </label>
+                                        </td>
+                                        <td style="width:140px;">
+                                            <input id="distance" style="width:80px;" type="text" value="500"
+                                                   name="distance" touchspin data-min="50" data-max="500000"
+                                                   data-step="200" data-decimals="0" data-boostat="5"
+                                                   data-maxboostedstep="10">
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-12">
+
+                            <div class="form-group">
+
+                                <input style="display:none;" id="zbss_searchobj_value"
+                                       value="{{zbss_searchobj_value1+','+zbss_searchobj_value2+','+zbss_searchobj_value3+','+zbss_searchobj_value4+','+zbss_searchobj_value5+','+zbss_searchobj_value6+','+zbss_searchobj_value7+','+zbss_searchobj_value8+','+zbss_searchobj_value9+','+zbss_searchobj_value10+','+zbss_searchobj_value11}}">
+
+                                <!--ng-true-value="true" ng-false-value="false"-->
+
+                                <div class="checkbox clip-check check-primary checkbox-inline small">
+                                    <input type="checkbox" id="zbss_checkbox1" ng-model="zbss_searchobj_value1">
+                                    <label for="zbss_checkbox1">
+                                        <div class="small">酒店</div>
+                                    </label>
+                                </div>
+                                <div class="checkbox clip-check check-primary checkbox-inline">
+                                    <input type="checkbox" id="zbss_checkbox2" ng-model="zbss_searchobj_value2">
+                                    <label for="zbss_checkbox2">
+                                        <div class="small">餐饮</div>
+                                    </label>
+                                </div>
+                                <div class="checkbox clip-check check-primary checkbox-inline">
+                                    <input type="checkbox" id="zbss_checkbox3" ng-model="zbss_searchobj_value3">
+                                    <label for="zbss_checkbox3">
+                                        <div class="small">汽车</div>
+                                    </label>
+                                </div>
+                                <div class="checkbox clip-check check-primary checkbox-inline">
+                                    <input type="checkbox" id="zbss_checkbox4" ng-model="zbss_searchobj_value4">
+                                    <label for="zbss_checkbox4">
+                                        <div class="small">美容</div>
+                                    </label>
+                                </div>
+                                <div class="checkbox clip-check check-primary checkbox-inline">
+                                    <input type="checkbox" id="zbss_checkbox5" ng-model="zbss_searchobj_value5">
+                                    <label for="zbss_checkbox5">
+                                        <div class="small">娱乐</div>
+                                    </label>
+                                </div>
+                                <div class="checkbox clip-check check-primary checkbox-inline">
+                                    <input type="checkbox" id="zbss_checkbox6" ng-model="zbss_searchobj_value6">
+                                    <label for="zbss_checkbox6">
+                                        <div class="small">健身</div>
+                                    </label>
+                                </div>
+
+
+                                <div class="checkbox clip-check check-primary checkbox-inline">
+                                    <input type="checkbox" id="zbss_checkbox7" ng-model="zbss_searchobj_value7">
+                                    <label for="zbss_checkbox7">
+                                        <div class="small">超市</div>
+                                    </label>
+                                </div>
+                                <div class="checkbox clip-check check-primary checkbox-inline">
+                                    <input type="checkbox" id="zbss_checkbox8" ng-model="zbss_searchobj_value8">
+                                    <label for="zbss_checkbox8">
+                                        <div class="small">学校</div>
+                                    </label>
+                                </div>
+                                <div class="checkbox clip-check check-primary checkbox-inline">
+                                    <input type="checkbox" id="zbss_checkbox9" ng-model="zbss_searchobj_value9">
+                                    <label for="zbss_checkbox9">
+                                        <div class="small">医院</div>
+                                    </label>
+                                </div>
+                                <div class="checkbox clip-check check-primary checkbox-inline">
+                                    <input type="checkbox" id="zbss_checkbox10" ng-model="zbss_searchobj_value10">
+                                    <label for="zbss_checkbox10">
+                                        <div class="small">园区</div>
+                                    </label>
+                                </div>
+                                <div class="checkbox clip-check check-primary checkbox-inline">
+                                    <input type="checkbox" id="zbss_checkbox11" ng-model="zbss_searchobj_value11">
+                                    <label for="zbss_checkbox11">
+                                        <div class="small">专卖店</div>
+                                    </label>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+
+                    <div class="row">
+
+                        <div class="col-xs-12 text-left">
+                            <div class="checkbox clip-check check-primary checkbox-inline">
+                                <input style="display:none;" id="zbss_justshowmem_value"
+                                       value="{{zbss_justshowmem_value1}}">
+                                <input type="checkbox" id="zbss_checkbox88" value="true"
+                                       ng-model="zbss_justshowmem_value1">
+                                <label for="zbss_checkbox88">
+                                    <div class="small">只显示联盟商家</div>
+                                </label>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-xs-12" align=center>
+                            <button class="btn btn-primary" ng-click="ok(1)">确定</button>
+                            <button class="btn btn-primary btn-o" ng-click="cancel()">取消</button>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+
+
+
+
+
+
+<div id="myModalContent2" style="display:none;border:1px solid #dddddd;background:#fff;" class="roundrec">
+            <!--<div class="modal-header">
+                    <h3 class="modal-title">导航</h3>
+                </div>
+-->
+                <div>
+                    <div class="row">
+    <iframe id="ifrm1" name="ifrm1" src="http://map.baidu.com/mobile/webapp/index/index/qt=cur&wd=%E4%B8%8A%E6%B5%B7%E5%B8%82&from=maponline&tn=m01&ie=utf-8=utf-8/tab=line/?fromhash=1" style="width:100%;height:100%;border:0px;" frameborder=0></iframe>
+
+                    </div>
+                </div>
+
+
+                <div style="position:absolute;left:0px;bottom:0px;background:#fff;height:55px;width:100%;padding:0px;" align=center>
+                        <div class="col-xs-12" align=center style="padding-top:10px;">
+                            <button class="btn btn-wide btn-danger" ng-click="cancel()">关闭导航</button>
+                        </div>
+                </div>
+
+</div>
+
+
+
+
+            <div id="myModalContent3" style="display:none;border:1px solid #dddddd;background:#fff;" class="roundrec">
+                <div class="modal-header">
+                    <h3 class="modal-title">我的会员</h3>
+                </div>
+                <div class="modal-body">
+
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" ng-click="ok(3)">确定</button>
+                    <button class="btn btn-primary btn-o" ng-click="cancel()">取消</button>
+                </div>
+            </div>
+
+
+            <div id="myModalContent4" style="display:none;border:1px solid #dddddd;background:#fff;" class="roundrec">
+                <div class="modal-header">
+                    <h3 class="modal-title">精品推荐</h3>
+                </div>
+                <div class="modal-body">
+
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" ng-click="ok(4)">查看</button>
+                    <button class="btn btn-primary btn-o" ng-click="cancel()">取消</button>
+                </div>
+            </div>
+
+
+            <!--
+            <div id='ss_menu' style="display:none;position:absolute;bottom:20px;right:40px;">
+                <div><i class="fa fa-home" ui-sref="app.eco.firstpage"></i></div>
+                <div><i class="fa fa-search" ng-click="open('myModalContent1')"></i></div>
+                <div><i class="fa fa-shopping-cart" ui-sref="app.wx.me.cart"></i></div>
+                <div><i class="fa fa-user" ui-sref="app.wx.me.self"></i></div>
+                <div class='menu'>
+                    <div class='share' id='ss_toggle' data-rot='180'>
+                        <div class='circle'></div>
+                        <div class='bar'></div>
+                    </div>
+                </div>
+            </div>
+            -->
+
+
+            <div id="ss_menu" class="gis_bottombanner roundrec center">
+
+                <div class="row">
+                    <div class="col-xs-12 text-center">
+
+                        <div class="col-xs-3 text-center border-right border-dark">
+                            <div onclick="javascript:{chgclickbottomtabindex(0)}">
+                                <a href="#" tooltip="{{dynamicTooltip}}">
+                                    <!--<a ui-sref="app.wx.me.sjlist" style="color:rgba(10, 50, 72, 1)"><i class="fa fa-gift fa-2x"></i><div translate="dashboard.newact"></div></a>-->
+                                    <div href1 ui-sref="app.eco.firstpage" style="padding-top:5px;padding-bottom:2px;">
+                                        <img id="logoimg" ng-src="{{justlogo}}" alt="{{app.name}}" class="img-rounded"
+                                             style="width:45px;height:45px;"/></div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-3 text-center small border-right border-dark">
+                            <div onclick="javascript:{chgclickbottomtabindex(1)}">
+                                <a href="#" tooltip="{{dynamicTooltip}}">
+                                    <div ng-click="open('myModalContent1')" class="text-dark-user-forbottom"
+                                         style="padding-top:8px;padding-bottom:2px;"><i class="ti ti-search fa-2x"></i>
+                                        <div translate="dashboard.zb"></div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!--<div class="col-xs-3 text-center small border-right border-dark">-->
+                            <!--<div onclick="javascript:{chgclickbottomtabindex(1)}">-->
+                                <!--<a href="#" tooltip="{{dynamicTooltip}}">-->
+                                    <!--<div ng-click="open('myModalContent1')" class="text-dark-user-forbottom"-->
+                                         <!--style="padding-top:8px;padding-bottom:2px;"><i-->
+                                            <!--class="ti ti-location-arrow fa-2x"></i>-->
+                                        <!--<div translate="dashboard.guide"></div>-->
+                                    <!--</div>-->
+                                <!--</a>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <div class="col-xs-3 text-center small border-right border-dark">
+                        <div>
+                        <a href="#" tooltip="{{dynamicTooltip}}">
+                        <div ng-click="open('myModalContent2')" class="text-dark-user-forbottom"
+                        style="padding-top:8px;padding-bottom:2px;"><i
+                        class="ti ti-location-arrow fa-2x"></i>
+                        <div translate="dashboard.guide"></div>
+                        </div>
+                        </a>
+                        </div>
+                        </div>
+                        <div class="col-xs-3 text-center small">
+                            <div onclick="javascript:{chgclickbottomtabindex(1)}">
+                                <a href="#" tooltip="{{dynamicTooltip}}">
+                                    <div ui-sref="app.eco.fav" class="text-dark-user-forbottom"
+                                         style="padding-top:8px;padding-bottom:2px;"><i class="ti ti-star fa-2x"></i>
+                                        <div translate="dashboard.fav"></div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- end: FEATURED BOX LINKS -->
+
+
+    </div>
+</div>
+<!-- end: REGISTRATION -->
+
+<!--<script src="assets/js/menu.js"></script>-->

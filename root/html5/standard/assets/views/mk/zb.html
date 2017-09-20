@@ -1,0 +1,90 @@
+<script src="assets/js/controllers/mk/ZbCtrl.js"></script>
+
+<!-- start: REGISTRATION -->
+<div class="row">
+	<div class="main-login col-xs-12" ng-controller="ZbCtrl">
+		
+
+
+<div>
+    <carousel interval="myInterval">
+        <slide ng-repeat="slide in slides" active="slide.active">
+            <img ng-src="{{serviceRoot+slide.image}}" style="margin:auto;height:160px;width:100%;">
+            <div class="carousel-caption">
+                <p>{{slide.text}}</p>
+            </div>
+        </slide>
+    </carousel>
+</div>
+
+<div class="clearfix space5"></div>
+
+
+		<!-- start: REGISTER BOX -->
+				<div class1="box-register">
+						
+                            <!-- start: FEATURED BOX LINKS -->
+
+							<div class="row" align=center>
+
+
+								<div id="menu" class="row container-fluid small" align=center style="padding-top:15px;padding-left:40px;padding-right:40px;">
+                              					<div class="col-xs-3" align=center ><div align=center style="padding-top:15px;padding-bottom:15px;"><a ui-sref="app.eco.gis"><img src="assets/images/mingka_shangjiaditu.png"><div class="caption"><div translate="dashboard.map"></div></div></a></div> </div>
+												<div class="col-xs-3" align=center ><div align=center style="padding-top:15px;padding-bottom:15px;"><a ui-sref="app.wx.me.yiy"><img src="assets/images/mingka_yaoyiyao.png"><div class="caption"><div translate="dashboard.yiy"></div></div></a></div> </div>
+
+												
+												<div class="col-xs-3" align=center ><div align=center style="padding-top:15px;padding-bottom:15px;"><a ui-sref="app.wx.me.scan"><img src="assets/images/mingka_saoyisao.png"><div class="caption"><div translate="dashboard.scan"></div></div></a></div> </div>
+
+												
+                              </div>
+
+
+
+
+	
+		
+
+											
+										
+
+
+							</div>
+					
+<!-- end: FEATURED BOX LINKS -->
+					
+				</div>
+				<!-- end: REGISTER BOX -->
+					
+				
+					<!-- start: COPYRIGHT -->
+					<div class="copyright small">
+						&copy; <span class="current-year"></span><span class="text-bold text-uppercase small"> SNIPS</span>. <span class="small">All rights reserved</span>
+					</div>
+					<!-- end: COPYRIGHT -->
+	</div>
+</div>
+<!-- end: REGISTRATION -->
+
+
+
+
+<!--<script src="assets/js/jquery.popmenu.js"></script>
+    <script>
+        $(function(){
+            $('#demo_box').popmenu({
+        'controller': false,       // use control button or not
+        'width': '100%',         // width of menu
+        'background': 'rgba(56, 121, 217, 0.8)',  // 0a3248 background color of menu
+        'focusColor': 'rgba(72, 71, 77, 0.3)',  // hover color of menu's buttons
+        'borderRadius': '10px',   // radian of angles, '0' for right angle
+        'top': '0',              // pixels that move up
+        'left': '0',              // pixels that move left
+		'position':'',
+		'fontColor':'#0a3248',
+		'iconSizeW': '55px',
+		'iconSizeH': '',
+        'iconBlockW': '90px',       // size of menu's buttons
+		'iconBlockH': ''       // size of menu's buttons
+        });
+        })
+    </script>-->

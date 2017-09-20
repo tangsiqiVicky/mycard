@@ -1,0 +1,182 @@
+<script src="assets/js/controllers/mk/MyPublishnosendTicketCtrl.js"></script>
+
+<div class="row">
+	<div class="main-login col-xs-12" style="margin-bottom:60px;">
+
+		<!-- start: REGISTER BOX -->
+		<div class="box-register small" ng-controller="MyPublishnosendTicketCtrl">
+			<div id="asideContent1" style="display:none;border:1px solid #dddddd;background:#fff;" class="roundrec">
+				<!--<script type="text/ng-template" id="asideContent.html">-->
+				<div class="modal-header" style="height:60px;">
+
+					<div class="col-xs-12">
+
+						<div class="col-xs-8">
+							<h3 class="modal-title">选择会员</h3>
+						</div>
+
+
+					</div>
+
+
+				</div>
+				<div class="modal-body">
+
+
+					<table ng-table="tableParamsuser" class="table table-striped">
+						<thead>
+						<tr>
+							<th style="width:40px;">
+								<nobr>序号</nobr>
+							</th>
+							<th>姓名</th>
+							<th>电话</th>
+							<th class="hidden-xs">积分</th>
+
+						</tr>
+						</thead>
+						<tbody>
+						<tr ng-repeat="item in $data">
+							<td>{{item.id}}</td>
+							<td><a ng-click="getuserid(item)">{{item.nickname}}</a></td>
+							<td><a ng-click="getuserid(item)">{{item.phone}}</a></td>
+							<td class="hidden-xs">{{item.points}}</td>
+
+
+						</tr>
+						</tbody>
+					</table>
+
+
+				</div>
+				<div class="modal-footer">
+
+
+					<div class="row">
+						<div class="col-xs-12" align=center>
+							<button class="btn btn-primary btn-o" ng-click="close()">取消</button>
+						</div>
+					</div>
+
+
+				</div>
+
+				<!--</script>-->
+			</div>
+			<!--<div class="modal-header" style="height:60px;">-->
+				<!--<div class="col-xs-12">-->
+					<!--<div class="col-xs-8">-->
+						<!--<h3 class="modal-title">{{currTitle}}</h3>-->
+					<!--</div>-->
+					<!--<div class="col-xs-4 align-right">-->
+						<!--<button type="button" ng-click="newact()" class="btn btn-primary pull-right"><i class="fa fa-question-circle"></i></button>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
+			<div class="modal-body">
+
+				<div class="row">
+					<div class="col-xs-12">
+
+
+						<table ng-table="tableParams" class="table">
+							<thead>
+							<tr>
+								<th style="width:40px;">
+									<nobr>序号</nobr>
+								</th>
+								<th>商家</th>
+								<th class="hidden-xs">分类</th>
+								<th>编号</th>
+								<th>有效</th>
+								<th class="hidden-xs">商品抵用</th>
+								<th>发放日期</th>
+								<th class="hidden-xs">属有人</th>
+								<th>已使用</th>
+								<th class="hidden-xs">使用日期</th>
+								<th>操作</th>
+							</tr>
+							</thead>
+							<tbody>
+							<tr ng-repeat="item in $data">
+								<td style="width:40px;">{{item.sortno}}</td>
+								<td><a ui-sref="app.wx.me.shopinfo({shop_id:'{{item.shop_id}}'})">{{item.shop_name}}</a>
+								</td>
+								<td class="hidden-xs">{{item.ticket_type}}</td>
+								<td>{{item.ticket_id}}</td>
+								<td>
+									<div class="small" ng-show="item.isvalid=='1'" ng-hide="item.isvalid=='0'"><i
+											class="fa fa-check"></i></div>
+									<div class="small" ng-show="item.isvalid=='0'" ng-hide="item.isvalid=='1'"><i
+											class="fa fa-ban"></i></div>
+								</td>
+								<td class="hidden-xs">
+									{{item.product_no}}={{item.product_qty}}<br></td>
+								<td>{{item.fafang_date}}</td>
+								<td class="hidden-xs">{{item.owner}}</td>
+								<td>
+									<div class="small" ng-show="item.isused=='1'" ng-hide="item.isused=='0'"><i
+											class="fa fa-circle-o"></i></div>
+								</td>
+								<td class="hidden-xs">{{item.use_date}}</td>
+								<td>
+
+
+									<div class="visible-md visible-lg hidden-sm hidden-xs">
+										<a href="#" class="btn btn-transparent btn-xs" ng-click="open('asideContent1',item)"
+										   tooltip-placement="top" tooltip="Send"> <i class="fa fa-pencil"></i></a>
+										<a href="#" class="btn btn-transparent btn-xs" ng-click="delit(item.ticket_id)"
+										   tooltip-placement="top" tooltip="Delete"> <i class="fa fa-times"></i></a>
+									</div>
+									<div class="visible-xs visible-sm hidden-md hidden-lg">
+										<div class="btn-group" dropdown is-open="status.isopen">
+											<button type="button" class="btn btn-primary btn-o btn-sm dropdown-toggle"
+													dropdown-toggle>
+												<i class="fa fa-cog"></i>&nbsp;<span class="caret"></span>
+											</button>
+											<ul class="dropdown-menu pull-right dropdown-light" role="menu">
+												<li>
+													<!--<a href="#" class="small" ng-click="editit(item.key)"> <i-->
+													<!--class="fa fa-pencil"></i>&nbsp;编辑</a>-->
+
+													<a href="#" class="small"   ng-click="open('asideContent1',item)">
+														<i class="fa fa-pencil"></i>发行</a>
+												</li>
+												<li>
+													<a href="#" class="small" ng-click="delit(item.ticket_id)"> <i
+															class="fa fa-times"></i>&nbsp;删除</a>
+												</li>
+
+											</ul>
+										</div>
+									</div>
+
+
+								</td>
+
+							</tr>
+							</tbody>
+
+
+						</table>
+
+
+					</div>
+				</div>
+
+
+				<div class="form-actions">
+
+					<button type="button" ng-click="newact()" class="btn btn-primary pull-right">
+						发放多张卡劵 <i class="fa fa-plus"></i>
+					</button>
+				</div>
+
+			</div>
+		</div>
+		<!-- end: REGISTER BOX -->
+
+
+	</div>
+</div>
+<!-- end: REGISTRATION -->

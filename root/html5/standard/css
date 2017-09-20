@@ -1,0 +1,18 @@
+@font-face {
+  font-family: 'Crete Round';
+  font-style: italic;
+  font-weight: 400;
+  src: url(http://fonts.gstatic.com/s/creteround/v5/5xAt7XK2vkUdjhGtt98unaSxSvC1lIsK_unZDHWqTBg.eot);
+}
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: url(http://fonts.gstatic.com/s/lato/v11/nQhiC-wSiJx0pvEuJl8d8A.eot);
+}
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 400;
+  src: url(http://fonts.gstatic.com/s/raleway/v9/JDau3G46nqY5-B-S9E_nwg.eot);
+}

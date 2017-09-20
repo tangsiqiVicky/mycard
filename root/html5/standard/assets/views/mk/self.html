@@ -1,0 +1,349 @@
+<script src="assets/js/controllers/mk/SelfCtrl.js"></script>
+
+<!-- start: REGISTRATION -->
+<div class="row">
+    <div class="main-login col-xs-12" style="margin-bottom:60px;">
+
+
+        <!-- start: REGISTER BOX -->
+        <div class1="box-register" ng-controller="selfCtrl">
+
+
+            <div id="myModalContent" title="myModalContent"
+                 style="display:none;border:1px solid #dddddd;background:#fff;width:300px;" class="roundrec">
+
+                <div class="modal-header">
+                    <h3 class="modal-title">身份码</h3>
+                </div>
+                <div class="modal-body" align=center>
+
+                    <img id="qrcode" src="{{serviceRoot}}qrcode?msg={{id_qrcode}}&width=140&height=140"
+                         style="width:200px;height:200px;" ng-click="getidqrcode()">
+
+
+                </div>
+
+            </div>
+
+
+            <div style="">
+                <carousel interval="myInterval">
+                    <slide ng-repeat="slide in slides" active="slide.active">
+                        <img ng-src="{{slide.image}}" style="margin:auto;height:160px;width:100%;">
+                        <div class="carousel-caption">
+                            <p>{{slide.text}}</p>
+                        </div>
+                    </slide>
+                </carousel>
+            </div>
+
+
+            <form id="f1" class="form-login">
+
+
+                <div class="row small" style="height:160px;margin-top:-160px;">
+
+                    <p>&nbsp;</p>
+                    <div class="col-xs-12 text-center" style="padding-top:0px;padding-bottom:10px;"
+                         ng-hide="user_id===''">
+                        由&nbsp;{{inviter_id}}&nbsp;推荐
+
+                    </div>
+
+                    <div class="col-xs-12 text-center" ng-show="user_id===''">
+                        <div class="col-xs-4"></div>
+                        <div class="col-xs-4"><p>&nbsp;</p>
+                            <a class="btn btn-orange btn-block" href1=".html" ui-sref="login.signin">
+                                登录
+                            </a>
+                        </div>
+                        <div class="col-xs-4"></div>
+                    </div>
+
+
+                    <div class="col-xs-12 text-center" ng-hide="user_id===''">
+                        <div class="col-xs-5 text-right" style="padding-right:5px;">
+
+                            <a href="#" class="small" ng-click="editit()">
+                                <img id="selfimg" src="" class="img-rounded" style="width:50px;height:50px;"/></a>
+
+                        </div>
+
+                        <div class="col-xs-4 text-left" style="padding-left:10px;">
+
+                            {{nickname}}
+
+                            <br>{{country}} &nbsp;&nbsp;&nbsp;&nbsp;{{province}}&nbsp;&nbsp;&nbsp;&nbsp;{{city}}
+                            <br>
+                            {{phone}} <p>&nbsp;</p>
+                            <!--<a href="#" class="small" ng-click="editit()"><i class="fa fa-edit fa-2x"></i></a>-->
+
+                        </div>
+
+                        <div class="col-xs-3 text-left" style="padding-left:10px;padding-top:10px;">
+
+                            <a href="#" class="small" ng-click="showmyqrcode('myModalContent')"><i
+                                    class="fa fa-qrcode fa-4x"></i></a>
+
+                        </div>
+                    </div>
+
+                    <p>&nbsp;</p>
+
+                </div>
+
+
+                <div class="clearfix space5"></div>
+                <div class="box-register small">
+
+                    <div class="clearfix space2">
+                        <div class="col-xs-6 text-center no-padding">
+                            <div class="border-right border-dark">
+                                <a ui-sref="app.wx.me.incharge" ng-if="user_id!==''"><span class="text-bold block">{{amount}}</span></a>
+                                <span class="">当前储值</span>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-6 text-center no-padding">
+                            <a ui-sref="app.wx.me.integration" ng-if="user_id!==''"><span
+                                    class="text-bold block">{{jf}}</span></a>
+                            <span class="">当前积分</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="clearfix space5"></div>
+
+                <div class="box-register small">
+
+                    <div class="clearfix space2">
+                        <div class="col-xs-3 text-center no-padding">
+                            <div class="border-right border-dark">
+                                <a ui-sref="app.wx.me.order" ng-if="user_id!==''"><span class="text-bold block">{{amount}}</span></a>
+                                <span class="">待付款</span>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-3 text-center no-padding">
+                            <div class="border-right border-dark">
+                                <a ui-sref="app.wx.me.order" ng-if="user_id!==''"><span class="text-bold block">{{amount}}</span></a>
+                                <span class="">待发货</span>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-3 text-center no-padding">
+                            <div class="border-right border-dark">
+                                <a ui-sref="app.wx.me.order" ng-if="user_id!==''"><span class="text-bold block">{{amount}}</span></a>
+                                <span class="">已发货</span>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-3 text-center no-padding">
+
+                            <a ui-sref="app.wx.me.order" ng-if="user_id!==''"><span
+                                    class="text-bold block">{{amount}}</span></a>
+                            <span class="">已完成</span>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <form role="form" style="display:none;">
+                    <div class="form-group" style="display:none;">
+                        <label for="exampleInputEmail1">
+                            当前储值
+                        </label>
+                        <input class="form-control" id="amount" placeholder="累计储值" readOnly>
+                    </div>
+                    <div class="form-group" style="display:none;">
+                        <label for="exampleInputPassword1">
+                            当前积分
+                        </label>
+                        <input class="form-control" id="jf" placeholder="当前积分" readOnly>
+                    </div>
+
+                </form>
+
+
+                <div class="clearfix space5"></div>
+                <div class="clearfix space5"></div>
+
+                <div id="menu" class="row container-fluid small" align=center>
+                    <div class="col-xs-3" style="padding-bottom:15px;"><a ui-sref="app.wx.me.mymember"
+                                                                          ng-if="user_id!==''"><i
+                            class="ti ti-user"></i>
+                        <div class="caption">
+                            <div translate="dashboard.mymember"></div>
+                        </div>
+                    </a></div>
+                    <div class="col-xs-3" style="padding-bottom:15px;"><a ui-sref="app.wx.me.mymsg"
+                                                                          ng-if="user_id!==''"><i
+                            class="ti ti-comment-alt"></i>
+                        <div class="caption">
+                            <div translate="dashboard.mymsg"></div>
+                        </div>
+                    </a></div>
+
+
+                    <div class="col-xs-3" style="padding-bottom:15px;"><a ui-sref="app.wx.me.dealstat"
+                                                                          ng-if="user_id!==''"><i
+                            class="ti ti-list"></i>
+                        <div class="caption">
+                            <div translate="dashboard.dealstat"></div>
+                        </div>
+                    </a></div>
+
+                    <div class="col-xs-3" style="padding-bottom:15px;"><a ui-sref="app.wx.me.mypublish"
+                                                                          ng-if="user_id!==''"><i
+                            class="ti ti-share"></i>
+                        <div class="caption">
+                            <div translate="dashboard.mypublish"></div>
+                        </div>
+                    </a></div>
+
+                    <div class="col-xs-3" style="padding-bottom:15px;"><a
+                            ui-sref="app.wx.me.shoplist({opertype:'pright'})" ng-if="user_id!==''"><i
+                            class="ti ti-hummer"></i>
+                        <div class="caption">
+                            <div translate="dashboard.point_right"></div>
+                        </div>
+                    </a></div>
+
+					<div class="col-xs-3" style="padding-bottom:15px;"><a
+                            ui-sref="app.wx.me.myticket" ng-if="user_id!==''"><i
+                            class="ti ti-ticket"></i>
+                        <div class="caption">
+                            <div translate="dashboard.myticket"></div>
+                        </div>
+                    </a></div>
+
+
+                    <div class="col-xs-3" style="padding-bottom:15px;"><a
+                            ui-sref="app.wx.me.mysendgift" ng-if="user_id!==''"><i
+                            class="ti ti-gift"></i>
+                        <div class="caption">
+                            <div translate="dashboard.mysendgift"></div>
+                        </div>
+                    </a></div>
+
+
+                    <div class="col-xs-3" style="padding-bottom:15px;"><a ui-sref="app.wx.me.help"><i
+                            class="ti ti-help"></i>
+                        <div class="caption">
+                            <div translate="dashboard.help"></div>
+                        </div>
+                    </a></div>
+                </div>
+
+
+                <!--
+                                              <div class="row container-fluid small" align=center>
+                                                        <div id="demo_box">
+                                                            <ul id="demo_ul">
+
+
+                                                                <li class="demo_li"><a ui-sref="app.wx.me.integration"><i class="ti ti-pinterest"></i><div class="caption"><div translate="dashboard.myintegration"></div></div></a> </li>
+                                                                <li class="demo_li"><a ui-sref="app.wx.me.incharge"><i class="ti ti-server"></i><div class="caption"><div translate="dashboard.myincharge"></div></div></a> </li>
+                                                                <li class="demo_li"><a ui-sref="app.wx.me.order"><i class="ti ti-receipt"></i><div class="caption"><div translate="dashboard.myorder"></div></div></a> </li>
+
+                                                                <li class="demo_li"><a ui-sref="app.wx.me.mymember"><i class="ti ti-user"></i><div class="caption"><div translate="dashboard.mymember"></div></div></a> </li>
+                                                                <li class="demo_li"><a ui-sref="app.wx.me.mymsg"><i class="ti ti-comment-alt"></i><div class="caption"><div translate="dashboard.mymsg"></div></div></a> </li>
+
+
+                                                                <li class="demo_li"><a ui-sref="app.wx.me.dealstat"><i class="ti ti-list"></i><div class="caption"><div translate="dashboard.dealstat"></div></div></a> </li>
+
+                                                                <li class="demo_li"><a ui-sref="app.wx.me.mypublish"><i class="ti ti-share"></i><div class="caption"><div translate="dashboard.mypublish"></div></div></a> </li>
+
+                                                                <li class="demo_li"><a ui-sref="app.wx.me.shoplist({opertype:'pright'})"><i class="ti ti-hummer"></i><div class="caption"><div translate="dashboard.point_right"></div></div></a> </li>
+
+                                                                 <li class="demo_li"><a ui-sref="app.wx.me.help"><i class="ti ti-help"></i><div class="caption"><div translate="dashboard.help"></div></div></a></li>
+
+                                                            </ul>
+                                                        </div>
+
+
+                                              </div>
+
+                                              -->
+
+
+                <p>&nbsp;</p>
+
+
+                <div class="row" ng-hide="user_id===''">
+
+                    <div class="col-xs-4 text-center">
+                        <div class="form-group" align=center>
+                            <div class="col-sm-block">
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-4 text-center">
+                        <div class="form-group" align=center>
+                            <div class="col-sm-block">
+
+                                <a class="btn btn-orange btn-block" href1=".html" ui-sref="login.logout">
+                                    退出登录
+                                </a>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-4 text-center">
+                        <div class="form-group" align=center>
+                            <div class="col-sm-block">
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </form>
+
+        </div>
+        <!-- end: REGISTER BOX -->
+
+
+        <!-- start: COPYRIGHT -->
+        <div class="copyright small">
+            &copy; <span class="current-year"></span><span class="text-bold text-uppercase small"> SNIPS</span>. <span
+                class="small">All rights reserved</span>
+        </div>
+        <!-- end: COPYRIGHT -->
+
+
+    </div>
+</div>
+<!-- end: REGISTRATION -->
+
+
+<!--<script src="assets/js/jquery.popmenu.js"></script>
+    <script>
+        $(function(){
+            $('#demo_box').popmenu({
+        'controller': false,       // use control button or not
+        'width': '100%',         // width of menu
+        'background': 'rgba(56, 121, 217, 0.8)',  // 0a3248 background color of menu
+        'focusColor': 'rgba(72, 71, 77, 0.3)',  // hover color of menu's buttons
+        'borderRadius': '10px',   // radian of angles, '0' for right angle
+        'top': '0',              // pixels that move up
+        'left': '0',              // pixels that move left
+		'position':'',
+		'fontColor':'#0a3248',
+		'iconSizeW': '55px',
+		'iconSizeH': '',
+        'iconBlockW': '90px',       // size of menu's buttons
+		'iconBlockH': ''       // size of menu's buttons
+        });
+        })
+    </script>-->

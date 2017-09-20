@@ -1,0 +1,418 @@
+<script src="assets/js/controllers/mk/RegShopCtrl.js"></script>
+		
+
+		<style>
+    .member-protocol{
+        padding: 10px;
+    }
+    .member-protocol .head-nav{
+        text-align: center;
+		line-height: 40px;
+		font-size: 18px;
+    }
+    .member-protocol p{
+        line-height: 35px;
+        font-size: 16px;
+    }
+    .member-protocol .second-section .merchant-protocol{
+        margin-left:20px;
+    }
+    .member-protocol .second-section .two-protocol{
+        font-size:16px;
+        margin-top: 10px;
+        margin-left: 20px;
+     }
+     .member-protocol .content{
+        margin-left:20px;
+     }
+     .member-protocol .btn-protocol{
+        padding:10px;
+        text-align:center;
+     }
+     .member-protocol .btn-protocol .m-btn3{
+		text-align: center;
+		background: #f53c51;
+		color: #fff;
+		padding: 13px 0;
+		font-size: 16px;
+		text-shadow: 0 0 0 #f3f3f3;
+		border: none;
+		border-radius: 0;
+		text-decoration: none;
+		margin: 0;
+		width: 50%
+}
+</style>
+<!-- start: REGISTRATION class="main-login col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4"-->
+<div class="row">
+	<div class="main-login col-xs-12 small" style="margin-top:0px;">
+		<div class="logo">
+				<a href1 ui-sref1="app.eco.firstpage"><img ng-src="{{app.layout.logo}}" alt="{{app.name}}"/></a>
+			</div>
+		
+		<!-- start: REGISTER BOX -->
+				<div class="box-register" ng-controller="RegShopCtrl">
+					
+
+<div id="asideContent" style="display:none;border:1px solid #dddddd;background:#fff;overflow:auto;" class="roundrec">
+
+<div class="member-protocol">
+	   <div class="head-nav">微信加入商户认证协议（商户版）</div>
+       <div class="first-section">
+            <p>一、总则</p>
+            <div class="content">
+	            <div>1、平台的微信服务号是由运营的平台（以下简称“平台”）向入驻商户（以下简称“商户”）提供的一款微信网络服务商品。</div>
+	            <div>2、商户确认在使用本协议之前，已充分阅读、理解并接受本协议的全部内容，在完成连接并开启服务流程时，即同意遵循本协议的所有约定。</div>
+	            <div>3、平台有权随时对本协议及相应的服务规则、内容进行单方面的变更,并以消息推送（含短信、微信消息）、网页公告等方式予以公布，无需另行单独通知。若商户在本协议内容公告变更后继续使用本服务，即表明商户已充分阅读、理解并接受修改后的协议内容，并将遵循修改后的规定；若商户不同意修改的，双方依据之前已使用的本协议内容进行修正。</div>
+	            <div>4、双方承诺在签订本协议时均已具备完全民事权利能力和完全民事行为能力的自然人、法人或其他组织，且具有经营合作范围符合有关法律法规和国家规定的经营资质。</div>
+	            <div>5、商户在通过设备进行网络连接时，应当按照法律规定，提供真实、准确和完整的资料。如商户提供的资料存在错误、虚假、过时或不完整的，平台有权向商户发出要求改正的通知，并有权直接删除相应资料、暂停或终止提供部分或全部服务。由此而产生的任何损失及责任由商户自行承担。</div>
+            </div>
+       </div>
+       <div class="second-section">
+            <p>二、双方权利义务</p>
+            <p class="two-protocol">平台的权利和义务</p>
+            <div class="content">
+	            <div>1、根据商户选择的服务提供合格的网络技术和信息服务。</div>
+	            <div>2、对于商户在使用微信服务号加入会员时提供的个人信息，平台有权在商品的服务范围内使用。</div>
+	            <div>3、承诺对商户的资料采取保密措施，不向第三方披露，授权使用前述资料，除非：
+				         <div class="merchant-protocol">（1）依据本协议条款或者与平台其他服务协议、合同、在线条款等规定可以提供的；</div>
+				         <div class="merchant-protocol">（2）依据法律法规的规定应当提供的；</div>
+				         <div class="merchant-protocol">（3）行政、司法等职权部门要求平台提供的；</div>    
+				         <div class="merchant-protocol">（4）商户同意平台向第三方提供的；   </div>
+				         <div class="merchant-protocol">（5）平台因解决举报事件、提起诉讼而提交的；</div>
+				         <div class="merchant-protocol">（6）平台为防止严重违法行为或涉嫌犯罪行为发生而采取必要合理行动所必须提交的；</div>
+				         <div class="merchant-protocol">（7）平台因向商户提供商品、服务、信息而向第三方提供的，包括平台通过第三方的技术及服务向商户提供商品、服务、信息的情况。</div>
+		         <p class="two-protocol">商户的权利和义务</p>
+		         <div>1、商户加入平台微信会员，即代表授权同意接收与会员相关的优惠信息，含短信、微信通 知，如不愿接收，也可在查收信息后退订。</div>
+		         <div>2、商户有权利享受商提供的互联网技术和信息服务，并有权利在接受服务时获得平台的技术支持、咨询等服务。</div>
+		         <div>3、商户保证不会利用技术或其他手段破坏或扰乱平台的其他互联网商品。</div>
+		         <div>4、商户应尊重平台及其他第三方的知识产权和其他合法权利，并保证在发生侵犯上述权益的违法事件时尽力保护平台及其股东、雇员、合作伙伴等免于因该等事件受到影响或损失；平台保留因商户侵犯本公司合法权益时终止提供服务的权利。</div>
+		         <div>5、因商户加入微信会员提供的联络方式有误而导致的一切后果，由商户自行承担责任，包括但不限于因商户未能及时收到平台的相关通知而导致的后果和损失。</div>
+		         <div>6、商户保证在使用本商品服务时，遵从国家、地方法律法规、行业惯例和社会公共道德，不会利用平台提供的服务进行存储、发布、传播如下信息和内容：违反国家法律法规政策的任何内容（信息）；违反国家规定的政治宣传和/或新闻信息；涉及国家秘密和/或安全的信息；封建迷信和/或淫秽、色情、下流的信息或教唆犯罪的信息；博彩有奖、赌博游戏；违反国家民族和宗教政策的信息；防碍互联网运行安全的信息；侵害他人合法权益的信息和/或其他有损于社会秩序、社会治安、公共道德的信息或内容。商户同时承诺不得为他人发布上述不符合国家规定和/或本服务条款约定的信息内容提供任何便利，包括但不限于设置URL、BANNER链接等。平台有权在商户违反上述约定时终止提供服务并不予退还任何款项，因商户上述行为给平台造成损失的，商户应予赔偿。</div>
+		        </div>
+	       </div>
+       </div>
+       <div class="third-section">
+            <p>三、法律适用与管辖</p>
+            <div class="content">本协议之效力、解释、变更、执行与争议解决均适用中华人民共和国法律。因本协议产生之争议，双方应友好协商解决，协商不成的，任何一方均有权向上海仲裁委员会申请仲裁解决。仲裁裁决是终局的，对双方均具有约束力。</div>
+       </div>
+       <div class="btn-protocol"><button class="m-btn3" ng-click="closelaw()">返回</button></div>
+</div>
+
+</div>
+
+
+
+							<form id="f1" class="form-register">
+					<div class="title">
+							{{currTitle}}
+						</div>
+						
+						<p>
+								请输入邀请码（若没有留空）:
+							</p>
+							<div class="form-group">
+								<input type="text" class="form-control" id="agent_id" name="agent_id" placeholder="邀请人手机号或编号或商家编号或者短信邀请码" ng-model="theinvitor">
+							</div>
+
+                            <p>
+								商家编号:
+							</p>
+							<div class="form-group">
+								<input type="text" class="form-control" id="shop_id" name="shop_id" placeholder="商家编号（自动生成）" ng-model="shop_id" readOnly>
+							</div>
+							
+							<p>
+								商家名称:
+							</p>
+							<div class="form-group">
+								<input type="text" class="form-control" id="name" name="name" placeholder="商家名称" ng-model="name">
+							</div>
+
+							<p>
+								管理人手机:
+							</p>
+							<div class="form-group">
+								<input type="text" class="form-control" id="admin_tel" name="admin_tel" placeholder="管理人手机（登录平台管理商户信息）" ng-model="admin_tel">
+								
+							</div>
+
+							<div class="col-xs-12" style="padding:0px;">
+								<p>
+												LOGO:
+											</p>
+								<img id="previewimg_logo" style="width:100px;height:60px;" src="{{serviceRoot+logo}}">
+
+											
+											<div class="form-group" style="padding-top:5px;">
+												
+
+												<span class="input-icon">
+													<input type="text" class="form-control" id="logo" name="logo" placeholder="LOGO" ng-model="photo" style="display:none;">
+													<!--<i class="fa fa-picture-o"></i>-->
+													<a class="btn btn-primary btn-o" ng-click="chooseimg('logo')">
+														选择 
+													</a> </span>
+												
+												
+												</div>
+							</div>
+
+
+							
+							<div class="form-group" style="display:none;"><p>
+								类别:
+							</p>
+								<input type="text" class="form-control" id="shop_type" name="shop_type" placeholder="类别" ng-model="shop_type">
+							</div>
+							<p>
+								行业:
+							</p>
+							<div class="form-group">
+
+							<select class1="cs-select cs-skin-elastic" ng-model="subtype" ng-options="x.id as x.name for x in subtypes"></select>
+							
+								<input type="text" class="form-control" id="subtype" name="subtype" placeholder="行业" ng-model="subtype" style="display:none;">
+							</div>
+							
+							<p>
+								地址:
+							</p>
+							<div class="form-group">
+							<span class="input-icon">
+									<input type="text" class="form-control" id="address" name="address" placeholder="地址" ng-model="address">
+									<i class="ti ti-location-pin"></i>
+									<a class="forgot" href1 ng-click="chgsearchcenter('myModalContent1')">[换个位置]</a></span>
+
+							</div>
+							
+							
+							<p>
+								省-市-区:
+							</p>
+							<div class="form-group">
+								<div class="col-xs-12">
+								<div class="col-xs-4"><input type="text" class="form-control" id="province" name="province" placeholder="省" ng-model="province"></div>
+								<div class="col-xs-4"><input type="text" class="form-control" id="city" name="city" placeholder="市" ng-model="city"></div>
+								<div class="col-xs-4"><input type="text" class="form-control" id="district" name="district" placeholder="区" ng-model="district"></div>
+								</div>
+							</div>
+							
+							
+								<input type="text" class="form-control" id="latitude" name="latitude" placeholder="纬度" ng-model="latitude" style="display:none;">
+								<input type="text" class="form-control" id="longitude" name="longitude" placeholder="经度" ng-model="longitude" style="display:none;">
+								
+							<p>
+								联系人:
+							</p>
+							<div class="form-group">
+								<input type="text" class="form-control" id="contact" name="contact" placeholder="联系人" ng-model="contact">
+								
+							</div>
+							<p>
+								电话:
+							</p>
+							<div class="form-group">
+								<input type="text" class="form-control" id="contact_phone" name="contact_phone" placeholder="电话" ng-model="contact_phone">
+								
+							</div>
+							
+
+
+
+
+
+								<div class="col-xs-12" style="padding:0px;">
+								<div class="col-xs-6" style="padding:0px;"><p>
+												图片:
+											</p>
+								<img id="previewimg_photo" style="width:100px;height:60px;" src="{{serviceRoot+photo}}">
+
+											
+											<div class="form-group" style="padding-top:5px;">
+												
+
+												<span class="input-icon">
+													<input type="text" class="form-control" id="photo" name="photo" placeholder="图片" ng-model="photo" style="display:none;">
+													<!--<i class="fa fa-picture-o"></i>-->
+													<a class="btn btn-primary btn-o" ng-click="chooseimg('photo')">
+														选择
+													</a> </span>
+												
+												
+												</div>
+								</div>
+								<div class="col-xs-6" style="padding:0px;"><p>
+													轮播图:
+												</p>
+								<img id="previewimg_slidesimg" style="width:100px;height:60px;display:none;" src="{{serviceRoot+slidesimg}}">
+
+											<table ng-table="tableParams" class="table">
+											</thead>
+												<tbody>
+																<tr ng-repeat="item in $data" class="small">
+																	<td><img style="width:100px;height:60px;" src="{{serviceRoot+item.slidesimg}}"></td>
+																	<td>
+																	<div><a href="#" class="small" ng-click="delit(item.key)"><i class="fa fa-trash-o fa-2x"></i></a></div>
+																	</td>
+																</tr>
+												</tbody>
+											</table>
+
+
+
+												<div class="form-group" style="padding-top:5px;">
+													
+													<span class="input-icon">
+														<input type="text" class="form-control" id="slidesimg" name="slidesimg" placeholder="轮播图" ng-model="slidesimg" style="display:none;">
+														<!--<i class="fa fa-picture-o"></i>-->
+														<a class="btn btn-primary btn-o" ng-click="chooseimg('slidesimg')">
+															选择
+														</a> </span>
+												
+												
+
+												</div>
+
+								</div>
+								</div>
+
+
+						<p>
+								是否有效:
+							</p>
+							<div class="form-group">
+
+							<select class1="cs-select cs-skin-slide" ng-model="visible">
+																<option value="1" selected>有效</option>
+																<option value="0">无效</option>													
+															</select>
+
+								<input type="text" class="form-control" id="visible" name="visible" placeholder="是否有效" ng-model="visible" style="display:none;">
+							</div>
+							<p>
+								优先级:
+							</p>
+							<div class="form-group">
+
+							<select class1="cs-select cs-skin-slide" ng-model="priority">
+																<option value="0">0-最高</option>
+																<option value="1" selected>1</option>
+																<option value="2">2</option>
+																<option value="3">3</option>
+																<option value="4">4</option>
+																<option value="5">5</option>
+																<option value="6">6</option>
+																<option value="7">7</option>
+																<option value="8">8</option>
+																<option value="9">9-最低</option>
+
+															</select>
+
+								<input type="text" class="form-control" id="priority" name="priority" placeholder="优先级" ng-model="priority" style="display:none;">
+							</div>
+
+
+
+							<p>&nbsp;</p>
+							
+
+
+
+
+							<p>
+								备注:
+							</p>
+							<div class="form-group">
+								<textarea type="text" class="form-control" id="desc" name="desc" placeholder="备注" ng-model="desc"></textarea>
+								
+							</div>
+							
+							
+							
+							<p>
+								&nbsp;
+							</p>
+
+							<div class="form-group">
+								<div class="checkbox clip-check check-primary">
+								<input style="display:none;" id="agree" name="agree" value="{{agree_value}}">
+									<input type="checkbox" id="agree_checkbox" ng-model="agree_value">
+									<label for="agree_checkbox">
+										同意
+									</label>
+									<a ui-sref1="login.shoplaw" ng-click="openlaw('asideContent')">
+										<<商户认证协议>>
+									</a>
+								</div>
+							</div>
+
+
+
+							
+							<div class="form-actions">
+								
+								<button type="button" id="submit" class="btn btn-primary pull-right">
+									提交 <i class="fa fa-arrow-circle-right"></i>
+								</button>
+							</div>
+
+						
+						
+					</form>
+
+
+
+
+
+
+
+
+
+
+<div id="myModalContent1" style="display:none;border:1px solid #dddddd;background:#fff;" class="roundrec">
+
+					
+					 <!--<div class="modal-header">
+                            <h3 class="modal-title">选择位置</h3>
+                </div>-->
+                <div style="padding:2px;">
+                    <div id="mapcontainer" style="width:100%;height:100%;">
+                    </div>
+                </div>
+                <div class="modal-footer">
+
+                    <div class="row">
+                        <div id="templocation" class="small" align=center style="height:20px;">请选择</div>
+                        <div class="col-xs-12" align=center>
+                            <button class="btn btn-primary" ng-click="ok(1)">确定</button>
+                            <button class="btn btn-primary btn-o" ng-click="cancel()">取消</button>
+                        </div>
+                    </div>
+
+
+                </div>
+
+			
+</div>
+
+
+
+
+
+
+
+
+
+					
+				</div>
+				<!-- end: REGISTER BOX -->
+
+				<!-- start: COPYRIGHT -->
+					<div class="copyright small">
+						&copy; <span class="current-year"></span><span class="text-bold text-uppercase small"> SNIPS</span>. <span class="small">All rights reserved</span>
+					</div>
+					<!-- end: COPYRIGHT -->
+	</div>
+</div>
+<!-- end: REGISTRATION -->

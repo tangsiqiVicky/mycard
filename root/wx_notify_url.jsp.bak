@@ -1,0 +1,23 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import="java.sql.*" %>
+<%@page import="database.surenet_function"%>
+<%@ include file="db.jsp"%>
+<%DBWork.initConn();surenet_function s_func=surenet_function.getInstance();%>
+<%
+String out_trade_no=s_func.GBK(request.getParameter("out_trade_no"));
+String userId=s_func.GBK(request.getParameter("userId"));
+String total_fee=s_func.GBK(request.getParameter("total_fee"));
+
+DBWork.executeUpdate("update PO set Status='已支付' where PO_ID='"+out_trade_no+"'");
+System.out.println("update PO set Status='已支付' where PO_ID='"+out_trade_no+"'");
+if(out_trade_no.indexOf("OL-")>=0)
+				{
+				DBWork.executeUpdate("P_MK_PAYMENT '"+out_trade_no.split("-")[1].replaceAll("SPLIT","-")+"','"+out_trade_no.split("-")[2]+"','"+userId+"',"+total_fee+",'cash'");
+				System.out.println("P_MK_PAYMENT '"+out_trade_no.split("-")[1].replaceAll("SPLIT","-")+"','"+out_trade_no.split("-")[2]+"','"+userId+"',"+total_fee+",'cash'");
+				}
+%>
+<%
+//DBWork.wait(1000);
+DBWork.end();
+//out.println(request.getServletPath());
+%>

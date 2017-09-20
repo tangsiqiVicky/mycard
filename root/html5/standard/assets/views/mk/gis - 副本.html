@@ -1,0 +1,296 @@
+<script src="assets/js/controllers/mk/gis.js"></script>
+<script src="assets/js/gooey.min.js"></script>
+
+
+
+<div id="mapcontainer" ng-controller="GISCtrl" class="container-fluid container-fullw bg-white;" style="border:0px solid red;">
+</div>
+<div id="results" style=""></div>
+<div class="row"></div>
+
+
+
+<div id="tempmenudiv" style="width:10px;height:10px;position:absolute;top:50px;right:70px;border:0px solid red;z-index:5;" ng-controller="ModalDemoCtrl">
+<nav id="gooey-v">
+<input type="checkbox" class="menu-open" name="menu-open4" id="menu-open4"/>
+<label class="open-button" for="menu-open4">
+<span class="burger burger-1"></span>
+<span class="burger burger-2"></span>
+<span class="burger burger-3"></span>
+</label>
+<a href1="#" class="gooey-menu-item" ng-click="open('myModalContent1.html')"> 周边搜索 </a>
+<a href1="#" class="gooey-menu-item" ng-click="open('myModalContent2.html')"> 联盟商家 </a>
+<a href1="#" class="gooey-menu-item" ng-click="open('myModalContent3.html')"> 我的会员 </a>
+<a href1="#" class="gooey-menu-item" ng-click="open('myModalContent4.html')"> 精品推荐 </a>
+</nav>
+</div>
+
+
+
+
+						
+
+
+
+
+				<script type="text/ng-template" id="myModalContent1.html">
+					<div class="modal-header">
+					<h3 class="modal-title">周边搜索</h3>
+					</div>
+					<div class="modal-body">
+					
+					
+
+					<div class="row">
+					<div class="col-lg-12 col-md-12 margin-bottom-30">
+								<label>
+									当前位置：{{localaddress}}
+								</label>
+							
+					</div>
+
+
+						<div class="col-lg-6 col-md-12">
+
+							<div class="form-group">
+								<label>
+									距离（米）:
+								</label>
+								<input id="distance" type="text" value="300" name="distance" touchspin data-min="50" data-max="3000" data-step="50" data-decimals="0" data-boostat="5" data-maxboostedstep="10">
+							</div>
+						</div>
+
+						<div class="col-lg-6 col-md-12">
+							<label>
+									目标:
+								</label>
+							<div class="form-group">
+
+							<input style="display:none;" id="searchobj_value" value="{{searchobj_value1+','+searchobj_value2+','+searchobj_value3+','+searchobj_value4+','+searchobj_value5+','+searchobj_value6}}">
+							
+
+								<div class="checkbox clip-check check-primary checkbox-inline">
+								<input type="checkbox" id="checkbox1" value="酒店" ng-model="searchobj_value1" ng-click="testit()">
+								<label for="checkbox1">
+									酒店
+								</label>
+								</div>
+								<div class="checkbox clip-check check-primary checkbox-inline">
+									<input type="checkbox" id="checkbox2" value="餐饮" ng-model="searchobj_value2">
+									<label for="checkbox2">
+										餐饮
+									</label>
+								</div>
+								<div class="checkbox clip-check check-primary checkbox-inline">
+									<input type="checkbox" id="checkbox3" value="汽车" ng-model="searchobj_value3">
+									<label for="checkbox3">
+										汽车
+									</label>
+								</div>
+								<div class="checkbox clip-check check-primary checkbox-inline">
+									<input type="checkbox" id="checkbox4" value="美容" ng-model="searchobj_value4">
+									<label for="checkbox4">
+										美容
+									</label>
+								</div>
+								<div class="checkbox clip-check check-primary checkbox-inline">
+									<input type="checkbox" id="checkbox5" value="娱乐" ng-model="searchobj_value5">
+									<label for="checkbox5">
+										娱乐
+									</label>
+								</div>
+								<div class="checkbox clip-check check-primary checkbox-inline">
+									<input type="checkbox" id="checkbox6" value="健身" ng-model="searchobj_value6">
+									<label for="checkbox6">
+										健身
+									</label>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+
+
+
+					</div>
+					<div class="modal-footer">
+					<button class="btn btn-primary" ng-click="ok(1)">OK</button>
+					<button class="btn btn-primary btn-o" ng-click="cancel()">Cancel</button>
+					</div>
+				</script>
+
+
+
+
+
+
+
+				<script type="text/ng-template" id="myModalContent2.html">
+					<div class="modal-header">
+					<h3 class="modal-title">联盟商家</h3>
+					</div>
+					<div class="modal-body">
+					
+
+
+
+
+
+					<div class="row">
+					
+
+						<div class="col-lg-12 col-md-12">
+							<label>
+									分类:
+								</label>
+							<div class="form-group">
+
+							<input style="display:none;" id="searchobj_value" value="{{searchobj_value1+','+searchobj_value2+','+searchobj_value3+','+searchobj_value4+','+searchobj_value5+','+searchobj_value6}}">
+							
+
+								<div class="checkbox clip-check check-primary checkbox-inline">
+								<input type="checkbox" id="checkbox1" value="酒店" ng-model="searchobj_value1">
+								<label for="checkbox1">
+									酒店
+								</label>
+								</div>
+								<div class="checkbox clip-check check-primary checkbox-inline">
+									<input type="checkbox" id="checkbox2" value="餐饮" ng-model="searchobj_value2">
+									<label for="checkbox2">
+										餐饮
+									</label>
+								</div>
+								<div class="checkbox clip-check check-primary checkbox-inline">
+									<input type="checkbox" id="checkbox3" value="汽车" ng-model="searchobj_value3">
+									<label for="checkbox3">
+										汽车
+									</label>
+								</div>
+								<div class="checkbox clip-check check-primary checkbox-inline">
+									<input type="checkbox" id="checkbox4" value="美容" ng-model="searchobj_value4">
+									<label for="checkbox4">
+										美容
+									</label>
+								</div>
+								<div class="checkbox clip-check check-primary checkbox-inline">
+									<input type="checkbox" id="checkbox5" value="娱乐" ng-model="searchobj_value5">
+									<label for="checkbox5">
+										娱乐
+									</label>
+								</div>
+								<div class="checkbox clip-check check-primary checkbox-inline">
+									<input type="checkbox" id="checkbox6" value="健身" ng-model="searchobj_value6">
+									<label for="checkbox6">
+										健身
+									</label>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="col-lg-12 col-md-12">
+							<label>
+									显示:
+								</label>
+							<div class="form-group">
+
+							<input style="display:none;" id="showtype_value" value="{{showtype_value}}">
+							
+
+								<div class="radio clip-radio radio-primary radio-inline">
+								<input type="radio" id="showtype1" name="showtype" value="map" ng-model="showtype_value" checked="checked">
+								<label for="showtype1">
+									地图
+								</label>
+							</div>
+							<div class="radio clip-radio radio-primary radio-inline">
+								<input type="radio" id="showtype2" name="showtype" value="list" ng-model="showtype_value">
+								<label for="showtype2">
+									列表
+								</label>
+							</div>
+
+								
+							</div>
+						</div>
+
+
+
+<table>
+  <tr ng-repeat="x in names">
+    <td>{{ $index + 1 }}</td>
+    <td>{{ x.Name }}</td>
+    <td>{{ x.Country }}</td>
+  </tr>
+</table>
+
+
+
+
+
+
+					</div>
+
+
+
+					</div>
+					<div class="modal-footer">
+					<button class="btn btn-primary" ng-click="ok(2)">OK</button>
+					<button class="btn btn-primary btn-o" ng-click="cancel()">Cancel</button>
+					</div>
+				</script>
+
+
+
+				
+
+
+
+
+
+
+
+				<script type="text/ng-template" id="myModalContent3.html">
+					<div class="modal-header">
+					<h3 class="modal-title">我的会员</h3>
+					</div>
+					<div class="modal-body">
+					
+
+
+					</div>
+					<div class="modal-footer">
+					<button class="btn btn-primary" ng-click="ok(3)">OK</button>
+					<button class="btn btn-primary btn-o" ng-click="cancel()">Cancel</button>
+					</div>
+				</script>
+
+
+
+				
+
+
+
+
+
+
+
+				<script type="text/ng-template" id="myModalContent4.html">
+					<div class="modal-header">
+					<h3 class="modal-title">精品推荐</h3>
+					</div>
+					<div class="modal-body">
+					
+
+
+					</div>
+					<div class="modal-footer">
+					<button class="btn btn-primary" ng-click="ok(4)">OK</button>
+					<button class="btn btn-primary btn-o" ng-click="cancel()">Cancel</button>
+					</div>
+				</script>
+	
+
+
+

@@ -1,0 +1,77 @@
+<script src="assets/js/controllers/mk/ProblemCtrl.js"></script>
+
+<!-- start: REGISTRATION -->
+<div class="row" ng-controller="ProblemCtrl">
+	<div class="main-login col-xs-12" style="margin-bottom:60px;">
+		
+		<!-- start: REGISTER BOX -->
+				<div class="box-register small">
+
+
+					<div>
+					<form id="f1" class="form-register">
+
+						
+                              
+
+							  
+                   <!-- start: SIMPLE TABLE WITH PAGINATION -->                             
+						
+
+						<!--
+										<p>
+											<strong>Page:</strong> {{tableParams.page()}}
+										</p>
+										<p>
+											<strong>Count per page:</strong> {{tableParams.count()}}
+										</p>-->
+										<table ng-table="tableParams" class="table table-striped">
+											<tr ng-repeat="user in $data">
+												<td data-title="'序号'"><a href1="#" class="gooey-menu-item">{{user.id}}</a></td>
+												<td data-title="'标题'" ng-click="open('myModalContent{{user.id}}')"><a href1="#" class="gooey-menu-item">{{user.title}}</a></td>
+												<td>
+									
+<div id="myModalContent{{user.id}}" title="myModalContent{{user.id}}" style="display:none;border:1px solid #dddddd;background:#fff;" class="roundrec">
+				
+					<div class="modal-header">
+					<h3 class="modal-title">{{user.title}}</h3>
+					</div>
+					<div class="modal-body">
+					
+					
+
+					{{user.content}}
+
+
+
+
+					</div>
+					
+
+
+
+											</td>
+											</tr>
+										</table>
+									</div>
+						<!-- end: SIMPLE TABLE WITH PAGINATION -->
+								
+
+
+                             
+                              
+						
+					</form>  
+					</div>
+                              
+						
+
+				</div>
+				<!-- end: REGISTER BOX -->
+
+				
+
+					
+	</div>
+</div>
+<!-- end: REGISTRATION -->

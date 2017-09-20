@@ -1,0 +1,33 @@
+<script>
+
+var request = 
+ { 
+ QueryString : function(val) 
+ { 
+  var rv="";
+ try
+ {
+ var uri = window.location.href; 
+ var re = new RegExp("\\?" +val+ "=([^&?]*)", "ig"); 
+ rv=((uri.match(re))?(uri.match(re)[0].substr(val.length+2)):"");
+
+ if(rv==""){
+ re = new RegExp("\\&" +val+ "=([^&?]*)", "ig"); 
+ rv=((uri.match(re))?(uri.match(re)[0].substr(val.length+2)):"");
+ }
+
+ }catch(e){}
+ return rv; 
+ } 
+ } 
+
+
+
+var uid=request.QueryString("uid");
+ alert(uid)
+ var pwd=request.QueryString("pwd");
+ alert(pwd)
+
+
+//window.location="standard/wx_interface.html?menuid=firstpage"
+</script>
